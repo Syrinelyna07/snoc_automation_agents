@@ -1,0 +1,8 @@
+fastapi==0.139.2
+uvicorn==0.51.0
+pydantic==2.13.4
+langgraph==1.2.9
+langchain-core==1.4.9
+python-multipart
+scikit-learn>=1.4
+joblib>=1.3

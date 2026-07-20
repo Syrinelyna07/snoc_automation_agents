@@ -1,0 +1,56 @@
+# Stack cible telle que définie dans le tableau technologique du projet.
+# Le prototype (service `agent-api`) fonctionne en autonome avec SQLite + règles mockées ;
+# les services ci-dessous montrent comment il s'intègre dans l'architecture de production.
+version: "3.9"
+
+services:
+  agent-api:
+    build: .
+    ports:
+      - "8000:8000"
+    environment:
+      - LLM_BACKEND=mock          # passer à "ollama" une fois l'infra LLM branchée
+      - DATABASE_URL=postgresql://snoc:snoc@postgres:5432/snoc_agent
+    depends_on:
+      - postgres
+      - redis
+
+  postgres:
+    image: postgres:16
+    environment:
+      - POSTGRES_USER=snoc
+      - POSTGRES_PASSWORD=snoc
+      - POSTGRES_DB=snoc_agent
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+  redis:
+    image: redis:7
+    ports:
+      - "6379:6379"
+
+  # Optionnel : LLM local (Llama 3.1 / Qwen 2.5 / Mistral) via Ollama
+  ollama:
+    image: ollama/ollama:latest
+    ports:
+      - "11434:11434"
+    volumes:
+      - ollama_data:/root/.ollama
+
+  prometheus:
+    image: prom/prometheus:latest
+    ports:
+      - "9090:9090"
+
+  grafana:
+    image: grafana/grafana:latest
+    ports:
+      - "3000:3000"
+    depends_on:
+      - prometheus
+
+volumes:
+  pgdata:
+  ollama_data:

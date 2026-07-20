@@ -1,0 +1,40 @@
+{
+  "authorized_senders": [
+    {
+      "email": "zouaksyrinelyna@gmail.com",
+      "name": "Zouak Syrinelyna",
+      "role": "authorized_user",
+      "zone": "N/A"
+    },
+    {
+      "email": "azzouzlylia05@gmail.com",
+      "name": "Azzouz Lylia",
+      "role": "authorized_user",
+      "zone": "N/A"
+    },
+    {
+      "email": "safaamiloudi.18@gmail.com",
+      "name": "Safaa Miloudi",
+      "role": "authorized_user",
+      "zone": "N/A"
+    },
+    {
+      "email": "animateur.zone1@company.com",
+      "name": "Animateur Zone 1",
+      "role": "supervisor",
+      "zone": "Zone East"
+    },
+    {
+      "email": "animateur.zone2@company.com",
+      "name": "Animateur Zone 2",
+      "role": "supervisor",
+      "zone": "Zone West"
+    },
+    {
+      "email": "helpdesk@company.com",
+      "name": "Helpdesk",
+      "role": "helpdesk",
+      "zone": "Central"
+    }
+  ]
+}

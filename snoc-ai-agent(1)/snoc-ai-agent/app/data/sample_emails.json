@@ -1,0 +1,58 @@
+[
+  {
+    "id": "email_001",
+    "sender": "animateur.zone1@company.com",
+    "subject": "Déblocage compte PDV urgent",
+    "body": "Bonjour,\n\nMerci de bien vouloir débloquer le compte PDV numéro PDV-45210, le partenaire n'arrive plus à se connecter depuis ce matin.\n\nCordialement,\nKarim Belkacem\nAnimateur Zone Centre\nTel: 0555123456",
+    "language_hint": "fr"
+  },
+  {
+    "id": "email_002",
+    "sender": "superviseur.est@company.com",
+    "subject": "reset password stp",
+    "body": "salam, jai un pdv PDV-88012 ki narrive pa a se connecter, tu peux reset le mdp stp merci",
+    "language_hint": "fr_sms"
+  },
+  {
+    "id": "email_003",
+    "sender": "helpdesk@company.com",
+    "subject": "Reactivation account inactive",
+    "body": "Hello,\n\nCould you please reactivate the account for PDV-33190? It has been inactive for 45 days and the partner wants to resume operations.\n\nThanks,\nHelpdesk Team",
+    "language_hint": "en"
+  },
+  {
+    "id": "email_004",
+    "sender": "animateur.zone2@company.com",
+    "subject": "تحديث رقم الهاتف",
+    "body": "السلام عليكم، من فضلكم قوموا بتحديث رقم الهاتف الخاص بـ OTP لنقطة البيع PDV-77102 الى الرقم 0661223344. شكرا",
+    "language_hint": "ar"
+  },
+  {
+    "id": "email_005",
+    "sender": "animateur.zone1@company.com",
+    "subject": "Nouveau partenaire - création compte",
+    "body": "Bonjour,\n\nNous avons un nouveau partenaire à intégrer:\nNom: Boutique El Amir\nCode PDV: PDV-99871\nTéléphone: 0770112233\nZone: Centre\n\nMerci de créer le compte.\n\nCordialement,\nKarim",
+    "language_hint": "fr"
+  },
+  {
+    "id": "email_006",
+    "sender": "unknown.person@gmail.com",
+    "subject": "besoin d'aide",
+    "body": "Bonjour, pouvez vous debloquer mon compte PDV-11111 svp",
+    "language_hint": "fr"
+  },
+  {
+    "id": "email_007",
+    "sender": "superviseur.est@company.com",
+    "subject": "vpn access",
+    "body": "hi need vpn account creation for new field agent, name Omar Saadi, employee id EMP-4521. thx",
+    "language_hint": "en"
+  },
+  {
+    "id": "email_008",
+    "sender": "animateur.zone2@company.com",
+    "subject": "help svp",
+    "body": "bjr jss bloké c urgent koi faire mrc davance",
+    "language_hint": "fr_sms_ambiguous"
+  }
+]
