@@ -1,0 +1,20 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: snoc_agent
+      POSTGRES_USER: snoc_agent
+      POSTGRES_PASSWORD: local-development-only
+    ports:
+      - "5432:5432"
+    volumes:
+      - snoc_postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U snoc_agent"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+volumes:
+  snoc_postgres_data:
+

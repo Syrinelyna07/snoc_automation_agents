@@ -1,0 +1,1201 @@
+{
+  "email": {
+    "id": "ec6414a1-3740-4487-b9a1-bf01f7389a1a",
+    "message_id": "<c-three-operations-001@fixtures.snoc.invalid>",
+    "sender": "Animateur Zone Gamma <animateur.gamma@example.invalid>",
+    "recipients": [
+      "Agent SNOC <snoc-agent@example.invalid>"
+    ],
+    "subject": "Trois operations S-NOC a traiter",
+    "processing_status": "processed",
+    "imap": {
+      "mailbox": "REPLAY",
+      "uidvalidity": 1,
+      "uid": 9,
+      "flags": [],
+      "internal_date": null
+    },
+    "parsing": {
+      "automated_classification": null,
+      "warnings": [],
+      "quarantine_category": null,
+      "quarantine_message": null,
+      "context_limit_metadata": {
+        "mime_limit_warnings": [],
+        "context_limit_warnings": [],
+        "automatic_execution_allowed": true
+      }
+    },
+    "authorization": {
+      "allowed": true,
+      "reason": "sender_whitelisted"
+    },
+    "correlation": {
+      "strength": "new",
+      "matched_by": "new_conversation",
+      "request_id": null,
+      "clarification_id": null,
+      "conflicts": []
+    },
+    "latest_user_message": "Bonjour,\n\nMerci de traiter séparément les trois demandes suivantes :\n\n1. Débloquer le compte du PDV 32000001.\n2. Réinitialiser le mot de passe du PDV 32000002.\n3. Créer l'accès VPN du PDV 32000003.\n\nPour le troisième point, deux numéros ont été communiqués : 0770000002 et\n0770000003. Je ne peux pas confirmer lequel doit recevoir le token. Merci de\ndemander uniquement cette précision."
+  },
+  "model_runs": [
+    {
+      "id": "d8061f37-9bd6-4314-b14e-209f842afddb",
+      "stage": "analysis",
+      "backend": "huggingface",
+      "base_model_id": "Qwen/Qwen2.5-7B-Instruct",
+      "resolved_model_id": "Qwen/Qwen2.5-7B-Instruct:cheapest",
+      "reported_provider": null,
+      "provider_request_id": "osrh6KH-6Ng1vN-a1e0f75c0e5089b6",
+      "prompt_version": "analyzer_v1",
+      "input_context": {
+        "mode": "new_request",
+        "subject": "Trois operations S-NOC a traiter",
+        "latest_user_message": "Bonjour,\nMerci de traiter séparément les trois demandes suivantes :\n1. Débloquer le compte du PDV 32000001.\n2. Réinitialiser le mot de passe du PDV 32000002.\n3. Créer l'accès VPN du PDV 32000003.\nPour le troisième point, deux numéros ont été communiqués : 0770000002 et\n0770000003. Je ne peux pas confirmer lequel doit recevoir le token. Merci de\ndemander uniquement cette précision.",
+        "text_since_last_closed_request": "Bonjour,\nMerci de traiter séparément les trois demandes suivantes :\n1. Débloquer le compte du PDV 32000001.\n2. Réinitialiser le mot de passe du PDV 32000002.\n3. Créer l'accès VPN du PDV 32000003.\nPour le troisième point, deux numéros ont été communiqués : 0770000002 et\n0770000003. Je ne peux pas confirmer lequel doit recevoir le token. Merci de\ndemander uniquement cette précision.",
+        "numeric_candidates": [
+          {
+            "value": "32000001",
+            "raw_value": "32000001",
+            "kind_hint": "pdv_or_unknown",
+            "section": "latest_user_message",
+            "start": 98,
+            "end": 106,
+            "context": "es trois demandes suivantes :\n1. Débloquer le compte du PDV 32000001.\n2. Réinitialiser le mot de passe du PDV 32000002.\n3. Créer"
+          },
+          {
+            "value": "32000002",
+            "raw_value": "32000002",
+            "kind_hint": "pdv_or_unknown",
+            "section": "latest_user_message",
+            "start": 148,
+            "end": 156,
+            "context": "te du PDV 32000001.\n2. Réinitialiser le mot de passe du PDV 32000002.\n3. Créer l'accès VPN du PDV 32000003.\nPour le troisième po"
+          },
+          {
+            "value": "32000003",
+            "raw_value": "32000003",
+            "kind_hint": "pdv_or_unknown",
+            "section": "latest_user_message",
+            "start": 186,
+            "end": 194,
+            "context": "e mot de passe du PDV 32000002.\n3. Créer l'accès VPN du PDV 32000003.\nPour le troisième point, deux numéros ont été communiqués "
+          },
+          {
+            "value": "0770000002",
+            "raw_value": "0770000002",
+            "kind_hint": "phone_or_unknown",
+            "section": "latest_user_message",
+            "start": 256,
+            "end": 266,
+            "context": "Pour le troisième point, deux numéros ont été communiqués : 0770000002 et\n0770000003. Je ne peux pas confirmer lequel doit recevoi"
+          },
+          {
+            "value": "0770000003",
+            "raw_value": "0770000003",
+            "kind_hint": "phone_or_unknown",
+            "section": "latest_user_message",
+            "start": 270,
+            "end": 280,
+            "context": "ème point, deux numéros ont été communiqués : 0770000002 et\n0770000003. Je ne peux pas confirmer lequel doit recevoir le token. Me"
+          }
+        ],
+        "closed_history_summary": null,
+        "preprocessing_notes": [],
+        "segmentation_confidence": 0.8
+      },
+      "raw_output": "{\"message_kind\": \"new_request\", \"operations\": [{\"local_operation_id\": \"1\", \"action\": \"account_unblock\", \"pdv_code\": \"32000001\", \"phone\": null}, {\"local_operation_id\": \"2\", \"action\": \"password_reset\", \"pdv_code\": \"32000002\", \"phone\": null}, {\"local_operation_id\": \"3\", \"action\": \"vpn_access\", \"pdv_code\": \"32000003\", \"phone\": null}], \"new_request_present\": true, \"contradiction_with_stored_state\": false}",
+      "parsed_output": {
+        "message_kind": "new_request",
+        "referenced_existing_operation_ids": [],
+        "operations": [
+          {
+            "local_operation_id": "1",
+            "action": "account_unblock",
+            "pdv_code": "32000001",
+            "phone": null,
+            "additional_fields": {},
+            "missing_fields": [],
+            "evidence": [],
+            "ambiguity_reasons": [],
+            "raw_action_confidence": null,
+            "raw_field_confidence": {}
+          },
+          {
+            "local_operation_id": "2",
+            "action": "password_reset",
+            "pdv_code": "32000002",
+            "phone": null,
+            "additional_fields": {},
+            "missing_fields": [],
+            "evidence": [],
+            "ambiguity_reasons": [],
+            "raw_action_confidence": null,
+            "raw_field_confidence": {}
+          },
+          {
+            "local_operation_id": "3",
+            "action": "vpn_access",
+            "pdv_code": "32000003",
+            "phone": null,
+            "additional_fields": {},
+            "missing_fields": [],
+            "evidence": [],
+            "ambiguity_reasons": [],
+            "raw_action_confidence": null,
+            "raw_field_confidence": {}
+          }
+        ],
+        "new_request_present": true,
+        "contradiction_with_stored_state": false,
+        "contradiction_details": [],
+        "unresolved_ambiguities": []
+      },
+      "structured_output_valid": true,
+      "structured_output_mode": "json_schema",
+      "schema_name": "EmailAnalysis",
+      "fallback_reason": null,
+      "parse_attempt_count": 1,
+      "validation_errors": [],
+      "reasoning_output": null,
+      "latency_seconds": 1.7011126340003102,
+      "request_attempt_count": 1,
+      "usage": {
+        "prompt_tokens": 1358,
+        "completion_tokens": 152,
+        "total_tokens": 1510
+      },
+      "cost": {
+        "input_usd": null,
+        "output_usd": null,
+        "total_usd": null,
+        "basis": "unknown",
+        "pricing_metadata": {}
+      },
+      "error": null,
+      "error_category": null,
+      "cached_from_model_run_id": null,
+      "created_at": "2026-07-20T09:33:46.963902"
+    },
+    {
+      "id": "9a0759cc-00fa-4002-b978-d97438c98785",
+      "stage": "verification",
+      "backend": "huggingface",
+      "base_model_id": "Qwen/Qwen3-8B",
+      "resolved_model_id": "Qwen/Qwen3-8B:cheapest",
+      "reported_provider": null,
+      "provider_request_id": "c96f60aa-fc08-4ca9-b0ea-2d366c6f5fae",
+      "prompt_version": "verifier_v1",
+      "input_context": {
+        "context_mode": "new_request",
+        "latest_user_message": "Bonjour,\nMerci de traiter séparément les trois demandes suivantes :\n1. Débloquer le compte du PDV 32000001.\n2. Réinitialiser le mot de passe du PDV 32000002.\n3. Créer l'accès VPN du PDV 32000003.\nPour le troisième point, deux numéros ont été communiqués : 0770000002 et\n0770000003. Je ne peux pas confirmer lequel doit recevoir le token. Merci de\ndemander uniquement cette précision.",
+        "stored_operation_state": {
+          "operation_id": "f5047501-eb81-49e4-9c91-63c4fda59b5f",
+          "action": "account_unblock",
+          "pdv_code": "32000001",
+          "phone": null,
+          "missing_fields": [],
+          "status": "NEW",
+          "current_revision": 1
+        },
+        "proposed_operation": {
+          "local_operation_id": "1",
+          "action": "account_unblock",
+          "pdv_code": "32000001",
+          "phone": null,
+          "additional_fields": {},
+          "missing_fields": [],
+          "evidence": [],
+          "ambiguity_reasons": [],
+          "raw_action_confidence": null,
+          "raw_field_confidence": {}
+        },
+        "candidate_evidence": [
+          {
+            "value": "32000001",
+            "raw_value": "32000001",
+            "kind_hint": "pdv_or_unknown",
+            "section": "latest_user_message",
+            "start": 98,
+            "end": 106,
+            "context": "es trois demandes suivantes :\n1. Débloquer le compte du PDV 32000001.\n2. Réinitialiser le mot de passe du PDV 32000002.\n3. Créer"
+          },
+          {
+            "value": "32000002",
+            "raw_value": "32000002",
+            "kind_hint": "pdv_or_unknown",
+            "section": "latest_user_message",
+            "start": 148,
+            "end": 156,
+            "context": "te du PDV 32000001.\n2. Réinitialiser le mot de passe du PDV 32000002.\n3. Créer l'accès VPN du PDV 32000003.\nPour le troisième po"
+          },
+          {
+            "value": "32000003",
+            "raw_value": "32000003",
+            "kind_hint": "pdv_or_unknown",
+            "section": "latest_user_message",
+            "start": 186,
+            "end": 194,
+            "context": "e mot de passe du PDV 32000002.\n3. Créer l'accès VPN du PDV 32000003.\nPour le troisième point, deux numéros ont été communiqués "
+          },
+          {
+            "value": "0770000002",
+            "raw_value": "0770000002",
+            "kind_hint": "phone_or_unknown",
+            "section": "latest_user_message",
+            "start": 256,
+            "end": 266,
+            "context": "Pour le troisième point, deux numéros ont été communiqués : 0770000002 et\n0770000003. Je ne peux pas confirmer lequel doit recevoi"
+          },
+          {
+            "value": "0770000003",
+            "raw_value": "0770000003",
+            "kind_hint": "phone_or_unknown",
+            "section": "latest_user_message",
+            "start": 270,
+            "end": 280,
+            "context": "ème point, deux numéros ont été communiqués : 0770000002 et\n0770000003. Je ne peux pas confirmer lequel doit recevoir le token. Me"
+          }
+        ],
+        "correlation_strength": "new"
+      },
+      "raw_output": "{\n\n\"action_supported\": \"yes\",\n\"additional_fields_supported\": {\n  \"phone\": \"no\",\n  \"pdv_code\": \"yes\"\n},\n\"contradiction_present\": false,\n\"contradiction_type\": \"none\",\n\"correction_detected",
+      "parsed_output": {},
+      "structured_output_valid": false,
+      "structured_output_mode": "json_schema",
+      "schema_name": "SemanticVerification",
+      "fallback_reason": null,
+      "parse_attempt_count": 1,
+      "validation_errors": [
+        {
+          "attempt": 1,
+          "message": "model response is not a single JSON value: Unterminated string starting at: line 10 column 1 (char 165)"
+        }
+      ],
+      "reasoning_output": "Okay, let's tackle this verification. The user has provided a context where they want to check a proposed telecom support operation. The main goal is to ensure that the proposed operation aligns with the latest user message and stored state without relying on any external data or assumptions.\n\nFirst, I need to understand the context. The user has three separate requests: unblocking PDV 32000001, resetting the password for PDV 32000002, and creating a VPN access for PDV 32000003. For the third request, there are two phone numbers provided, 0770000002 and 0770000003, but the user can't confirm which one should get the token. The stored operation state shows an operation with ID f5047501... for unblocking PDV 32000001. The proposed operation is for the same PDV, action is account_unblock, and the phone is null. The candidate evidence includes the PDV codes and phone numbers from the user message.\n\nNow, the task is to verify if the proposed operation is supported by the latest message or stored state. The key points to check are the action, required fields, and any additional fields. The action here is account_unblock, which matches the stored operation. The PDV code 32000001 is present in the latest message, so that's covered. The phone is null in the proposed operation, which is okay because the user hasn't provided a phone number for this specific request. The third request's phone numbers are mentioned, but since the proposed operation is for the first request, those numbers aren't relevant here.\n\nLooking at the candidate evidence, the PDV code 32000001 is correctly identified. The phone field is not required for the account_unblock action, so it's acceptable to have it as null. The additional_fields are empty, which is fine. The missing_fields are also empty, indicating all required fields are present. There's no ambiguity here because the user clearly specified the PDV code for the first request. The stored operation's status is NEW, so it's valid. \n\nI need to check if there are any contradictions or missing fields. The proposed operation doesn't have any missing fields, and all required fields (PDV code) are present. The phone isn't required, so it's okay. The additional_fields are empty, which is correct. The evidence from the latest message supports the PDV code. The ambiguity is in the third request, but that's not part of the current proposed operation. \n\nSo, the verification should confirm that the proposed operation is valid based on the provided context. There are no contradictions, and all necessary fields are present. The phone number isn't needed here, so it's correctly left as null. The action is supported, and the PDV code is correctly extracted from the message. Therefore, the JSON response should indicate that the operation is valid with the given evidence and no issues.",
+      "latency_seconds": 4.521340098996006,
+      "request_attempt_count": 1,
+      "usage": {
+        "prompt_tokens": 1161,
+        "completion_tokens": 700,
+        "total_tokens": 1861
+      },
+      "cost": {
+        "input_usd": null,
+        "output_usd": null,
+        "total_usd": null,
+        "basis": "unknown",
+        "pricing_metadata": {}
+      },
+      "error": "structured response failed validation after 1 parse attempt(s)",
+      "error_category": "malformed_output",
+      "cached_from_model_run_id": null,
+      "created_at": "2026-07-20T09:33:51.500441"
+    },
+    {
+      "id": "ac28d2a0-710b-40a2-99f5-421fe74f3c5b",
+      "stage": "verification",
+      "backend": "huggingface",
+      "base_model_id": "Qwen/Qwen3-8B",
+      "resolved_model_id": "Qwen/Qwen3-8B:cheapest",
+      "reported_provider": null,
+      "provider_request_id": "d7612b1b-f2ce-44db-bbae-bcc7d5418a38",
+      "prompt_version": "verifier_v1",
+      "input_context": {
+        "context_mode": "new_request",
+        "latest_user_message": "Bonjour,\nMerci de traiter séparément les trois demandes suivantes :\n1. Débloquer le compte du PDV 32000001.\n2. Réinitialiser le mot de passe du PDV 32000002.\n3. Créer l'accès VPN du PDV 32000003.\nPour le troisième point, deux numéros ont été communiqués : 0770000002 et\n0770000003. Je ne peux pas confirmer lequel doit recevoir le token. Merci de\ndemander uniquement cette précision.",
+        "stored_operation_state": {
+          "operation_id": "64ad4653-d322-4e3f-a6a8-b078b98d1610",
+          "action": "password_reset",
+          "pdv_code": "32000002",
+          "phone": null,
+          "missing_fields": [],
+          "status": "NEW",
+          "current_revision": 1
+        },
+        "proposed_operation": {
+          "local_operation_id": "2",
+          "action": "password_reset",
+          "pdv_code": "32000002",
+          "phone": null,
+          "additional_fields": {},
+          "missing_fields": [],
+          "evidence": [],
+          "ambiguity_reasons": [],
+          "raw_action_confidence": null,
+          "raw_field_confidence": {}
+        },
+        "candidate_evidence": [
+          {
+            "value": "32000001",
+            "raw_value": "32000001",
+            "kind_hint": "pdv_or_unknown",
+            "section": "latest_user_message",
+            "start": 98,
+            "end": 106,
+            "context": "es trois demandes suivantes :\n1. Débloquer le compte du PDV 32000001.\n2. Réinitialiser le mot de passe du PDV 32000002.\n3. Créer"
+          },
+          {
+            "value": "32000002",
+            "raw_value": "32000002",
+            "kind_hint": "pdv_or_unknown",
+            "section": "latest_user_message",
+            "start": 148,
+            "end": 156,
+            "context": "te du PDV 32000001.\n2. Réinitialiser le mot de passe du PDV 32000002.\n3. Créer l'accès VPN du PDV 32000003.\nPour le troisième po"
+          },
+          {
+            "value": "32000003",
+            "raw_value": "32000003",
+            "kind_hint": "pdv_or_unknown",
+            "section": "latest_user_message",
+            "start": 186,
+            "end": 194,
+            "context": "e mot de passe du PDV 32000002.\n3. Créer l'accès VPN du PDV 32000003.\nPour le troisième point, deux numéros ont été communiqués "
+          },
+          {
+            "value": "0770000002",
+            "raw_value": "0770000002",
+            "kind_hint": "phone_or_unknown",
+            "section": "latest_user_message",
+            "start": 256,
+            "end": 266,
+            "context": "Pour le troisième point, deux numéros ont été communiqués : 0770000002 et\n0770000003. Je ne peux pas confirmer lequel doit recevoi"
+          },
+          {
+            "value": "0770000003",
+            "raw_value": "0770000003",
+            "kind_hint": "phone_or_unknown",
+            "section": "latest_user_message",
+            "start": 270,
+            "end": 280,
+            "context": "ème point, deux numéros ont été communiqués : 0770000002 et\n0770000003. Je ne peux pas confirmer lequel doit recevoir le token. Me"
+          }
+        ],
+        "correlation_strength": "new"
+      },
+      "raw_output": "{\n\n\"action_supported\": \"yes\",\n\"additional_fields_supported\": {\n  \"phone\": \"no\"\n},\n\"contradiction_present\": false,\n\"contradiction_type\": \"none\",\n\"correction_detected\": false,\n\"new_request_detected\": true,\n\"pdv_supported\": \"yes\",\n\"phone_supported\": \"no\",\n\"raw_confidence\": null,\n\"stored_state_compatible\": \"yes\" \n}",
+      "parsed_output": {
+        "action_supported": "yes",
+        "pdv_supported": "yes",
+        "phone_supported": "no",
+        "stored_state_compatible": "yes",
+        "contradiction_present": false,
+        "contradiction_type": "none",
+        "missing_fields": [],
+        "additional_fields_supported": {
+          "phone": "no"
+        },
+        "correction_detected": false,
+        "new_request_detected": true,
+        "evidence_summary": [],
+        "raw_confidence": null
+      },
+      "structured_output_valid": true,
+      "structured_output_mode": "json_schema",
+      "schema_name": "SemanticVerification",
+      "fallback_reason": null,
+      "parse_attempt_count": 1,
+      "validation_errors": [],
+      "reasoning_output": "Okay, let's tackle this verification. The user has provided a context where they want to check a proposed telecom support operation. The main thing here is to make sure that the proposed operation aligns with the latest user message and any stored state.\n\nFirst, looking at the latest user message, they've listed three separate requests. The first is to unlock PDV 32000001, the second to reset the password for PDV 32000002, and the third to create a VPN access for PDV 32000003. They also mention two phone numbers for the third request, but can't confirm which one is correct. \n\nNow, the stored_operation_state has an operation_id with action \"password_reset\", pdv_code \"32000002\", and status \"NEW\". The proposed_operation is for the same action and pdv_code, but with phone as null. The candidate_evidence includes the PDV codes and phone numbers from the user message.\n\nThe key points to check are: Does the proposed operation match the stored state? The action and pdv_code are the same, so that's good. The phone number is null in the proposed operation, but the user mentioned two numbers for the third request. However, the proposed operation is for the second request (password reset for PDV 32000002), which doesn't involve a phone number. So the phone being null is acceptable here. \n\nWait, but the user's third request is about VPN access, which might require a phone number. However, the proposed operation is for the second request, which is a password reset. The user's message says they can't confirm which phone number to use for the third point, but the proposed operation is for the second point. So the phone field being null is correct because the password reset doesn't require a phone number. \n\nThe additional_fields are empty, which is okay. The missing_fields are also empty, which is correct because all required fields (action and pdv_code) are present. The evidence includes the PDV code 32000002 from the user message, so that's supported. \n\nNo contradictions here. The proposed operation is valid for the second request. The third request's phone numbers are mentioned but not part of the current proposed operation. So the verification should confirm that the proposed operation is correctly set up for the second request without needing the phone number.",
+      "latency_seconds": 3.917664626002079,
+      "request_attempt_count": 1,
+      "usage": {
+        "prompt_tokens": 1157,
+        "completion_tokens": 605,
+        "total_tokens": 1762
+      },
+      "cost": {
+        "input_usd": null,
+        "output_usd": null,
+        "total_usd": null,
+        "basis": "unknown",
+        "pricing_metadata": {}
+      },
+      "error": null,
+      "error_category": null,
+      "cached_from_model_run_id": null,
+      "created_at": "2026-07-20T09:33:55.430968"
+    },
+    {
+      "id": "1c198565-7d9a-42b5-a34c-ee09b141b6fd",
+      "stage": "verification",
+      "backend": "huggingface",
+      "base_model_id": "Qwen/Qwen3-8B",
+      "resolved_model_id": "Qwen/Qwen3-8B:cheapest",
+      "reported_provider": null,
+      "provider_request_id": "d11657e3-89c7-4e39-ab39-91fc7e0c7824",
+      "prompt_version": "verifier_v1",
+      "input_context": {
+        "context_mode": "new_request",
+        "latest_user_message": "Bonjour,\nMerci de traiter séparément les trois demandes suivantes :\n1. Débloquer le compte du PDV 32000001.\n2. Réinitialiser le mot de passe du PDV 32000002.\n3. Créer l'accès VPN du PDV 32000003.\nPour le troisième point, deux numéros ont été communiqués : 0770000002 et\n0770000003. Je ne peux pas confirmer lequel doit recevoir le token. Merci de\ndemander uniquement cette précision.",
+        "stored_operation_state": {
+          "operation_id": "30874006-f571-4b17-aebe-4485b0d89db7",
+          "action": "vpn_access",
+          "pdv_code": "32000003",
+          "phone": null,
+          "missing_fields": [
+            "phone"
+          ],
+          "status": "NEW",
+          "current_revision": 1
+        },
+        "proposed_operation": {
+          "local_operation_id": "3",
+          "action": "vpn_access",
+          "pdv_code": "32000003",
+          "phone": null,
+          "additional_fields": {},
+          "missing_fields": [],
+          "evidence": [],
+          "ambiguity_reasons": [],
+          "raw_action_confidence": null,
+          "raw_field_confidence": {}
+        },
+        "candidate_evidence": [
+          {
+            "value": "32000001",
+            "raw_value": "32000001",
+            "kind_hint": "pdv_or_unknown",
+            "section": "latest_user_message",
+            "start": 98,
+            "end": 106,
+            "context": "es trois demandes suivantes :\n1. Débloquer le compte du PDV 32000001.\n2. Réinitialiser le mot de passe du PDV 32000002.\n3. Créer"
+          },
+          {
+            "value": "32000002",
+            "raw_value": "32000002",
+            "kind_hint": "pdv_or_unknown",
+            "section": "latest_user_message",
+            "start": 148,
+            "end": 156,
+            "context": "te du PDV 32000001.\n2. Réinitialiser le mot de passe du PDV 32000002.\n3. Créer l'accès VPN du PDV 32000003.\nPour le troisième po"
+          },
+          {
+            "value": "32000003",
+            "raw_value": "32000003",
+            "kind_hint": "pdv_or_unknown",
+            "section": "latest_user_message",
+            "start": 186,
+            "end": 194,
+            "context": "e mot de passe du PDV 32000002.\n3. Créer l'accès VPN du PDV 32000003.\nPour le troisième point, deux numéros ont été communiqués "
+          },
+          {
+            "value": "0770000002",
+            "raw_value": "0770000002",
+            "kind_hint": "phone_or_unknown",
+            "section": "latest_user_message",
+            "start": 256,
+            "end": 266,
+            "context": "Pour le troisième point, deux numéros ont été communiqués : 0770000002 et\n0770000003. Je ne peux pas confirmer lequel doit recevoi"
+          },
+          {
+            "value": "0770000003",
+            "raw_value": "0770000003",
+            "kind_hint": "phone_or_unknown",
+            "section": "latest_user_message",
+            "start": 270,
+            "end": 280,
+            "context": "ème point, deux numéros ont été communiqués : 0770000002 et\n0770000003. Je ne peux pas confirmer lequel doit recevoir le token. Me"
+          }
+        ],
+        "correlation_strength": "new"
+      },
+      "raw_output": "{\n\n\"action_supported\": \"no\",\n\"additional_fields_supported\": {\n  \"phone\": \"no\"\n},\n\"contradiction_present\": true,\n\"contradiction_type\": \"missing_required_field\",\n\"correction_detected\": true,\n\"new_request_detected\": true,\n\"pdv_supported\": \"yes\",\n\"phone_supported\": \"no\",\n\"raw_confidence\": 0.0,\n\"stored_state_compatible\": \"no\"\n}",
+      "parsed_output": {
+        "action_supported": "no",
+        "pdv_supported": "yes",
+        "phone_supported": "no",
+        "stored_state_compatible": "no",
+        "contradiction_present": true,
+        "contradiction_type": "missing_required_field",
+        "missing_fields": [],
+        "additional_fields_supported": {
+          "phone": "no"
+        },
+        "correction_detected": true,
+        "new_request_detected": true,
+        "evidence_summary": [],
+        "raw_confidence": 0.0
+      },
+      "structured_output_valid": true,
+      "structured_output_mode": "json_schema",
+      "schema_name": "SemanticVerification",
+      "fallback_reason": null,
+      "parse_attempt_count": 1,
+      "validation_errors": [],
+      "reasoning_output": "Okay, let's tackle this verification. The user has three requests, and the proposed operation is for the third one, which is creating a VPN access for PDV 32000003. The user mentioned two phone numbers, 0770000002 and 0770000003, but isn't sure which one to assign the token to. \n\nLooking at the stored operation state, there's an existing operation with the same PDV code (32000003) and action (vpn_access), but the phone number is missing. The proposed operation has the phone as null and no additional fields. The candidate evidence includes the PDV code and the two phone numbers.\n\nThe key issue here is the phone number. The user hasn't confirmed which number should get the token, so the proposed operation can't proceed without that info. The stored operation also has missing fields for the phone. The proposed operation's missing_fields is empty, which might be incorrect because the phone is still needed. The additional_fields are empty, but maybe the user expects to collect the phone number first. \n\nWait, the user's message says they can't confirm which number to use, so the system should ask for clarification. The proposed operation doesn't have the phone number, so the missing_fields should include it. But in the proposed_operation, missing_fields is empty. That's a contradiction. Also, the stored_operation has missing_fields as [\"phone\"], so the proposed one should inherit that. \n\nThe ambiguity_reasons and evidence are empty, but there's a clear ambiguity in the phone numbers. The proposed operation should have an ambiguity reason indicating that the phone number isn't confirmed. The candidate_evidence has the two phone numbers, but the proposed operation doesn't use them. \n\nSo, the verification should point out that the phone field is missing, the missing_fields should include phone, and there's an ambiguity in the phone numbers. The proposed operation's missing_fields is incorrect, and the additional_fields are empty, which might be okay if they're not needed. But the main issue is the phone number not being resolved yet.",
+      "latency_seconds": 3.7572400709977956,
+      "request_attempt_count": 1,
+      "usage": {
+        "prompt_tokens": 1159,
+        "completion_tokens": 547,
+        "total_tokens": 1706
+      },
+      "cost": {
+        "input_usd": null,
+        "output_usd": null,
+        "total_usd": null,
+        "basis": "unknown",
+        "pricing_metadata": {}
+      },
+      "error": null,
+      "error_category": null,
+      "cached_from_model_run_id": null,
+      "created_at": "2026-07-20T09:33:59.213403"
+    }
+  ],
+  "requests": [
+    {
+      "id": "97eef1d4-2dc0-4606-a415-c6a020b42443",
+      "reference": "SNOC-REQ-A6CB676BCF77",
+      "status": "ESCALATED",
+      "request_kind": "new",
+      "escalation_reason": "Automatic execution was refused by the hybrid safety policy."
+    }
+  ],
+  "operations": [
+    {
+      "id": "f5047501-eb81-49e4-9c91-63c4fda59b5f",
+      "request_id": "97eef1d4-2dc0-4606-a415-c6a020b42443",
+      "sequence_number": 1,
+      "action": "account_unblock",
+      "status": "ESCALATED",
+      "pdv_code": "32000001",
+      "phone": null,
+      "missing_fields": [],
+      "current_revision": 1,
+      "final_decision": "ESCALATE",
+      "execution_eligible": false,
+      "model_agreement": null
+    },
+    {
+      "id": "64ad4653-d322-4e3f-a6a8-b078b98d1610",
+      "request_id": "97eef1d4-2dc0-4606-a415-c6a020b42443",
+      "sequence_number": 2,
+      "action": "password_reset",
+      "status": "ESCALATED",
+      "pdv_code": "32000002",
+      "phone": null,
+      "missing_fields": [],
+      "current_revision": 1,
+      "final_decision": "ESCALATE",
+      "execution_eligible": false,
+      "model_agreement": false
+    },
+    {
+      "id": "30874006-f571-4b17-aebe-4485b0d89db7",
+      "request_id": "97eef1d4-2dc0-4606-a415-c6a020b42443",
+      "sequence_number": 3,
+      "action": "vpn_access",
+      "status": "ESCALATED",
+      "pdv_code": "32000003",
+      "phone": null,
+      "missing_fields": [
+        "phone"
+      ],
+      "current_revision": 1,
+      "final_decision": "REVIEW_CORRECTION",
+      "execution_eligible": false,
+      "model_agreement": false
+    }
+  ],
+  "validation_decisions": [
+    {
+      "id": "fba6102a-221f-4d78-9fab-96e6959250c7",
+      "operation_id": "64ad4653-d322-4e3f-a6a8-b078b98d1610",
+      "decision": "ESCALATE",
+      "reasons": [
+        "analyzer_verifier_disagreement",
+        "required_field_evidence_incomplete",
+        "required_field_evidence_not_in_allowed_context"
+      ],
+      "hard_invariant_results": {
+        "authorized_sender": true,
+        "structured_output_valid": true,
+        "known_action": true,
+        "field_formats_and_completeness": true,
+        "no_correlation_conflict": true,
+        "no_previous_execution": true,
+        "operation_open": true,
+        "no_closed_history_field_source": true,
+        "required_evidence_from_allowed_context": false,
+        "configured_confidence_thresholds": true,
+        "additional_fields_allowlisted": true,
+        "additional_fields_evidence_supported": true,
+        "proposal_matches_stored_action": true,
+        "execution_mode_configured": true,
+        "input_context_complete": true
+      },
+      "analyzer_result": {
+        "local_operation_id": "2",
+        "action": "password_reset",
+        "pdv_code": "32000002",
+        "phone": null,
+        "additional_fields": {},
+        "missing_fields": [],
+        "evidence": [],
+        "ambiguity_reasons": [],
+        "raw_action_confidence": null,
+        "raw_field_confidence": {}
+      },
+      "verifier_result": {
+        "action_supported": "yes",
+        "pdv_supported": "yes",
+        "phone_supported": "no",
+        "stored_state_compatible": "yes",
+        "contradiction_present": false,
+        "contradiction_type": "none",
+        "missing_fields": [],
+        "additional_fields_supported": {
+          "phone": "no"
+        },
+        "correction_detected": false,
+        "new_request_detected": true,
+        "evidence_summary": [],
+        "raw_confidence": null
+      },
+      "policy_version": "hybrid-v1",
+      "created_at": "2026-07-20T09:33:55.433055"
+    },
+    {
+      "id": "9bd73987-f392-40f2-9447-7a8c4d8b39cb",
+      "operation_id": "30874006-f571-4b17-aebe-4485b0d89db7",
+      "decision": "REVIEW_CORRECTION",
+      "reasons": [
+        "missing_required_field:phone",
+        "semantic_contradiction",
+        "analyzer_verifier_disagreement",
+        "required_field_evidence_incomplete",
+        "required_field_evidence_not_in_allowed_context"
+      ],
+      "hard_invariant_results": {
+        "authorized_sender": true,
+        "structured_output_valid": true,
+        "known_action": true,
+        "field_formats_and_completeness": false,
+        "no_correlation_conflict": true,
+        "no_previous_execution": true,
+        "operation_open": true,
+        "no_closed_history_field_source": true,
+        "required_evidence_from_allowed_context": false,
+        "configured_confidence_thresholds": true,
+        "additional_fields_allowlisted": true,
+        "additional_fields_evidence_supported": true,
+        "proposal_matches_stored_action": true,
+        "execution_mode_configured": true,
+        "input_context_complete": true
+      },
+      "analyzer_result": {
+        "local_operation_id": "3",
+        "action": "vpn_access",
+        "pdv_code": "32000003",
+        "phone": null,
+        "additional_fields": {},
+        "missing_fields": [],
+        "evidence": [],
+        "ambiguity_reasons": [],
+        "raw_action_confidence": null,
+        "raw_field_confidence": {}
+      },
+      "verifier_result": {
+        "action_supported": "no",
+        "pdv_supported": "yes",
+        "phone_supported": "no",
+        "stored_state_compatible": "no",
+        "contradiction_present": true,
+        "contradiction_type": "missing_required_field",
+        "missing_fields": [],
+        "additional_fields_supported": {
+          "phone": "no"
+        },
+        "correction_detected": true,
+        "new_request_detected": true,
+        "evidence_summary": [],
+        "raw_confidence": 0.0
+      },
+      "policy_version": "hybrid-v1",
+      "created_at": "2026-07-20T09:33:59.215274"
+    }
+  ],
+  "clarifications": [],
+  "executions": [],
+  "escalations": [
+    {
+      "id": "4f56e8d8-241d-439b-b130-14af81b85f64",
+      "reason_code": "semantic_verifier_failure",
+      "status": "open",
+      "summary": "Semantic verification failed; execution was refused.",
+      "evidence": {
+        "error": "structured response failed validation after 1 parse attempt(s)",
+        "analysis": {
+          "message_kind": "new_request",
+          "referenced_existing_operation_ids": [],
+          "operations": [
+            {
+              "local_operation_id": "1",
+              "action": "account_unblock",
+              "pdv_code": "32000001",
+              "phone": null,
+              "additional_fields": {},
+              "missing_fields": [],
+              "evidence": [],
+              "ambiguity_reasons": [],
+              "raw_action_confidence": null,
+              "raw_field_confidence": {}
+            },
+            {
+              "local_operation_id": "2",
+              "action": "password_reset",
+              "pdv_code": "32000002",
+              "phone": null,
+              "additional_fields": {},
+              "missing_fields": [],
+              "evidence": [],
+              "ambiguity_reasons": [],
+              "raw_action_confidence": null,
+              "raw_field_confidence": {}
+            },
+            {
+              "local_operation_id": "3",
+              "action": "vpn_access",
+              "pdv_code": "32000003",
+              "phone": null,
+              "additional_fields": {},
+              "missing_fields": [],
+              "evidence": [],
+              "ambiguity_reasons": [],
+              "raw_action_confidence": null,
+              "raw_field_confidence": {}
+            }
+          ],
+          "new_request_present": true,
+          "contradiction_with_stored_state": false,
+          "contradiction_details": [],
+          "unresolved_ambiguities": []
+        },
+        "proposal": {
+          "local_operation_id": "1",
+          "action": "account_unblock",
+          "pdv_code": "32000001",
+          "phone": null,
+          "additional_fields": {},
+          "missing_fields": [],
+          "evidence": [],
+          "ambiguity_reasons": [],
+          "raw_action_confidence": null,
+          "raw_field_confidence": {}
+        },
+        "email_context": {
+          "internal_email_id": "ec6414a1-3740-4487-b9a1-bf01f7389a1a",
+          "sender": "Animateur Zone Gamma <animateur.gamma@example.invalid>",
+          "subject": "Trois operations S-NOC a traiter",
+          "message_id": "<c-three-operations-001@fixtures.snoc.invalid>",
+          "in_reply_to": null,
+          "references": [],
+          "latest_user_message": "Bonjour,\n\nMerci de traiter séparément les trois demandes suivantes :\n\n1. Débloquer le compte du PDV 32000001.\n2. Réinitialiser le mot de passe du PDV 32000002.\n3. Créer l'accès VPN du PDV 32000003.\n\nPour le troisième point, deux numéros ont été communiqués : 0770000002 et\n0770000003. Je ne peux pas confirmer lequel doit recevoir le token. Merci de\ndemander uniquement cette précision.",
+          "latest_user_message_truncated": false,
+          "raw_eml_path": "var/raw_eml/ec6414a1-3740-4487-b9a1-bf01f7389a1a.eml"
+        },
+        "stored_request_state": {
+          "request_id": "97eef1d4-2dc0-4606-a415-c6a020b42443",
+          "public_reference": "SNOC-REQ-A6CB676BCF77",
+          "request_status": "ANALYZING",
+          "operations": [
+            {
+              "operation_id": "f5047501-eb81-49e4-9c91-63c4fda59b5f",
+              "action": "account_unblock",
+              "status": "ESCALATED",
+              "pdv_code": "32000001",
+              "phone": null,
+              "additional_payload": {},
+              "missing_fields": [],
+              "evidence": [],
+              "field_provenance": {},
+              "contradiction_data": {},
+              "current_revision": 1,
+              "final_decision": "ESCALATE"
+            },
+            {
+              "operation_id": "64ad4653-d322-4e3f-a6a8-b078b98d1610",
+              "action": "password_reset",
+              "status": "NEW",
+              "pdv_code": "32000002",
+              "phone": null,
+              "additional_payload": {},
+              "missing_fields": [],
+              "evidence": [],
+              "field_provenance": {},
+              "contradiction_data": {},
+              "current_revision": 1,
+              "final_decision": null
+            },
+            {
+              "operation_id": "30874006-f571-4b17-aebe-4485b0d89db7",
+              "action": "vpn_access",
+              "status": "NEW",
+              "pdv_code": "32000003",
+              "phone": null,
+              "additional_payload": {},
+              "missing_fields": [
+                "phone"
+              ],
+              "evidence": [],
+              "field_provenance": {},
+              "contradiction_data": {},
+              "current_revision": 1,
+              "final_decision": null
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "4a147ac7-38c7-4b57-9182-9e1f7540a27b",
+      "reason_code": "escalate",
+      "status": "open",
+      "summary": "Automatic execution was refused by the hybrid safety policy.",
+      "evidence": {
+        "operation_id": "64ad4653-d322-4e3f-a6a8-b078b98d1610",
+        "analysis": {
+          "message_kind": "new_request",
+          "referenced_existing_operation_ids": [],
+          "operations": [
+            {
+              "local_operation_id": "1",
+              "action": "account_unblock",
+              "pdv_code": "32000001",
+              "phone": null,
+              "additional_fields": {},
+              "missing_fields": [],
+              "evidence": [],
+              "ambiguity_reasons": [],
+              "raw_action_confidence": null,
+              "raw_field_confidence": {}
+            },
+            {
+              "local_operation_id": "2",
+              "action": "password_reset",
+              "pdv_code": "32000002",
+              "phone": null,
+              "additional_fields": {},
+              "missing_fields": [],
+              "evidence": [],
+              "ambiguity_reasons": [],
+              "raw_action_confidence": null,
+              "raw_field_confidence": {}
+            },
+            {
+              "local_operation_id": "3",
+              "action": "vpn_access",
+              "pdv_code": "32000003",
+              "phone": null,
+              "additional_fields": {},
+              "missing_fields": [],
+              "evidence": [],
+              "ambiguity_reasons": [],
+              "raw_action_confidence": null,
+              "raw_field_confidence": {}
+            }
+          ],
+          "new_request_present": true,
+          "contradiction_with_stored_state": false,
+          "contradiction_details": [],
+          "unresolved_ambiguities": []
+        },
+        "proposal": {
+          "local_operation_id": "2",
+          "action": "password_reset",
+          "pdv_code": "32000002",
+          "phone": null,
+          "additional_fields": {},
+          "missing_fields": [],
+          "evidence": [],
+          "ambiguity_reasons": [],
+          "raw_action_confidence": null,
+          "raw_field_confidence": {}
+        },
+        "verification": {
+          "action_supported": "yes",
+          "pdv_supported": "yes",
+          "phone_supported": "no",
+          "stored_state_compatible": "yes",
+          "contradiction_present": false,
+          "contradiction_type": "none",
+          "missing_fields": [],
+          "additional_fields_supported": {
+            "phone": "no"
+          },
+          "correction_detected": false,
+          "new_request_detected": true,
+          "evidence_summary": [],
+          "raw_confidence": null
+        },
+        "reasons": [
+          "analyzer_verifier_disagreement",
+          "required_field_evidence_incomplete",
+          "required_field_evidence_not_in_allowed_context"
+        ],
+        "hard_invariants": {
+          "authorized_sender": true,
+          "structured_output_valid": true,
+          "known_action": true,
+          "field_formats_and_completeness": true,
+          "no_correlation_conflict": true,
+          "no_previous_execution": true,
+          "operation_open": true,
+          "no_closed_history_field_source": true,
+          "required_evidence_from_allowed_context": false,
+          "configured_confidence_thresholds": true,
+          "additional_fields_allowlisted": true,
+          "additional_fields_evidence_supported": true,
+          "proposal_matches_stored_action": true,
+          "execution_mode_configured": true,
+          "input_context_complete": true
+        },
+        "email_context": {
+          "internal_email_id": "ec6414a1-3740-4487-b9a1-bf01f7389a1a",
+          "sender": "Animateur Zone Gamma <animateur.gamma@example.invalid>",
+          "subject": "Trois operations S-NOC a traiter",
+          "message_id": "<c-three-operations-001@fixtures.snoc.invalid>",
+          "in_reply_to": null,
+          "references": [],
+          "latest_user_message": "Bonjour,\n\nMerci de traiter séparément les trois demandes suivantes :\n\n1. Débloquer le compte du PDV 32000001.\n2. Réinitialiser le mot de passe du PDV 32000002.\n3. Créer l'accès VPN du PDV 32000003.\n\nPour le troisième point, deux numéros ont été communiqués : 0770000002 et\n0770000003. Je ne peux pas confirmer lequel doit recevoir le token. Merci de\ndemander uniquement cette précision.",
+          "latest_user_message_truncated": false,
+          "raw_eml_path": "var/raw_eml/ec6414a1-3740-4487-b9a1-bf01f7389a1a.eml"
+        },
+        "stored_request_state": {
+          "request_id": "97eef1d4-2dc0-4606-a415-c6a020b42443",
+          "public_reference": "SNOC-REQ-A6CB676BCF77",
+          "request_status": "ANALYZING",
+          "operations": [
+            {
+              "operation_id": "f5047501-eb81-49e4-9c91-63c4fda59b5f",
+              "action": "account_unblock",
+              "status": "ESCALATED",
+              "pdv_code": "32000001",
+              "phone": null,
+              "additional_payload": {},
+              "missing_fields": [],
+              "evidence": [],
+              "field_provenance": {},
+              "contradiction_data": {},
+              "current_revision": 1,
+              "final_decision": "ESCALATE"
+            },
+            {
+              "operation_id": "64ad4653-d322-4e3f-a6a8-b078b98d1610",
+              "action": "password_reset",
+              "status": "ESCALATED",
+              "pdv_code": "32000002",
+              "phone": null,
+              "additional_payload": {},
+              "missing_fields": [],
+              "evidence": [],
+              "field_provenance": {},
+              "contradiction_data": {},
+              "current_revision": 1,
+              "final_decision": "ESCALATE"
+            },
+            {
+              "operation_id": "30874006-f571-4b17-aebe-4485b0d89db7",
+              "action": "vpn_access",
+              "status": "NEW",
+              "pdv_code": "32000003",
+              "phone": null,
+              "additional_payload": {},
+              "missing_fields": [
+                "phone"
+              ],
+              "evidence": [],
+              "field_provenance": {},
+              "contradiction_data": {},
+              "current_revision": 1,
+              "final_decision": null
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "9b1e9fd7-f9fc-4261-adb4-213ea2f55d5c",
+      "reason_code": "review_correction",
+      "status": "open",
+      "summary": "Automatic execution was refused by the hybrid safety policy.",
+      "evidence": {
+        "operation_id": "30874006-f571-4b17-aebe-4485b0d89db7",
+        "analysis": {
+          "message_kind": "new_request",
+          "referenced_existing_operation_ids": [],
+          "operations": [
+            {
+              "local_operation_id": "1",
+              "action": "account_unblock",
+              "pdv_code": "32000001",
+              "phone": null,
+              "additional_fields": {},
+              "missing_fields": [],
+              "evidence": [],
+              "ambiguity_reasons": [],
+              "raw_action_confidence": null,
+              "raw_field_confidence": {}
+            },
+            {
+              "local_operation_id": "2",
+              "action": "password_reset",
+              "pdv_code": "32000002",
+              "phone": null,
+              "additional_fields": {},
+              "missing_fields": [],
+              "evidence": [],
+              "ambiguity_reasons": [],
+              "raw_action_confidence": null,
+              "raw_field_confidence": {}
+            },
+            {
+              "local_operation_id": "3",
+              "action": "vpn_access",
+              "pdv_code": "32000003",
+              "phone": null,
+              "additional_fields": {},
+              "missing_fields": [],
+              "evidence": [],
+              "ambiguity_reasons": [],
+              "raw_action_confidence": null,
+              "raw_field_confidence": {}
+            }
+          ],
+          "new_request_present": true,
+          "contradiction_with_stored_state": false,
+          "contradiction_details": [],
+          "unresolved_ambiguities": []
+        },
+        "proposal": {
+          "local_operation_id": "3",
+          "action": "vpn_access",
+          "pdv_code": "32000003",
+          "phone": null,
+          "additional_fields": {},
+          "missing_fields": [],
+          "evidence": [],
+          "ambiguity_reasons": [],
+          "raw_action_confidence": null,
+          "raw_field_confidence": {}
+        },
+        "verification": {
+          "action_supported": "no",
+          "pdv_supported": "yes",
+          "phone_supported": "no",
+          "stored_state_compatible": "no",
+          "contradiction_present": true,
+          "contradiction_type": "missing_required_field",
+          "missing_fields": [],
+          "additional_fields_supported": {
+            "phone": "no"
+          },
+          "correction_detected": true,
+          "new_request_detected": true,
+          "evidence_summary": [],
+          "raw_confidence": 0.0
+        },
+        "reasons": [
+          "missing_required_field:phone",
+          "semantic_contradiction",
+          "analyzer_verifier_disagreement",
+          "required_field_evidence_incomplete",
+          "required_field_evidence_not_in_allowed_context"
+        ],
+        "hard_invariants": {
+          "authorized_sender": true,
+          "structured_output_valid": true,
+          "known_action": true,
+          "field_formats_and_completeness": false,
+          "no_correlation_conflict": true,
+          "no_previous_execution": true,
+          "operation_open": true,
+          "no_closed_history_field_source": true,
+          "required_evidence_from_allowed_context": false,
+          "configured_confidence_thresholds": true,
+          "additional_fields_allowlisted": true,
+          "additional_fields_evidence_supported": true,
+          "proposal_matches_stored_action": true,
+          "execution_mode_configured": true,
+          "input_context_complete": true
+        },
+        "email_context": {
+          "internal_email_id": "ec6414a1-3740-4487-b9a1-bf01f7389a1a",
+          "sender": "Animateur Zone Gamma <animateur.gamma@example.invalid>",
+          "subject": "Trois operations S-NOC a traiter",
+          "message_id": "<c-three-operations-001@fixtures.snoc.invalid>",
+          "in_reply_to": null,
+          "references": [],
+          "latest_user_message": "Bonjour,\n\nMerci de traiter séparément les trois demandes suivantes :\n\n1. Débloquer le compte du PDV 32000001.\n2. Réinitialiser le mot de passe du PDV 32000002.\n3. Créer l'accès VPN du PDV 32000003.\n\nPour le troisième point, deux numéros ont été communiqués : 0770000002 et\n0770000003. Je ne peux pas confirmer lequel doit recevoir le token. Merci de\ndemander uniquement cette précision.",
+          "latest_user_message_truncated": false,
+          "raw_eml_path": "var/raw_eml/ec6414a1-3740-4487-b9a1-bf01f7389a1a.eml"
+        },
+        "stored_request_state": {
+          "request_id": "97eef1d4-2dc0-4606-a415-c6a020b42443",
+          "public_reference": "SNOC-REQ-A6CB676BCF77",
+          "request_status": "ANALYZING",
+          "operations": [
+            {
+              "operation_id": "f5047501-eb81-49e4-9c91-63c4fda59b5f",
+              "action": "account_unblock",
+              "status": "ESCALATED",
+              "pdv_code": "32000001",
+              "phone": null,
+              "additional_payload": {},
+              "missing_fields": [],
+              "evidence": [],
+              "field_provenance": {},
+              "contradiction_data": {},
+              "current_revision": 1,
+              "final_decision": "ESCALATE"
+            },
+            {
+              "operation_id": "64ad4653-d322-4e3f-a6a8-b078b98d1610",
+              "action": "password_reset",
+              "status": "ESCALATED",
+              "pdv_code": "32000002",
+              "phone": null,
+              "additional_payload": {},
+              "missing_fields": [],
+              "evidence": [],
+              "field_provenance": {},
+              "contradiction_data": {},
+              "current_revision": 1,
+              "final_decision": "ESCALATE"
+            },
+            {
+              "operation_id": "30874006-f571-4b17-aebe-4485b0d89db7",
+              "action": "vpn_access",
+              "status": "ESCALATED",
+              "pdv_code": "32000003",
+              "phone": null,
+              "additional_payload": {},
+              "missing_fields": [
+                "phone"
+              ],
+              "evidence": [],
+              "field_provenance": {},
+              "contradiction_data": {},
+              "current_revision": 1,
+              "final_decision": "REVIEW_CORRECTION"
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "outbox": [
+    {
+      "id": "269a20aa-23af-4c7b-afce-420e2dfe2ccd",
+      "recipient": "animateur.gamma@example.invalid",
+      "subject": "[SNOC-REQ-A6CB676BCF77] Résultat de traitement",
+      "status": "sent",
+      "retry_count": 0,
+      "last_error": null
+    }
+  ]
+}

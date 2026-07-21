@@ -1,0 +1,2 @@
+[console_scripts]
+snoc-agent = snoc_agent.cli.main:main

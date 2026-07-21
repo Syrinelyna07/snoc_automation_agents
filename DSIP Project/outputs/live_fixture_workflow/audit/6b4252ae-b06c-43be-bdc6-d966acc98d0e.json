@@ -1,0 +1,492 @@
+{
+  "email": {
+    "id": "6b4252ae-b06c-43be-bdc6-d966acc98d0e",
+    "message_id": "<e-uncorrelated-phone-003@fixtures.snoc.invalid>",
+    "sender": "Animateur Zone Epsilon <animateur.epsilon@example.invalid>",
+    "recipients": [
+      "Agent SNOC <snoc-agent@example.invalid>"
+    ],
+    "subject": "Re: Suivi demandes S-NOC Epsilon",
+    "processing_status": "processed",
+    "imap": {
+      "mailbox": "REPLAY",
+      "uidvalidity": 1,
+      "uid": 15,
+      "flags": [],
+      "internal_date": null
+    },
+    "parsing": {
+      "automated_classification": null,
+      "warnings": [],
+      "quarantine_category": null,
+      "quarantine_message": null,
+      "context_limit_metadata": {
+        "mime_limit_warnings": [],
+        "context_limit_warnings": [],
+        "automatic_execution_allowed": true
+      }
+    },
+    "authorization": {
+      "allowed": true,
+      "reason": "sender_whitelisted"
+    },
+    "correlation": {
+      "strength": "weak",
+      "matched_by": "normalized_subject",
+      "request_id": null,
+      "clarification_id": null,
+      "conflicts": []
+    },
+    "latest_user_message": "Voici le numéro demandé : 0770000020.\n\nMerci."
+  },
+  "model_runs": [
+    {
+      "id": "4b9aa3ed-5d74-4885-a674-61987b5701be",
+      "stage": "analysis",
+      "backend": "huggingface",
+      "base_model_id": "Qwen/Qwen2.5-7B-Instruct",
+      "resolved_model_id": "Qwen/Qwen2.5-7B-Instruct:cheapest",
+      "reported_provider": null,
+      "provider_request_id": "osrhPq4-6Ng1vN-a1e0f8c9ae8288ee",
+      "prompt_version": "analyzer_v1",
+      "input_context": {
+        "mode": "possible_follow_up",
+        "latest_user_message": "Voici le numéro demandé : 0770000020.\nMerci.",
+        "possible_open_requests": [],
+        "correlation_strength": "weak",
+        "automatic_execution_allowed": false,
+        "numeric_candidates": [
+          {
+            "value": "0770000020",
+            "raw_value": "0770000020",
+            "kind_hint": "phone_or_unknown",
+            "section": "latest_user_message",
+            "start": 26,
+            "end": 36,
+            "context": "Voici le numéro demandé : 0770000020.\nMerci."
+          }
+        ],
+        "preprocessing_notes": []
+      },
+      "raw_output": "{\"message_kind\": \"new_request\", \"operations\": [{\"local_operation_id\": \"1\", \"action\": \"otp_number_change\", \"pdv_code\": null, \"phone\": \"0770000020\", \"evidence\": [{\"field_name\": \"phone\", \"value\": \"0770000020\", \"source\": \"latest_user_message\", \"evidence_text\": \"Voici le numéro demandé : 0770000020.\\nMerci.\", \"support\": \"unsupported\"}]}], \"new_request_present\": true, \"contradiction_with_stored_state\": false}",
+      "parsed_output": {
+        "message_kind": "new_request",
+        "referenced_existing_operation_ids": [],
+        "operations": [
+          {
+            "local_operation_id": "1",
+            "action": "otp_number_change",
+            "pdv_code": null,
+            "phone": "0770000020",
+            "additional_fields": {},
+            "missing_fields": [],
+            "evidence": [
+              {
+                "field_name": "phone",
+                "value": "0770000020",
+                "source": "latest_user_message",
+                "evidence_text": "Voici le numéro demandé : 0770000020.\nMerci.",
+                "support": "unsupported"
+              }
+            ],
+            "ambiguity_reasons": [],
+            "raw_action_confidence": null,
+            "raw_field_confidence": {}
+          }
+        ],
+        "new_request_present": true,
+        "contradiction_with_stored_state": false,
+        "contradiction_details": [],
+        "unresolved_ambiguities": []
+      },
+      "structured_output_valid": true,
+      "structured_output_mode": "json_schema",
+      "schema_name": "EmailAnalysis",
+      "fallback_reason": null,
+      "parse_attempt_count": 1,
+      "validation_errors": [],
+      "reasoning_output": null,
+      "latency_seconds": 2.310672532999888,
+      "request_attempt_count": 1,
+      "usage": {
+        "prompt_tokens": 524,
+        "completion_tokens": 146,
+        "total_tokens": 670
+      },
+      "cost": {
+        "input_usd": null,
+        "output_usd": null,
+        "total_usd": null,
+        "basis": "unknown",
+        "pricing_metadata": {}
+      },
+      "error": null,
+      "error_category": null,
+      "cached_from_model_run_id": null,
+      "created_at": "2026-07-20T09:34:46.938619"
+    },
+    {
+      "id": "8da3f20f-f129-4bc7-b2ad-99f53b5e949b",
+      "stage": "verification",
+      "backend": "huggingface",
+      "base_model_id": "Qwen/Qwen3-8B",
+      "resolved_model_id": "Qwen/Qwen3-8B:cheapest",
+      "reported_provider": null,
+      "provider_request_id": "5e29c829-290f-4a78-a6ef-30300a501dd6",
+      "prompt_version": "verifier_v1",
+      "input_context": {
+        "context_mode": "possible_follow_up",
+        "latest_user_message": "Voici le numéro demandé : 0770000020.\nMerci.",
+        "stored_operation_state": {
+          "operation_id": "30d031a3-fc67-477b-be87-0ec82ea0641b",
+          "action": "otp_number_change",
+          "pdv_code": null,
+          "phone": "0770000020",
+          "missing_fields": [
+            "pdv_code"
+          ],
+          "status": "NEW",
+          "current_revision": 1
+        },
+        "proposed_operation": {
+          "local_operation_id": "1",
+          "action": "otp_number_change",
+          "pdv_code": null,
+          "phone": "0770000020",
+          "additional_fields": {},
+          "missing_fields": [],
+          "evidence": [
+            {
+              "field_name": "phone",
+              "value": "0770000020",
+              "source": "latest_user_message",
+              "evidence_text": "Voici le numéro demandé : 0770000020.\nMerci.",
+              "support": "unsupported"
+            }
+          ],
+          "ambiguity_reasons": [],
+          "raw_action_confidence": null,
+          "raw_field_confidence": {}
+        },
+        "candidate_evidence": [
+          {
+            "value": "0770000020",
+            "raw_value": "0770000020",
+            "kind_hint": "phone_or_unknown",
+            "section": "latest_user_message",
+            "start": 26,
+            "end": 36,
+            "context": "Voici le numéro demandé : 0770000020.\nMerci."
+          }
+        ],
+        "correlation_strength": "weak"
+      },
+      "raw_output": "{\n\n\"action_supported\": \"no\",\n\"additional_fields_supported\": {},\n\"contradiction_present\": true,\n\"contradiction_type\": \"missing_required_field\",\n\"correction_detected\": true,\n\"evidence_summary\": [\n    \"Phone number '0770000020' is explicitly stated in user message but evidence support is marked as 'unsupported'\",\n    \"pdv_code remains missing in proposed operation despite being required for 'otp_number_change' action\"\n],\n\"missing_fields\": [\"pdv_code\"],\n\"new_request_detected\": false,\n\"pdv_supported\": \"no\",\n\"phone_supported\": \"yes\",\n\"raw_confidence\": 0.3,\n\"stored_state_compatible\": \"no\"\n}",
+      "parsed_output": {
+        "action_supported": "no",
+        "pdv_supported": "no",
+        "phone_supported": "yes",
+        "stored_state_compatible": "no",
+        "contradiction_present": true,
+        "contradiction_type": "missing_required_field",
+        "missing_fields": [
+          "pdv_code"
+        ],
+        "additional_fields_supported": {},
+        "correction_detected": true,
+        "new_request_detected": false,
+        "evidence_summary": [
+          "Phone number '0770000020' is explicitly stated in user message but evidence support is marked as 'unsupported'",
+          "pdv_code remains missing in proposed operation despite being required for 'otp_number_change' action"
+        ],
+        "raw_confidence": 0.3
+      },
+      "structured_output_valid": true,
+      "structured_output_mode": "json_schema",
+      "schema_name": "SemanticVerification",
+      "fallback_reason": null,
+      "parse_attempt_count": 1,
+      "validation_errors": [],
+      "reasoning_output": "Okay, let's tackle this verification. The user provided a context where a telecom support operation is being checked. The main goal is to verify if the proposed operation is supported based on the given context.\n\nFirst, I need to look at the stored_operation_state. The operation is \"otp_number_change\" with a phone number \"0770000020\", but the pdv_code is missing. The missing_fields list includes \"pdv_code\", which is required for the action. However, in the proposed_operation, the missing_fields are now empty, suggesting that pdv_code is provided. But looking at the proposed_operation's fields, pdv_code is still null. That's a contradiction. The stored state says pdv_code is missing, but the proposed operation doesn't include it. So, the missing_fields should still have pdv_code, but the proposed_operation's missing_fields is empty. That's a problem.\n\nNext, checking the evidence. The evidence comes from the latest_user_message, which provides the phone number. The evidence entry's support is marked as \"unsupported\". The candidate_evidence also has the phone number, but the correlation_strength is \"weak\". The phone number is present in the user message, but the system might not be confident enough about it. However, the phone number is directly provided, so maybe the support should be \"supported\" instead of \"unsupported\". Wait, the evidence's support is \"unsupported\" in the proposed_operation. That's an issue because the phone number is explicitly stated in the user message. So the evidence's support should be \"supported\" if the field is directly present. But according to the context, the evidence's support is \"unsupported\", which might be a mistake.\n\nAlso, the additional_fields in the proposed_operation is empty. The stored_operation_state has missing_fields including pdv_code, which is a required field. Since the proposed_operation doesn't include pdv_code, even though it's marked as missing_fields being empty, that's incorrect. The pdv_code is still missing, so the missing_fields should include it. Therefore, the proposed_operation has an error in missing_fields.\n\nSo, the main issues are: the pdv_code is still missing in the proposed_operation, but missing_fields is empty, and the evidence for the phone number is marked as unsupported when it's actually present. Also, the correlation_strength is weak, which might affect the confidence. The action is \"otp_number_change\", which requires pdv_code, but it's not provided. Therefore, the proposed operation is missing a required field, making it invalid.",
+      "latency_seconds": 4.393143199995393,
+      "request_attempt_count": 1,
+      "usage": {
+        "prompt_tokens": 569,
+        "completion_tokens": 690,
+        "total_tokens": 1259
+      },
+      "cost": {
+        "input_usd": null,
+        "output_usd": null,
+        "total_usd": null,
+        "basis": "unknown",
+        "pricing_metadata": {}
+      },
+      "error": null,
+      "error_category": null,
+      "cached_from_model_run_id": null,
+      "created_at": "2026-07-20T09:34:51.362441"
+    }
+  ],
+  "requests": [
+    {
+      "id": "be3e183e-6e90-4d12-90d0-30c8ba92a578",
+      "reference": "SNOC-REQ-B44F12139451",
+      "status": "ESCALATED",
+      "request_kind": "new",
+      "escalation_reason": "Automatic execution was refused by the hybrid safety policy."
+    }
+  ],
+  "operations": [
+    {
+      "id": "30d031a3-fc67-477b-be87-0ec82ea0641b",
+      "request_id": "be3e183e-6e90-4d12-90d0-30c8ba92a578",
+      "sequence_number": 1,
+      "action": "otp_number_change",
+      "status": "ESCALATED",
+      "pdv_code": null,
+      "phone": "0770000020",
+      "missing_fields": [
+        "pdv_code"
+      ],
+      "current_revision": 1,
+      "final_decision": "REVIEW_CORRECTION",
+      "execution_eligible": false,
+      "model_agreement": false
+    }
+  ],
+  "validation_decisions": [
+    {
+      "id": "389f3d20-9fe1-47ea-a972-a4696daa26da",
+      "operation_id": "30d031a3-fc67-477b-be87-0ec82ea0641b",
+      "decision": "REVIEW_CORRECTION",
+      "reasons": [
+        "missing_required_field:pdv_code",
+        "semantic_contradiction",
+        "analyzer_verifier_disagreement",
+        "required_field_evidence_incomplete",
+        "required_field_evidence_not_in_allowed_context",
+        "weak_request_correlation"
+      ],
+      "hard_invariant_results": {
+        "authorized_sender": true,
+        "structured_output_valid": true,
+        "known_action": true,
+        "field_formats_and_completeness": false,
+        "no_correlation_conflict": true,
+        "no_previous_execution": true,
+        "operation_open": true,
+        "no_closed_history_field_source": true,
+        "required_evidence_from_allowed_context": false,
+        "configured_confidence_thresholds": true,
+        "additional_fields_allowlisted": true,
+        "additional_fields_evidence_supported": true,
+        "proposal_matches_stored_action": true,
+        "execution_mode_configured": true,
+        "input_context_complete": true
+      },
+      "analyzer_result": {
+        "local_operation_id": "1",
+        "action": "otp_number_change",
+        "pdv_code": null,
+        "phone": "0770000020",
+        "additional_fields": {},
+        "missing_fields": [],
+        "evidence": [
+          {
+            "field_name": "phone",
+            "value": "0770000020",
+            "source": "latest_user_message",
+            "evidence_text": "Voici le numéro demandé : 0770000020.\nMerci.",
+            "support": "unsupported"
+          }
+        ],
+        "ambiguity_reasons": [],
+        "raw_action_confidence": null,
+        "raw_field_confidence": {}
+      },
+      "verifier_result": {
+        "action_supported": "no",
+        "pdv_supported": "no",
+        "phone_supported": "yes",
+        "stored_state_compatible": "no",
+        "contradiction_present": true,
+        "contradiction_type": "missing_required_field",
+        "missing_fields": [
+          "pdv_code"
+        ],
+        "additional_fields_supported": {},
+        "correction_detected": true,
+        "new_request_detected": false,
+        "evidence_summary": [
+          "Phone number '0770000020' is explicitly stated in user message but evidence support is marked as 'unsupported'",
+          "pdv_code remains missing in proposed operation despite being required for 'otp_number_change' action"
+        ],
+        "raw_confidence": 0.3
+      },
+      "policy_version": "hybrid-v1",
+      "created_at": "2026-07-20T09:34:51.364269"
+    }
+  ],
+  "clarifications": [],
+  "executions": [],
+  "escalations": [
+    {
+      "id": "f7ac52a7-dc8e-4dc2-89e4-f0399fafdc93",
+      "reason_code": "review_correction",
+      "status": "open",
+      "summary": "Automatic execution was refused by the hybrid safety policy.",
+      "evidence": {
+        "operation_id": "30d031a3-fc67-477b-be87-0ec82ea0641b",
+        "analysis": {
+          "message_kind": "new_request",
+          "referenced_existing_operation_ids": [],
+          "operations": [
+            {
+              "local_operation_id": "1",
+              "action": "otp_number_change",
+              "pdv_code": null,
+              "phone": "0770000020",
+              "additional_fields": {},
+              "missing_fields": [],
+              "evidence": [
+                {
+                  "field_name": "phone",
+                  "value": "0770000020",
+                  "source": "latest_user_message",
+                  "evidence_text": "Voici le numéro demandé : 0770000020.\nMerci.",
+                  "support": "unsupported"
+                }
+              ],
+              "ambiguity_reasons": [],
+              "raw_action_confidence": null,
+              "raw_field_confidence": {}
+            }
+          ],
+          "new_request_present": true,
+          "contradiction_with_stored_state": false,
+          "contradiction_details": [],
+          "unresolved_ambiguities": []
+        },
+        "proposal": {
+          "local_operation_id": "1",
+          "action": "otp_number_change",
+          "pdv_code": null,
+          "phone": "0770000020",
+          "additional_fields": {},
+          "missing_fields": [],
+          "evidence": [
+            {
+              "field_name": "phone",
+              "value": "0770000020",
+              "source": "latest_user_message",
+              "evidence_text": "Voici le numéro demandé : 0770000020.\nMerci.",
+              "support": "unsupported"
+            }
+          ],
+          "ambiguity_reasons": [],
+          "raw_action_confidence": null,
+          "raw_field_confidence": {}
+        },
+        "verification": {
+          "action_supported": "no",
+          "pdv_supported": "no",
+          "phone_supported": "yes",
+          "stored_state_compatible": "no",
+          "contradiction_present": true,
+          "contradiction_type": "missing_required_field",
+          "missing_fields": [
+            "pdv_code"
+          ],
+          "additional_fields_supported": {},
+          "correction_detected": true,
+          "new_request_detected": false,
+          "evidence_summary": [
+            "Phone number '0770000020' is explicitly stated in user message but evidence support is marked as 'unsupported'",
+            "pdv_code remains missing in proposed operation despite being required for 'otp_number_change' action"
+          ],
+          "raw_confidence": 0.3
+        },
+        "reasons": [
+          "missing_required_field:pdv_code",
+          "semantic_contradiction",
+          "analyzer_verifier_disagreement",
+          "required_field_evidence_incomplete",
+          "required_field_evidence_not_in_allowed_context",
+          "weak_request_correlation"
+        ],
+        "hard_invariants": {
+          "authorized_sender": true,
+          "structured_output_valid": true,
+          "known_action": true,
+          "field_formats_and_completeness": false,
+          "no_correlation_conflict": true,
+          "no_previous_execution": true,
+          "operation_open": true,
+          "no_closed_history_field_source": true,
+          "required_evidence_from_allowed_context": false,
+          "configured_confidence_thresholds": true,
+          "additional_fields_allowlisted": true,
+          "additional_fields_evidence_supported": true,
+          "proposal_matches_stored_action": true,
+          "execution_mode_configured": true,
+          "input_context_complete": true
+        },
+        "email_context": {
+          "internal_email_id": "6b4252ae-b06c-43be-bdc6-d966acc98d0e",
+          "sender": "Animateur Zone Epsilon <animateur.epsilon@example.invalid>",
+          "subject": "Re: Suivi demandes S-NOC Epsilon",
+          "message_id": "<e-uncorrelated-phone-003@fixtures.snoc.invalid>",
+          "in_reply_to": null,
+          "references": [],
+          "latest_user_message": "Voici le numéro demandé : 0770000020.\n\nMerci.",
+          "latest_user_message_truncated": false,
+          "raw_eml_path": "var/raw_eml/6b4252ae-b06c-43be-bdc6-d966acc98d0e.eml"
+        },
+        "stored_request_state": {
+          "request_id": "be3e183e-6e90-4d12-90d0-30c8ba92a578",
+          "public_reference": "SNOC-REQ-B44F12139451",
+          "request_status": "ANALYZING",
+          "operations": [
+            {
+              "operation_id": "30d031a3-fc67-477b-be87-0ec82ea0641b",
+              "action": "otp_number_change",
+              "status": "ESCALATED",
+              "pdv_code": null,
+              "phone": "0770000020",
+              "additional_payload": {},
+              "missing_fields": [
+                "pdv_code"
+              ],
+              "evidence": [
+                {
+                  "field_name": "phone",
+                  "value": "0770000020",
+                  "source": "latest_user_message",
+                  "evidence_text": "Voici le numéro demandé : 0770000020.\nMerci.",
+                  "support": "unsupported"
+                }
+              ],
+              "field_provenance": {
+                "phone": "latest_user_message"
+              },
+              "contradiction_data": {},
+              "current_revision": 1,
+              "final_decision": "REVIEW_CORRECTION"
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "outbox": [
+    {
+      "id": "0c1f0b9b-20a6-4966-9801-b4b0e2222345",
+      "recipient": "animateur.epsilon@example.invalid",
+      "subject": "[SNOC-REQ-B44F12139451] Résultat de traitement",
+      "status": "sent",
+      "retry_count": 0,
+      "last_error": null
+    }
+  ]
+}

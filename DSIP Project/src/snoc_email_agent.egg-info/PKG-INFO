@@ -1,0 +1,214 @@
+Metadata-Version: 2.4
+Name: snoc-email-agent
+Version: 0.1.0
+Summary: Stateful, safety-first telecom support email processing service
+Requires-Python: >=3.12
+Description-Content-Type: text/markdown
+Requires-Dist: alembic<2,>=1.14
+Requires-Dist: httpx<1,>=0.27
+Requires-Dist: pydantic<3,>=2.10
+Requires-Dist: pydantic-settings<3,>=2.6
+Requires-Dist: psycopg[binary]<4,>=3.2
+Requires-Dist: SQLAlchemy<3,>=2.0
+Provides-Extra: dev
+Requires-Dist: mypy<2,>=1.13; extra == "dev"
+Requires-Dist: pytest<9,>=8.3; extra == "dev"
+Requires-Dist: pytest-cov<7,>=6; extra == "dev"
+Requires-Dist: ruff<1,>=0.8; extra == "dev"
+
+# SNOC stateful email agent
+
+This repository now contains a first production-style, safety-first service for telecom support
+emails. It stores raw MIME before model work, reconstructs conversations from RFC headers,
+separates conversations from business requests and operations, asks structured clarification
+questions, independently verifies model proposals, enforces hard invariants, and executes only
+through an idempotent business-API adapter.
+
+The historical notebooks, datasets, reports, and standalone scripts remain intact as experimental
+and evaluation artifacts. Their production-safe pieces were extracted into `src/snoc_agent`.
+
+## Architecture
+
+```mermaid
+flowchart LR
+    IMAP[IMAP UID fetch] --> Raw[(email_messages)]
+    Raw --> Parse[MIME parser and reply candidates]
+    Parse --> Corr[conversation/request correlation]
+    Corr --> Context[bounded labelled context]
+    Context --> Analyzer[Qwen analyzer]
+    Analyzer --> Verifier[independent verifier]
+    Verifier --> Policy[hybrid safety policy]
+    Policy -->|missing fields| Clarify[(clarification + outbox)]
+    Policy -->|unsafe/ambiguous| Escalate[(structured escalation)]
+    Policy -->|safe| Execute[idempotent API adapter]
+    Execute --> State[(operation/request state)]
+    State --> Summary[(completion outbox)]
+```
+
+Models propose and semantically verify operations. They never authorize senders, mutate state,
+select endpoints, or call business APIs. The application owns those decisions.
+
+## Quick start
+
+Python 3.12 is required.
+
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -e ".[dev]"
+cp .env.example .env
+alembic upgrade head
+```
+
+SQLite is the default. The command above creates `snoc_agent.db`; set `DATABASE_URL` to a
+PostgreSQL SQLAlchemy URL for deployment.
+
+Run the complete offline workflow without credentials, a GPU, or network access:
+
+```bash
+python -m snoc_agent.cli.main replay-email \
+  tests/fixtures/emails/scenario_a_complete_unblock/01_complete_unblock.eml
+
+python -m snoc_agent.cli.main replay-directory \
+  tests/fixtures/emails/scenario_c_multi_operation/
+```
+
+With `LLM_BASE_URL` empty, replay uses the explicitly labelled deterministic demo backend. It is
+only a workflow simulator. `DRY_RUN=true` uses the mock business API and fake SMTP transport.
+
+The clarification sequence can also be replayed across two commands while preserving the SQLite
+state:
+
+```bash
+python -m snoc_agent.cli.main replay-email \
+  tests/fixtures/emails/scenario_b_otp_clarification/01_incomplete_otp.eml
+python -m snoc_agent.cli.main replay-email \
+  tests/fixtures/emails/scenario_b_otp_clarification/03_reply_phone_only.eml
+```
+
+Replay mode authorizes only the fixture senders it is currently injecting. Normal IMAP workers
+still require `AUTHORIZED_SENDERS`.
+
+## Local model configuration
+
+The real backend targets a local OpenAI-compatible `/chat/completions` API and is independent of
+the serving implementation. For example:
+
+```dotenv
+LLM_BASE_URL=http://127.0.0.1:8000/v1
+LLM_API_KEY=
+ANALYZER_MODEL=Qwen2.5-7B-Instruct
+VERIFIER_MODEL=Qwen3-8B
+ANALYZER_TEMPERATURE=0
+VERIFIER_TEMPERATURE=0
+QWEN3_ENABLE_THINKING=false
+QWEN3_SEND_THINKING_PARAMETER=true
+LLM_JSON_SCHEMA_MODE=true
+```
+
+For Qwen3, `QWEN3_ENABLE_THINKING` is sent as a chat-template option when supported by the server.
+Disable `QWEN3_SEND_THINKING_PARAMETER` for servers that reject that extension. Set
+`LLM_JSON_SCHEMA_MODE=false` for servers that support JSON-object mode but not OpenAI JSON Schema.
+Every run stores backend/model names, quantization label, prompt version, bounded context hash,
+raw and parsed output, latency, token counts, and optional log probabilities.
+
+No model weights are bundled or downloaded automatically. Real local-model checks are marked
+`local_model` and remain optional.
+
+## PostgreSQL and workers
+
+Start the development database if Docker is available:
+
+```bash
+docker compose up -d postgres
+export DATABASE_URL=postgresql+psycopg://snoc_agent:local-development-only@localhost:5432/snoc_agent
+alembic upgrade head
+```
+
+The base package includes Psycopg 3 with its binary distribution so the documented PostgreSQL URL
+works after installation. Deployment images may replace that extra with a locally compiled
+Psycopg build if required by their packaging policy.
+
+Worker commands are synchronous and independently callable:
+
+```bash
+python -m snoc_agent.cli.main db init
+python -m snoc_agent.cli.main mail poll --once
+python -m snoc_agent.cli.main outbox send --once
+python -m snoc_agent.cli.main processing retry-failed
+python -m snoc_agent.cli.main worker run
+```
+
+Inspection commands:
+
+```bash
+python -m snoc_agent.cli.main request show SNOC-REQ-A84F91C274D2
+python -m snoc_agent.cli.main conversation show UUID
+python -m snoc_agent.cli.main operation show UUID
+python -m snoc_agent.cli.main failures list
+```
+
+## Offline evaluation
+
+The evaluation path supports legacy CSVs and attributed multi-operation JSON/JSONL datasets:
+
+```bash
+python -m snoc_agent.cli.main evaluate \
+  --dataset "labeled_data/labeled data/SMOLDATA_last_1000_reviewed.csv" \
+  --analyzer-model Qwen2.5-7B-Instruct \
+  --verifier-model Qwen3-8B \
+  --output-dir outputs/evaluation/qwen25_qwen3
+```
+
+Run the command for each desired Qwen2.5/Qwen3 analyzer-verifier pairing. It writes predictions,
+summary JSON, confusion data, categorized errors, model configuration, and Markdown metrics.
+Without `LLM_BASE_URL`, results are labelled `deterministic_demo`; they are workflow smoke results,
+not Qwen measurements. Oracle rescue analysis is isolated under `evaluation/oracle.py` and is not
+imported by production workflow code.
+
+## Tests and quality
+
+```bash
+pytest
+ruff check .
+ruff format --check .
+mypy src/snoc_agent
+```
+
+The default test suite uses SQLite, fake IMAP/SMTP, deterministic model responses, and the mock
+business API. It requires no internet, credentials, local models, or GPU.
+
+## Safety defaults
+
+- `DRY_RUN=true` is the default.
+- Live execution additionally requires configured LLM, business API, and SMTP endpoints.
+- An empty sender whitelist denies normal inbound senders.
+- Raw MIME is stored before model processing and remains retryable.
+- IMAP identity uses account/mailbox/UIDVALIDITY/UID; sequence numbers are never persisted.
+- Message-ID and raw-hash signals prevent duplicate logical processing.
+- Each operation revision has a stable, unique API idempotency key.
+- Closed/cancelled operations, weak/conflicting correlation, unsupported evidence, quoted-history
+  fields, contradictions, and analyzer/verifier disagreement cannot auto-execute.
+- Email content is untrusted, and structured model outputs are strictly validated with Pydantic.
+- Full email-body logging is off by default.
+
+Do not set `DRY_RUN=false` until endpoint behavior, authorization sources, TLS, backups, retention,
+alerting, and a production safety threshold have been validated in the target environment.
+
+## Current limitations
+
+- LDAP/Active Directory is an adapter seam; only the static whitelist is implemented locally.
+- Attachments are hashed and described but their binary content is not analyzed.
+- HTML-to-text conversion is intentionally small and dependency-free.
+- IMAP/SMTP and live business/model endpoints were not exercised without credentials.
+- Qwen confidence values are stored but are not treated as calibrated probabilities.
+- PostgreSQL is the deployment target, while automated tests currently exercise SQLite.
+- Automatic clarification defaults to one round; subsequent incompleteness escalates.
+- Corrections to completed operations require human review.
+- The historical flat dataset has no RFC/stateful ground truth and only five unattributed
+  `multiple` rows; the new `.eml` fixtures cover the stateful workflow separately.
+
+Further detail is in `docs/architecture.md`, `docs/email_identity_and_correlation.md`,
+`docs/state_machine.md`, `docs/model_pipeline.md`, `docs/context_selection.md`,
+`docs/evaluation.md`, `docs/security.md`, `docs/runbook.md`, and
+`docs/existing_pipeline_inventory.md`.

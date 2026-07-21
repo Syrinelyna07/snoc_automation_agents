@@ -1,0 +1,360 @@
+{
+  "email": {
+    "id": "a6fe934a-a3ae-4ce2-8994-e7d581d1cf48",
+    "message_id": null,
+    "sender": "Superviseur Zone Kappa <superviseur.kappa@example.invalid>",
+    "recipients": [
+      "Agent SNOC <snoc-agent@example.invalid>"
+    ],
+    "subject": "Deblocage compte PDV 93000001 sans Message-ID",
+    "processing_status": "processed",
+    "imap": {
+      "mailbox": "REPLAY",
+      "uidvalidity": 1,
+      "uid": 1,
+      "flags": [],
+      "internal_date": null
+    },
+    "parsing": {
+      "automated_classification": null,
+      "warnings": [
+        "missing_message_id"
+      ],
+      "quarantine_category": null,
+      "quarantine_message": null,
+      "context_limit_metadata": {
+        "mime_limit_warnings": [],
+        "context_limit_warnings": [],
+        "automatic_execution_allowed": true
+      }
+    },
+    "authorization": {
+      "allowed": true,
+      "reason": "sender_whitelisted"
+    },
+    "correlation": {
+      "strength": "new",
+      "matched_by": "new_conversation",
+      "request_id": null,
+      "clarification_id": null,
+      "conflicts": []
+    },
+    "latest_user_message": "Bonjour,\n\nMerci de débloquer le compte S-NOC du PDV 93000001.\nLe logiciel de messagerie à l'origine de cet envoi n'a pas produit de Message-ID."
+  },
+  "model_runs": [
+    {
+      "id": "35d46cd0-2360-4faa-9710-d72e1315f883",
+      "stage": "analysis",
+      "backend": "huggingface",
+      "base_model_id": "Qwen/Qwen2.5-7B-Instruct",
+      "resolved_model_id": "Qwen/Qwen2.5-7B-Instruct:cheapest",
+      "reported_provider": null,
+      "provider_request_id": "osrgta7-6Ng1vN-a1e0f66449fb4160",
+      "prompt_version": "analyzer_v1",
+      "input_context": {
+        "mode": "new_request",
+        "subject": "Deblocage compte PDV 93000001 sans Message-ID",
+        "latest_user_message": "Bonjour,\nMerci de débloquer le compte S-NOC du PDV 93000001.\nLe logiciel de messagerie à l'origine de cet envoi n'a pas produit de Message-ID.",
+        "text_since_last_closed_request": "Bonjour,\nMerci de débloquer le compte S-NOC du PDV 93000001.\nLe logiciel de messagerie à l'origine de cet envoi n'a pas produit de Message-ID.",
+        "numeric_candidates": [
+          {
+            "value": "93000001",
+            "raw_value": "93000001",
+            "kind_hint": "pdv_or_unknown",
+            "section": "latest_user_message",
+            "start": 51,
+            "end": 59,
+            "context": "Bonjour,\nMerci de débloquer le compte S-NOC du PDV 93000001.\nLe logiciel de messagerie à l'origine de cet envoi n'a pas"
+          }
+        ],
+        "closed_history_summary": null,
+        "preprocessing_notes": [],
+        "segmentation_confidence": 0.8
+      },
+      "raw_output": "{\"message_kind\": \"new_request\", \"operations\": [{\"local_operation_id\": \"1\", \"action\": \"account_unblock\", \"pdv_code\": \"93000001\", \"phone\": null, \"evidence\": [{\"field_name\": \"pdv_code\", \"value\": \"93000001\", \"source\": \"latest_user_message\", \"evidence_text\": \"PDV 93000001\", \"support\": \"unclear\"}]}], \"new_request_present\": true, \"contradiction_with_stored_state\": false}",
+      "parsed_output": {
+        "message_kind": "new_request",
+        "referenced_existing_operation_ids": [],
+        "operations": [
+          {
+            "local_operation_id": "1",
+            "action": "account_unblock",
+            "pdv_code": "93000001",
+            "phone": null,
+            "additional_fields": {},
+            "missing_fields": [],
+            "evidence": [
+              {
+                "field_name": "pdv_code",
+                "value": "93000001",
+                "source": "latest_user_message",
+                "evidence_text": "PDV 93000001",
+                "support": "unclear"
+              }
+            ],
+            "ambiguity_reasons": [],
+            "raw_action_confidence": null,
+            "raw_field_confidence": {}
+          }
+        ],
+        "new_request_present": true,
+        "contradiction_with_stored_state": false,
+        "contradiction_details": [],
+        "unresolved_ambiguities": []
+      },
+      "structured_output_valid": true,
+      "structured_output_mode": "json_schema",
+      "schema_name": "EmailAnalysis",
+      "fallback_reason": null,
+      "parse_attempt_count": 1,
+      "validation_errors": [],
+      "reasoning_output": null,
+      "latency_seconds": 2.5956476200008183,
+      "request_attempt_count": 1,
+      "usage": {
+        "prompt_tokens": 657,
+        "completion_tokens": 132,
+        "total_tokens": 789
+      },
+      "cost": {
+        "input_usd": null,
+        "output_usd": null,
+        "total_usd": null,
+        "basis": "unknown",
+        "pricing_metadata": {}
+      },
+      "error": null,
+      "error_category": null,
+      "cached_from_model_run_id": null,
+      "created_at": "2026-07-20T09:33:07.807547"
+    },
+    {
+      "id": "474ec061-0f20-4bf1-b394-140f521791fb",
+      "stage": "verification",
+      "backend": "huggingface",
+      "base_model_id": "Qwen/Qwen3-8B",
+      "resolved_model_id": "Qwen/Qwen3-8B:cheapest",
+      "reported_provider": null,
+      "provider_request_id": "3ffce8c0-e743-4208-a8bc-3fa697250c28",
+      "prompt_version": "verifier_v1",
+      "input_context": {
+        "context_mode": "new_request",
+        "latest_user_message": "Bonjour,\nMerci de débloquer le compte S-NOC du PDV 93000001.\nLe logiciel de messagerie à l'origine de cet envoi n'a pas produit de Message-ID.",
+        "stored_operation_state": {
+          "operation_id": "c22902df-f59e-4bf7-b2ad-5769703005df",
+          "action": "account_unblock",
+          "pdv_code": "93000001",
+          "phone": null,
+          "missing_fields": [],
+          "status": "NEW",
+          "current_revision": 1
+        },
+        "proposed_operation": {
+          "local_operation_id": "1",
+          "action": "account_unblock",
+          "pdv_code": "93000001",
+          "phone": null,
+          "additional_fields": {},
+          "missing_fields": [],
+          "evidence": [
+            {
+              "field_name": "pdv_code",
+              "value": "93000001",
+              "source": "latest_user_message",
+              "evidence_text": "PDV 93000001",
+              "support": "unclear"
+            }
+          ],
+          "ambiguity_reasons": [],
+          "raw_action_confidence": null,
+          "raw_field_confidence": {}
+        },
+        "candidate_evidence": [
+          {
+            "value": "93000001",
+            "raw_value": "93000001",
+            "kind_hint": "pdv_or_unknown",
+            "section": "latest_user_message",
+            "start": 51,
+            "end": 59,
+            "context": "Bonjour,\nMerci de débloquer le compte S-NOC du PDV 93000001.\nLe logiciel de messagerie à l'origine de cet envoi n'a pas"
+          }
+        ],
+        "correlation_strength": "new"
+      },
+      "raw_output": "",
+      "parsed_output": {},
+      "structured_output_valid": false,
+      "structured_output_mode": "json_schema",
+      "schema_name": "SemanticVerification",
+      "fallback_reason": null,
+      "parse_attempt_count": 1,
+      "validation_errors": [
+        {
+          "attempt": 1,
+          "message": "model response is not a single JSON value: Expecting value: line 1 column 1 (char 0)"
+        }
+      ],
+      "reasoning_output": "Okay, let's tackle this verification. The user wants me to check if the proposed telecom support operation is valid based on the given context. \n\nFirst, I need to understand the context. The latest user message is in French, asking to unblock the S-NOC account for PDV 93000001. The stored operation state has an operation ID, action as account_unblock, pdv_code 93000001, and status NEW. The proposed operation matches these, with the same pdv_code and action. The evidence provided is the pdv_code from the user message.\n\nNow, the key points to check. The action is account_unblock, which is required. The pdv_code is 93000001, which is present in the user message. The phone field is null in both stored and proposed, so that's okay. The missing_fields are empty, so no required fields are missing. \n\nLooking at the evidence, the pdv_code is extracted from the latest user message. The evidence_text is \"PDV 93000001\" and the support is marked as unclear. Wait, the user message says \"PDV 93000001\" but the stored_operation_state has pdv_code as 93000001. The proposed_operation's evidence has the same value. However, the support for the evidence is unclear. But the user message clearly states the PDV code, so maybe the support should be direct. But according to the context, the evidence's support is unclear. \n\nWait, the candidate_evidence has a value of 93000001, and the source is latest_user_message. The evidence_text is \"PDV 93000001\", which matches the pdv_code. The support is unclear, but maybe that's a mistake. The user message directly provides the PDV code, so the support should be clear. However, the context says the evidence's support is unclear. Maybe there's a reason for that, but the user hasn't provided any conflicting info. \n\nThe proposed_operation's additional_fields is empty, which is fine. The missing_fields are empty, so all required fields are present. The action is account_unblock, which is supported by the stored_operation_state. \n\nBut wait, the user message mentions \"S-NOC\" account. The stored_operation_state's action is account_unblock, but does the context mention anything about S-NOC? The stored_operation_state doesn't have that, but the user message does. However, the action is account_unblock, which is the same as the stored. The S-NOC might be part of the account name, but the pdv_code is the key here. \n\nSo, the main thing is that the pdv_code is correctly extracted and matches. The phone is null, which is acceptable. The evidence is present, but the support is unclear. However, the user message clearly states the PDV code, so maybe the support should be direct. But according to the context, the evidence's support is unclear. \n\nWait, the stored_operation_state's pdv_code is 93000001, which matches the proposed. The user message has \"PDV 93000001\", so the evidence is",
+      "latency_seconds": 4.658848668004794,
+      "request_attempt_count": 1,
+      "usage": {
+        "prompt_tokens": 602,
+        "completion_tokens": 700,
+        "total_tokens": 1302
+      },
+      "cost": {
+        "input_usd": null,
+        "output_usd": null,
+        "total_usd": null,
+        "basis": "unknown",
+        "pricing_metadata": {}
+      },
+      "error": "structured response failed validation after 1 parse attempt(s)",
+      "error_category": "malformed_output",
+      "cached_from_model_run_id": null,
+      "created_at": "2026-07-20T09:33:12.486155"
+    }
+  ],
+  "requests": [
+    {
+      "id": "44e4cc1f-5f6b-4a3d-80a0-6af7eebe37db",
+      "reference": "SNOC-REQ-22C9B2FEDDAC",
+      "status": "ESCALATED",
+      "request_kind": "new",
+      "escalation_reason": "Semantic verification failed; execution was refused."
+    }
+  ],
+  "operations": [
+    {
+      "id": "c22902df-f59e-4bf7-b2ad-5769703005df",
+      "request_id": "44e4cc1f-5f6b-4a3d-80a0-6af7eebe37db",
+      "sequence_number": 1,
+      "action": "account_unblock",
+      "status": "ESCALATED",
+      "pdv_code": "93000001",
+      "phone": null,
+      "missing_fields": [],
+      "current_revision": 1,
+      "final_decision": "ESCALATE",
+      "execution_eligible": false,
+      "model_agreement": null
+    }
+  ],
+  "validation_decisions": [],
+  "clarifications": [],
+  "executions": [],
+  "escalations": [
+    {
+      "id": "52ca8d87-102c-4336-9484-e65d5b84f289",
+      "reason_code": "semantic_verifier_failure",
+      "status": "open",
+      "summary": "Semantic verification failed; execution was refused.",
+      "evidence": {
+        "error": "structured response failed validation after 1 parse attempt(s)",
+        "analysis": {
+          "message_kind": "new_request",
+          "referenced_existing_operation_ids": [],
+          "operations": [
+            {
+              "local_operation_id": "1",
+              "action": "account_unblock",
+              "pdv_code": "93000001",
+              "phone": null,
+              "additional_fields": {},
+              "missing_fields": [],
+              "evidence": [
+                {
+                  "field_name": "pdv_code",
+                  "value": "93000001",
+                  "source": "latest_user_message",
+                  "evidence_text": "PDV 93000001",
+                  "support": "unclear"
+                }
+              ],
+              "ambiguity_reasons": [],
+              "raw_action_confidence": null,
+              "raw_field_confidence": {}
+            }
+          ],
+          "new_request_present": true,
+          "contradiction_with_stored_state": false,
+          "contradiction_details": [],
+          "unresolved_ambiguities": []
+        },
+        "proposal": {
+          "local_operation_id": "1",
+          "action": "account_unblock",
+          "pdv_code": "93000001",
+          "phone": null,
+          "additional_fields": {},
+          "missing_fields": [],
+          "evidence": [
+            {
+              "field_name": "pdv_code",
+              "value": "93000001",
+              "source": "latest_user_message",
+              "evidence_text": "PDV 93000001",
+              "support": "unclear"
+            }
+          ],
+          "ambiguity_reasons": [],
+          "raw_action_confidence": null,
+          "raw_field_confidence": {}
+        },
+        "email_context": {
+          "internal_email_id": "a6fe934a-a3ae-4ce2-8994-e7d581d1cf48",
+          "sender": "Superviseur Zone Kappa <superviseur.kappa@example.invalid>",
+          "subject": "Deblocage compte PDV 93000001 sans Message-ID",
+          "message_id": null,
+          "in_reply_to": null,
+          "references": [],
+          "latest_user_message": "Bonjour,\n\nMerci de débloquer le compte S-NOC du PDV 93000001.\nLe logiciel de messagerie à l'origine de cet envoi n'a pas produit de Message-ID.",
+          "latest_user_message_truncated": false,
+          "raw_eml_path": "var/raw_eml/a6fe934a-a3ae-4ce2-8994-e7d581d1cf48.eml"
+        },
+        "stored_request_state": {
+          "request_id": "44e4cc1f-5f6b-4a3d-80a0-6af7eebe37db",
+          "public_reference": "SNOC-REQ-22C9B2FEDDAC",
+          "request_status": "ANALYZING",
+          "operations": [
+            {
+              "operation_id": "c22902df-f59e-4bf7-b2ad-5769703005df",
+              "action": "account_unblock",
+              "status": "ESCALATED",
+              "pdv_code": "93000001",
+              "phone": null,
+              "additional_payload": {},
+              "missing_fields": [],
+              "evidence": [
+                {
+                  "field_name": "pdv_code",
+                  "value": "93000001",
+                  "source": "latest_user_message",
+                  "evidence_text": "PDV 93000001",
+                  "support": "unclear"
+                }
+              ],
+              "field_provenance": {
+                "pdv_code": "latest_user_message"
+              },
+              "contradiction_data": {},
+              "current_revision": 1,
+              "final_decision": "ESCALATE"
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "outbox": [
+    {
+      "id": "28587933-781e-4f23-985f-aad70c748d2f",
+      "recipient": "superviseur.kappa@example.invalid",
+      "subject": "[SNOC-REQ-22C9B2FEDDAC] Résultat de traitement",
+      "status": "sent",
+      "retry_count": 0,
+      "last_error": null
+    }
+  ]
+}

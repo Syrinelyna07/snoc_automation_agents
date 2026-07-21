@@ -1,0 +1,64 @@
+{
+  "source_dataset": "labeled_data/labeled data/SMOLDATA_last_1000_reviewed.csv",
+  "source_dataset_sha256": "18ab8ae2f77d6ca3d04eb499f3bc6fca1b186b2cb69e8219aa7de4f5e8fec647",
+  "integration_smoke": "outputs/evaluation/integration_smoke.jsonl",
+  "safety_regression": "outputs/evaluation/safety_regression.jsonl",
+  "oracle_false_escalation": "outputs/evaluation/oracle_false_escalation.jsonl",
+  "splits": {
+    "development": "outputs/evaluation/development.jsonl",
+    "calibration": "outputs/evaluation/calibration.jsonl",
+    "held_out_test": "outputs/evaluation/held_out_test.jsonl"
+  },
+  "split_manifest": "outputs/evaluation/split_manifest.json",
+  "stateful_eml_scenarios": "outputs/evaluation/stateful_eml_scenarios.json",
+  "demo_unsafe_candidate_count": 194,
+  "demo_results_are_qwen_measurements": false,
+  "demo_vs_real_regression_report": "outputs/evaluation/demo_vs_real_regression_report.json",
+  "generated_artifacts": {
+    "integration_smoke": {
+      "path": "outputs/evaluation/integration_smoke.jsonl",
+      "sha256": "ab4a45e1faee0ef5d784a3f0cd1551b7eea901dfa04f971133905750d17223dd",
+      "row_count": 10
+    },
+    "safety_regression": {
+      "path": "outputs/evaluation/safety_regression.jsonl",
+      "sha256": "d3807744f95ce31630a2950f8e0a02a1a587018341f74caaf89f4e2ebd510ccd",
+      "row_count": 209
+    },
+    "oracle_false_escalation": {
+      "path": "outputs/evaluation/oracle_false_escalation.jsonl",
+      "sha256": "fc07076b654c03e96d16b675a3e7a1027fca38005ff5386ca8a68ee1a0f2e9b4",
+      "row_count": 360
+    },
+    "split_development": {
+      "path": "outputs/evaluation/development.jsonl",
+      "sha256": "f9dfcb611eb212c43344c551cc0b851e0db6734aa05b5673b01c7661879350ca",
+      "row_count": 582
+    },
+    "split_calibration": {
+      "path": "outputs/evaluation/calibration.jsonl",
+      "sha256": "31b1616c1c0b8e167b41ec3c44f1c62cbc815914fb5f6fa01b5e1af4c104549f",
+      "row_count": 233
+    },
+    "split_held_out_test": {
+      "path": "outputs/evaluation/held_out_test.jsonl",
+      "sha256": "e9f3494f260f061276e6ab3073c0fec1c73299af8e17bf56f5bbbb1fa7797203",
+      "row_count": 185
+    },
+    "stateful_eml_scenarios": {
+      "path": "outputs/evaluation/stateful_eml_scenarios.json",
+      "sha256": "59a7e24948e07b8ca513d28ae1d0aee58fc41bc8044040a0ef4efe89d813bbac",
+      "row_count": null
+    },
+    "demo_unsafe_candidates_manifest": {
+      "path": "outputs/evaluation/demo_unsafe_candidates_manifest.json",
+      "sha256": "6fd743b59058c31293ead5d03416e73550007c5a4cca85d9e2825d48a1396d8f",
+      "row_count": null
+    },
+    "demo_vs_real_regression_report": {
+      "path": "outputs/evaluation/demo_vs_real_regression_report.json",
+      "sha256": "d5cb970f486b8aa43e0ecfe9543b8ae1d766e11e93ae44445daad73516fabce2",
+      "row_count": null
+    }
+  }
+}

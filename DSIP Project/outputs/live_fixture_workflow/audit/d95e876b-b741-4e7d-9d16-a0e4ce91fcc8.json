@@ -1,0 +1,42 @@
+{
+  "email": {
+    "id": "d95e876b-b741-4e7d-9d16-a0e4ce91fcc8",
+    "message_id": "<edge-out-of-office-016@fixtures.snoc.invalid>",
+    "sender": "Boite Automatique Zone Lambda <animateur.lambda@example.invalid>",
+    "recipients": [
+      "Agent SNOC <snoc-agent@example.invalid>"
+    ],
+    "subject": "Reponse automatique : absence du bureau",
+    "processing_status": "ignored",
+    "imap": {
+      "mailbox": "REPLAY",
+      "uidvalidity": 1,
+      "uid": 2,
+      "flags": [],
+      "internal_date": null
+    },
+    "parsing": {
+      "automated_classification": "out_of_office",
+      "warnings": [],
+      "quarantine_category": null,
+      "quarantine_message": null,
+      "context_limit_metadata": {
+        "mime_limit_warnings": []
+      }
+    },
+    "authorization": {
+      "allowed": true,
+      "reason": "sender_whitelisted"
+    },
+    "correlation": {},
+    "latest_user_message": "Bonjour,\n\nJe suis absent du bureau jusqu'au 20 juillet 2026.\nCe message est une réponse automatique et aucune demande ne doit être créée.\n\nMerci."
+  },
+  "model_runs": [],
+  "requests": [],
+  "operations": [],
+  "validation_decisions": [],
+  "clarifications": [],
+  "executions": [],
+  "escalations": [],
+  "outbox": []
+}

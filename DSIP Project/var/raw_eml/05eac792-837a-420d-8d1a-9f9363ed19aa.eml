@@ -1,0 +1,15 @@
+From: Animateur Zone Iota <animateur.iota@example.invalid>
+To: Agent SNOC <snoc-agent@example.invalid>
+Date: Thu, 09 Jul 2026 08:30:00 +0100
+Message-ID: <i-header-marker-conflict-002@fixtures.snoc.invalid>
+In-Reply-To: <178442299572.1442965.18226954179694081847@example.invalid>
+References: <i-request-header-001@fixtures.snoc.invalid> <178442299572.1442965.18226954179694081847@example.invalid>
+Subject: Re: [SNOC-REQ-1F76B5E0832E] Information manquante
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+Le numéro est 0770000051 pour la référence SNOC-REQ-1F76B5E0832E.
+Les en-têtes de ce message proviennent pourtant d'une autre demande.
+
+Merci.

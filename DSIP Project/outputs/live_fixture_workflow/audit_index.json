@@ -1,0 +1,464 @@
+[
+  {
+    "email_id": "2729eedc-a482-49c3-9045-f7a83e031afb",
+    "created_at": "2026-07-20T09:35:47.909206",
+    "message_id": "<i-header-marker-conflict-002@fixtures.snoc.invalid>",
+    "sender": "Animateur Zone Iota <animateur.iota@example.invalid>",
+    "subject": "Re: [{{marker_request.request_reference}}] Information manquante",
+    "processing_status": "processed",
+    "automated_classification": null,
+    "authorization_allowed": true,
+    "request_references": [
+      "SNOC-REQ-82D3504050E5"
+    ],
+    "model_stages": [
+      "analysis",
+      "verification"
+    ],
+    "model_error_categories": []
+  },
+  {
+    "email_id": "4f9ead11-35a3-44b4-8a76-8f358747e52e",
+    "created_at": "2026-07-20T09:35:42.047061",
+    "message_id": "<i-broken-header-001@fixtures.snoc.invalid>",
+    "sender": "Animateur Zone Iota <animateur.iota@example.invalid>",
+    "subject": "Re: [{{marker_request.request_reference}}] Telephone demande",
+    "processing_status": "processed",
+    "automated_classification": null,
+    "authorization_allowed": true,
+    "request_references": [
+      "SNOC-REQ-4F515FC65173"
+    ],
+    "model_stages": [
+      "analysis",
+      "verification"
+    ],
+    "model_error_categories": []
+  },
+  {
+    "email_id": "2d3fb76e-f1b4-4a54-b57f-0dc0740c8ac7",
+    "created_at": "2026-07-20T09:35:37.671400",
+    "message_id": "<i-request-marker-002@fixtures.snoc.invalid>",
+    "sender": "Animateur Zone Iota <animateur.iota@example.invalid>",
+    "subject": "OTP incomplet PDV 83000002",
+    "processing_status": "processed",
+    "automated_classification": null,
+    "authorization_allowed": true,
+    "request_references": [
+      "SNOC-REQ-57786B5C264F"
+    ],
+    "model_stages": [
+      "analysis",
+      "verification"
+    ],
+    "model_error_categories": []
+  },
+  {
+    "email_id": "96ba2132-834c-4f04-9c8d-5a63a99ccc80",
+    "created_at": "2026-07-20T09:35:33.352685",
+    "message_id": "<i-request-header-001@fixtures.snoc.invalid>",
+    "sender": "Animateur Zone Iota <animateur.iota@example.invalid>",
+    "subject": "OTP incomplet PDV 83000001",
+    "processing_status": "processed",
+    "automated_classification": null,
+    "authorization_allowed": true,
+    "request_references": [
+      "SNOC-REQ-4499544579AC"
+    ],
+    "model_stages": [
+      "analysis",
+      "verification"
+    ],
+    "model_error_categories": []
+  },
+  {
+    "email_id": "eabc307e-7e52-4543-a99d-c91a65675fb6",
+    "created_at": "2026-07-20T09:35:22.412759",
+    "message_id": "<h-correction-after-003@fixtures.snoc.invalid>",
+    "sender": "Superviseur Zone Theta <superviseur.theta@example.invalid>",
+    "subject": "Re: [{{executed.request_reference}}] Demande terminee",
+    "processing_status": "processed",
+    "automated_classification": null,
+    "authorization_allowed": true,
+    "request_references": [
+      "SNOC-REQ-AB1A280A44B8"
+    ],
+    "model_stages": [
+      "analysis",
+      "verification",
+      "verification"
+    ],
+    "model_error_categories": [
+      "malformed_output"
+    ]
+  },
+  {
+    "email_id": "8f943389-4798-4033-ba55-79fe15e67619",
+    "created_at": "2026-07-20T09:35:14.099625",
+    "message_id": "<h-correction-before-002@fixtures.snoc.invalid>",
+    "sender": "Superviseur Zone Theta <superviseur.theta@example.invalid>",
+    "subject": "Re: Changement numero OTP PDV 82000001",
+    "processing_status": "processed",
+    "automated_classification": null,
+    "authorization_allowed": true,
+    "request_references": [
+      "SNOC-REQ-8291144DE626"
+    ],
+    "model_stages": [
+      "analysis",
+      "verification",
+      "verification"
+    ],
+    "model_error_categories": []
+  },
+  {
+    "email_id": "c610a230-e78f-41b8-8516-dfb353d79d65",
+    "created_at": "2026-07-20T09:35:09.798756",
+    "message_id": "<h-original-otp-001@fixtures.snoc.invalid>",
+    "sender": "Superviseur Zone Theta <superviseur.theta@example.invalid>",
+    "subject": "Changement numero OTP PDV 82000001",
+    "processing_status": "processed",
+    "automated_classification": null,
+    "authorization_allowed": true,
+    "request_references": [
+      "SNOC-REQ-98E83FD834D1"
+    ],
+    "model_stages": [
+      "analysis",
+      "verification"
+    ],
+    "model_error_categories": []
+  },
+  {
+    "email_id": "adf01b62-3e4c-46b9-8d6e-5d43e9d60448",
+    "created_at": "2026-07-20T09:35:01.011839",
+    "message_id": "<g-complete-and-new-002@fixtures.snoc.invalid>",
+    "sender": "Animateur Zone Eta <animateur.eta@example.invalid>",
+    "subject": "Re: [{{initial.request_reference}}] Information OTP manquante",
+    "processing_status": "processed",
+    "automated_classification": null,
+    "authorization_allowed": true,
+    "request_references": [
+      "SNOC-REQ-58BBBFA00FF9"
+    ],
+    "model_stages": [
+      "analysis",
+      "verification",
+      "verification"
+    ],
+    "model_error_categories": []
+  },
+  {
+    "email_id": "090eb224-6569-4980-a6f9-6bd8201d44e7",
+    "created_at": "2026-07-20T09:34:56.164117",
+    "message_id": "<g-incomplete-otp-001@fixtures.snoc.invalid>",
+    "sender": "Animateur Zone Eta <animateur.eta@example.invalid>",
+    "subject": "Changement OTP PDV 72000001",
+    "processing_status": "processed",
+    "automated_classification": null,
+    "authorization_allowed": true,
+    "request_references": [
+      "SNOC-REQ-50F11AECB171"
+    ],
+    "model_stages": [
+      "analysis",
+      "verification"
+    ],
+    "model_error_categories": []
+  },
+  {
+    "email_id": "26f2805c-175d-40ea-93f1-80a27c5d0bde",
+    "created_at": "2026-07-20T09:34:51.409942",
+    "message_id": "<f-idempotent-reset-001@fixtures.snoc.invalid>",
+    "sender": "Superviseur Zone Zeta <superviseur.zeta@example.invalid>",
+    "subject": "Reinitialisation mot de passe PDV 62000001",
+    "processing_status": "processed",
+    "automated_classification": null,
+    "authorization_allowed": true,
+    "request_references": [
+      "SNOC-REQ-6D62FEA17F40"
+    ],
+    "model_stages": [
+      "analysis",
+      "verification"
+    ],
+    "model_error_categories": []
+  },
+  {
+    "email_id": "6b4252ae-b06c-43be-bdc6-d966acc98d0e",
+    "created_at": "2026-07-20T09:34:44.603940",
+    "message_id": "<e-uncorrelated-phone-003@fixtures.snoc.invalid>",
+    "sender": "Animateur Zone Epsilon <animateur.epsilon@example.invalid>",
+    "subject": "Re: Suivi demandes S-NOC Epsilon",
+    "processing_status": "processed",
+    "automated_classification": null,
+    "authorization_allowed": true,
+    "request_references": [
+      "SNOC-REQ-B44F12139451"
+    ],
+    "model_stages": [
+      "analysis",
+      "verification"
+    ],
+    "model_error_categories": []
+  },
+  {
+    "email_id": "80e7b2d1-6dbd-4408-94d4-2938b64570cc",
+    "created_at": "2026-07-20T09:34:35.376616",
+    "message_id": "<e-unresolved-vpn-002@fixtures.snoc.invalid>",
+    "sender": "Animateur Zone Epsilon <animateur.epsilon@example.invalid>",
+    "subject": "Re: Suivi demandes S-NOC Epsilon",
+    "processing_status": "processed",
+    "automated_classification": null,
+    "authorization_allowed": true,
+    "request_references": [
+      "SNOC-REQ-10523BBBA32F"
+    ],
+    "model_stages": [
+      "analysis",
+      "verification",
+      "verification"
+    ],
+    "model_error_categories": []
+  },
+  {
+    "email_id": "666d6e18-847b-46c1-affe-85b6ad36c431",
+    "created_at": "2026-07-20T09:34:29.865423",
+    "message_id": "<e-unresolved-otp-001@fixtures.snoc.invalid>",
+    "sender": "Animateur Zone Epsilon <animateur.epsilon@example.invalid>",
+    "subject": "Suivi demandes S-NOC Epsilon",
+    "processing_status": "processed",
+    "automated_classification": null,
+    "authorization_allowed": true,
+    "request_references": [
+      "SNOC-REQ-0C7A056F6DB5"
+    ],
+    "model_stages": [
+      "analysis",
+      "verification"
+    ],
+    "model_error_categories": []
+  },
+  {
+    "email_id": "e101b8fe-b351-4e41-8b7f-e19cef3f2d50",
+    "created_at": "2026-07-20T09:34:19.042571",
+    "message_id": "<d-reused-reset-002@fixtures.snoc.invalid>",
+    "sender": "Superviseur Zone Delta <superviseur.delta@example.invalid>",
+    "subject": "Re: [SNOC-REQ-D00000000001] Creation acces VPN PDV 42000001",
+    "processing_status": "processed",
+    "automated_classification": null,
+    "authorization_allowed": true,
+    "request_references": [
+      "SNOC-REQ-8D0922B2B2CE"
+    ],
+    "model_stages": [
+      "analysis",
+      "verification",
+      "verification"
+    ],
+    "model_error_categories": []
+  },
+  {
+    "email_id": "bae2351c-9731-4b12-8f63-07a9bad5b3a8",
+    "created_at": "2026-07-20T09:34:14.248073",
+    "message_id": "<d-original-vpn-001@fixtures.snoc.invalid>",
+    "sender": "Superviseur Zone Delta <superviseur.delta@example.invalid>",
+    "subject": "Creation acces VPN PDV 42000001",
+    "processing_status": "processed",
+    "automated_classification": null,
+    "authorization_allowed": true,
+    "request_references": [
+      "SNOC-REQ-A1E327FCFEDF"
+    ],
+    "model_stages": [
+      "analysis",
+      "verification"
+    ],
+    "model_error_categories": []
+  },
+  {
+    "email_id": "5a767e79-465e-4a92-a844-d047ae8174d8",
+    "created_at": "2026-07-20T09:33:59.260720",
+    "message_id": "<c-targeted-phone-002@fixtures.snoc.invalid>",
+    "sender": "Animateur Zone Gamma <animateur.gamma@example.invalid>",
+    "subject": "Re: [SNOC-REQ-C00000000001] Telephone pour operation VPN",
+    "processing_status": "processed",
+    "automated_classification": null,
+    "authorization_allowed": true,
+    "request_references": [
+      "SNOC-REQ-BDD198A84819"
+    ],
+    "model_stages": [
+      "analysis",
+      "verification",
+      "verification",
+      "verification"
+    ],
+    "model_error_categories": [
+      "malformed_output",
+      "malformed_output"
+    ]
+  },
+  {
+    "email_id": "ec6414a1-3740-4487-b9a1-bf01f7389a1a",
+    "created_at": "2026-07-20T09:33:45.238971",
+    "message_id": "<c-three-operations-001@fixtures.snoc.invalid>",
+    "sender": "Animateur Zone Gamma <animateur.gamma@example.invalid>",
+    "subject": "Trois operations S-NOC a traiter",
+    "processing_status": "processed",
+    "automated_classification": null,
+    "authorization_allowed": true,
+    "request_references": [
+      "SNOC-REQ-A6CB676BCF77"
+    ],
+    "model_stages": [
+      "analysis",
+      "verification",
+      "verification",
+      "verification"
+    ],
+    "model_error_categories": [
+      "malformed_output"
+    ]
+  },
+  {
+    "email_id": "cfdd4ba9-fd04-41a3-bfb2-9b58c00aacbb",
+    "created_at": "2026-07-20T09:33:45.214038",
+    "message_id": "<b-phone-only-003@fixtures.snoc.invalid>",
+    "sender": "Superviseur Zone Beta <superviseur.beta@example.invalid>",
+    "subject": "Re: [SNOC-REQ-B00000000001] Information manquante",
+    "processing_status": "processed",
+    "automated_classification": null,
+    "authorization_allowed": true,
+    "request_references": [],
+    "model_stages": [],
+    "model_error_categories": []
+  },
+  {
+    "email_id": "ec1000a7-c707-4301-bd6b-e6577cfe006a",
+    "created_at": "2026-07-20T09:33:40.608084",
+    "message_id": "<b-still-missing-002@fixtures.snoc.invalid>",
+    "sender": "Superviseur Zone Beta <superviseur.beta@example.invalid>",
+    "subject": "Re: [SNOC-REQ-B00000000001] Changement numero OTP PDV 22000001",
+    "processing_status": "processed",
+    "automated_classification": null,
+    "authorization_allowed": true,
+    "request_references": [
+      "SNOC-REQ-41F01DDCD1D2"
+    ],
+    "model_stages": [
+      "analysis",
+      "verification"
+    ],
+    "model_error_categories": []
+  },
+  {
+    "email_id": "ce057c5d-1b3a-43df-897a-11472e16f5db",
+    "created_at": "2026-07-20T09:33:35.871344",
+    "message_id": "<b-incomplete-otp-001@fixtures.snoc.invalid>",
+    "sender": "Superviseur Zone Beta <superviseur.beta@example.invalid>",
+    "subject": "Changement numero OTP PDV 22000001",
+    "processing_status": "processed",
+    "automated_classification": null,
+    "authorization_allowed": true,
+    "request_references": [
+      "SNOC-REQ-68563A47C4CA"
+    ],
+    "model_stages": [
+      "analysis",
+      "verification"
+    ],
+    "model_error_categories": []
+  },
+  {
+    "email_id": "e77a997d-cc31-4f42-819c-5848f132772e",
+    "created_at": "2026-07-20T09:33:31.583019",
+    "message_id": "<a-complete-unblock-001@fixtures.snoc.invalid>",
+    "sender": "Animateur Zone Alpha <animateur.alpha@example.invalid>",
+    "subject": "Deblocage compte PDV 12000001",
+    "processing_status": "processed",
+    "automated_classification": null,
+    "authorization_allowed": true,
+    "request_references": [
+      "SNOC-REQ-5939E96D97F7"
+    ],
+    "model_stages": [
+      "analysis",
+      "verification"
+    ],
+    "model_error_categories": []
+  },
+  {
+    "email_id": "a3c1f49c-277f-40cf-8850-533a0286be19",
+    "created_at": "2026-07-20T09:33:17.016587",
+    "message_id": "<multi-complete-005@fixtures.snoc.invalid>",
+    "sender": "Superviseur Zone Mu <superviseur.mu@example.invalid>",
+    "subject": "Plusieurs operations completes a traiter",
+    "processing_status": "processed",
+    "automated_classification": null,
+    "authorization_allowed": true,
+    "request_references": [
+      "SNOC-REQ-1D8C0CBCF5E4"
+    ],
+    "model_stages": [
+      "analysis",
+      "verification",
+      "verification",
+      "verification"
+    ],
+    "model_error_categories": [
+      "malformed_output"
+    ]
+  },
+  {
+    "email_id": "e6a81202-93ab-4633-a404-3c7df17ed501",
+    "created_at": "2026-07-20T09:33:12.580203",
+    "message_id": "<edge-irrelevant-reporting-017@fixtures.snoc.invalid>",
+    "sender": "Analyste Reporting <reporting@example.invalid>",
+    "subject": "Ecart de stock SIM dans le reporting",
+    "processing_status": "processed",
+    "automated_classification": null,
+    "authorization_allowed": true,
+    "request_references": [
+      "SNOC-REQ-73A19B71E880"
+    ],
+    "model_stages": [
+      "analysis",
+      "verification"
+    ],
+    "model_error_categories": []
+  },
+  {
+    "email_id": "d95e876b-b741-4e7d-9d16-a0e4ce91fcc8",
+    "created_at": "2026-07-20T09:33:12.558286",
+    "message_id": "<edge-out-of-office-016@fixtures.snoc.invalid>",
+    "sender": "Boite Automatique Zone Lambda <animateur.lambda@example.invalid>",
+    "subject": "Reponse automatique : absence du bureau",
+    "processing_status": "ignored",
+    "automated_classification": "out_of_office",
+    "authorization_allowed": true,
+    "request_references": [],
+    "model_stages": [],
+    "model_error_categories": []
+  },
+  {
+    "email_id": "a6fe934a-a3ae-4ce2-8994-e7d581d1cf48",
+    "created_at": "2026-07-20T09:33:05.179323",
+    "message_id": null,
+    "sender": "Superviseur Zone Kappa <superviseur.kappa@example.invalid>",
+    "subject": "Deblocage compte PDV 93000001 sans Message-ID",
+    "processing_status": "processed",
+    "automated_classification": null,
+    "authorization_allowed": true,
+    "request_references": [
+      "SNOC-REQ-22C9B2FEDDAC"
+    ],
+    "model_stages": [
+      "analysis",
+      "verification"
+    ],
+    "model_error_categories": [
+      "malformed_output"
+    ]
+  }
+]

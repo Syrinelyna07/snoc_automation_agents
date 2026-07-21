@@ -1,0 +1,479 @@
+{
+  "email": {
+    "id": "2729eedc-a482-49c3-9045-f7a83e031afb",
+    "message_id": "<i-header-marker-conflict-002@fixtures.snoc.invalid>",
+    "sender": "Animateur Zone Iota <animateur.iota@example.invalid>",
+    "recipients": [
+      "Agent SNOC <snoc-agent@example.invalid>"
+    ],
+    "subject": "Re: [{{marker_request.request_reference}}] Information manquante",
+    "processing_status": "processed",
+    "imap": {
+      "mailbox": "REPLAY",
+      "uidvalidity": 1,
+      "uid": 25,
+      "flags": [],
+      "internal_date": null
+    },
+    "parsing": {
+      "automated_classification": null,
+      "warnings": [],
+      "quarantine_category": null,
+      "quarantine_message": null,
+      "context_limit_metadata": {
+        "mime_limit_warnings": [],
+        "context_limit_warnings": [],
+        "automatic_execution_allowed": true
+      }
+    },
+    "authorization": {
+      "allowed": true,
+      "reason": "sender_whitelisted"
+    },
+    "correlation": {
+      "strength": "new",
+      "matched_by": "new_conversation",
+      "request_id": null,
+      "clarification_id": null,
+      "conflicts": []
+    },
+    "latest_user_message": "Le numéro est 0770000051 pour la référence {{marker_request.request_reference}}.\nLes en-têtes de ce message proviennent pourtant d'une autre demande.\n\nMerci."
+  },
+  "model_runs": [
+    {
+      "id": "c379c2d3-c65b-4ccd-959c-ded8a3949a28",
+      "stage": "analysis",
+      "backend": "huggingface",
+      "base_model_id": "Qwen/Qwen2.5-7B-Instruct",
+      "resolved_model_id": "Qwen/Qwen2.5-7B-Instruct:cheapest",
+      "reported_provider": null,
+      "provider_request_id": "osrhiaV-6Ng1vN-a1e0fa554f9cd6cb",
+      "prompt_version": "analyzer_v1",
+      "input_context": {
+        "mode": "new_request",
+        "subject": "Re: [{{marker_request.request_reference}}] Information manquante",
+        "latest_user_message": "Le numéro est 0770000051 pour la référence {{marker_request.request_reference}}.\nLes en-têtes de ce message proviennent pourtant d'une autre demande.\nMerci.",
+        "text_since_last_closed_request": "Le numéro est 0770000051 pour la référence {{marker_request.request_reference}}.\nLes en-têtes de ce message proviennent pourtant d'une autre demande.\nMerci.",
+        "numeric_candidates": [
+          {
+            "value": "0770000051",
+            "raw_value": "0770000051",
+            "kind_hint": "phone_or_unknown",
+            "section": "latest_user_message",
+            "start": 14,
+            "end": 24,
+            "context": "Le numéro est 0770000051 pour la référence {{marker_request.request_reference}}.\nLes"
+          }
+        ],
+        "closed_history_summary": null,
+        "preprocessing_notes": [],
+        "segmentation_confidence": 0.8
+      },
+      "raw_output": "{\"message_kind\": \"new_request\", \"operations\": [{\"local_operation_id\": \"1\", \"action\": \"otp_number_change\", \"pdv_code\": null, \"phone\": \"0770000051\", \"evidence\": [{\"field_name\": \"phone\", \"value\": \"0770000051\", \"source\": \"latest_user_message\", \"evidence_text\": \"Le numéro est 0770000051 pour la référence {{marker_request.request_reference}}.\", \"support\": \"unclear\"}]}], \"new_request_present\": true, \"contradiction_with_stored_state\": true}",
+      "parsed_output": {
+        "message_kind": "new_request",
+        "referenced_existing_operation_ids": [],
+        "operations": [
+          {
+            "local_operation_id": "1",
+            "action": "otp_number_change",
+            "pdv_code": null,
+            "phone": "0770000051",
+            "additional_fields": {},
+            "missing_fields": [],
+            "evidence": [
+              {
+                "field_name": "phone",
+                "value": "0770000051",
+                "source": "latest_user_message",
+                "evidence_text": "Le numéro est 0770000051 pour la référence {{marker_request.request_reference}}.",
+                "support": "unclear"
+              }
+            ],
+            "ambiguity_reasons": [],
+            "raw_action_confidence": null,
+            "raw_field_confidence": {}
+          }
+        ],
+        "new_request_present": true,
+        "contradiction_with_stored_state": true,
+        "contradiction_details": [],
+        "unresolved_ambiguities": []
+      },
+      "structured_output_valid": true,
+      "structured_output_mode": "json_schema",
+      "schema_name": "EmailAnalysis",
+      "fallback_reason": null,
+      "parse_attempt_count": 1,
+      "validation_errors": [],
+      "reasoning_output": null,
+      "latency_seconds": 1.6749168370006373,
+      "request_attempt_count": 1,
+      "usage": {
+        "prompt_tokens": 619,
+        "completion_tokens": 147,
+        "total_tokens": 766
+      },
+      "cost": {
+        "input_usd": null,
+        "output_usd": null,
+        "total_usd": null,
+        "basis": "unknown",
+        "pricing_metadata": {}
+      },
+      "error": null,
+      "error_category": null,
+      "cached_from_model_run_id": null,
+      "created_at": "2026-07-20T09:35:49.606673"
+    },
+    {
+      "id": "4878f2e9-ad32-4a3c-89ab-6cf56b0d1dfb",
+      "stage": "verification",
+      "backend": "huggingface",
+      "base_model_id": "Qwen/Qwen3-8B",
+      "resolved_model_id": "Qwen/Qwen3-8B:cheapest",
+      "reported_provider": null,
+      "provider_request_id": "a0c524fc-4e11-40cf-958f-8e8266c9a1aa",
+      "prompt_version": "verifier_v1",
+      "input_context": {
+        "context_mode": "new_request",
+        "latest_user_message": "Le numéro est 0770000051 pour la référence {{marker_request.request_reference}}.\nLes en-têtes de ce message proviennent pourtant d'une autre demande.\nMerci.",
+        "stored_operation_state": {
+          "operation_id": "40864941-30c2-4151-a855-e4f0933acf71",
+          "action": "otp_number_change",
+          "pdv_code": null,
+          "phone": "0770000051",
+          "missing_fields": [
+            "pdv_code"
+          ],
+          "status": "NEW",
+          "current_revision": 1
+        },
+        "proposed_operation": {
+          "local_operation_id": "1",
+          "action": "otp_number_change",
+          "pdv_code": null,
+          "phone": "0770000051",
+          "additional_fields": {},
+          "missing_fields": [],
+          "evidence": [
+            {
+              "field_name": "phone",
+              "value": "0770000051",
+              "source": "latest_user_message",
+              "evidence_text": "Le numéro est 0770000051 pour la référence {{marker_request.request_reference}}.",
+              "support": "unclear"
+            }
+          ],
+          "ambiguity_reasons": [],
+          "raw_action_confidence": null,
+          "raw_field_confidence": {}
+        },
+        "candidate_evidence": [
+          {
+            "value": "0770000051",
+            "raw_value": "0770000051",
+            "kind_hint": "phone_or_unknown",
+            "section": "latest_user_message",
+            "start": 14,
+            "end": 24,
+            "context": "Le numéro est 0770000051 pour la référence {{marker_request.request_reference}}.\nLes"
+          }
+        ],
+        "correlation_strength": "new"
+      },
+      "raw_output": "{\n\n\"action_supported\": \"no\",\n\"contradiction_present\": true,\n\"contradiction_type\": \"missing_required_field\",\n\"correction_detected\": true,\n\"new_request_detected\": true,\n\"pdv_supported\": \"no\",\n\"phone_supported\": \"unclear\",\n\"raw_confidence\": null,\n\"stored_state_compatible\": \"no\"\n}",
+      "parsed_output": {
+        "action_supported": "no",
+        "pdv_supported": "no",
+        "phone_supported": "unclear",
+        "stored_state_compatible": "no",
+        "contradiction_present": true,
+        "contradiction_type": "missing_required_field",
+        "missing_fields": [],
+        "additional_fields_supported": {},
+        "correction_detected": true,
+        "new_request_detected": true,
+        "evidence_summary": [],
+        "raw_confidence": null
+      },
+      "structured_output_valid": true,
+      "structured_output_mode": "json_schema",
+      "schema_name": "SemanticVerification",
+      "fallback_reason": null,
+      "parse_attempt_count": 1,
+      "validation_errors": [],
+      "reasoning_output": "Okay, let's tackle this verification. The user provided a context where a telecom support operation is being checked. The main goal is to verify if the proposed operation is supported by the given context.\n\nFirst, I need to look at the stored_operation_state. The action is \"otp_number_change\", and the phone number is \"0770000051\". However, the missing_fields list includes \"pdv_code\", which is required. The proposed_operation has the same phone number but the missing_fields are empty, suggesting that maybe the pdv_code is now provided. But looking at the proposed_operation's additional_fields, it's empty. The evidence provided is from the latest_user_message, which mentions the phone number but also notes that the headers come from another request. \n\nWait, the user message says \"Les en-têtes de ce message proviennent pourtant d'une autre demande.\" which translates to \"The headers of this message come from another request.\" That might indicate that the phone number provided is for a different request, so maybe the pdv_code is missing or not correctly associated. The stored_operation_state has pdv_code as null, and the proposed_operation also has pdv_code as null. The missing_fields in stored_operation_state is [\"pdv_code\"], but in the proposed_operation, missing_fields is empty. That's a contradiction. \n\nThe evidence for the phone number is present in the latest_user_message, but the headers are from another request. So the phone number might not be correctly linked to the current operation. Also, the pdv_code is missing in both stored and proposed operations. The proposed_operation's additional_fields is empty, so there's no pdv_code provided. Therefore, the missing_fields should still include pdv_code. \n\nThe ambiguity_reasons are empty, but the correlation_strength is \"new\", which might mean that the evidence isn't strong enough. The raw_action_confidence is null, so the action's confidence isn't established. The evidence for the phone number is marked as \"unclear\" because the headers are from another request, which might mean the phone number isn't correctly associated with the current operation. \n\nSo, the main issues are: the pdv_code is missing, the phone number's evidence is unclear due to headers from another request, and the missing_fields in the proposed_operation doesn't include pdv_code, which it should. Therefore, the proposed_operation has contradictions and missing fields.",
+      "latency_seconds": 3.9792601529989042,
+      "request_attempt_count": 1,
+      "usage": {
+        "prompt_tokens": 598,
+        "completion_tokens": 584,
+        "total_tokens": 1182
+      },
+      "cost": {
+        "input_usd": null,
+        "output_usd": null,
+        "total_usd": null,
+        "basis": "unknown",
+        "pricing_metadata": {}
+      },
+      "error": null,
+      "error_category": null,
+      "cached_from_model_run_id": null,
+      "created_at": "2026-07-20T09:35:53.598426"
+    }
+  ],
+  "requests": [
+    {
+      "id": "640acdad-9f8f-4e74-943d-863233803b4f",
+      "reference": "SNOC-REQ-82D3504050E5",
+      "status": "ESCALATED",
+      "request_kind": "new",
+      "escalation_reason": "Automatic execution was refused by the hybrid safety policy."
+    }
+  ],
+  "operations": [
+    {
+      "id": "40864941-30c2-4151-a855-e4f0933acf71",
+      "request_id": "640acdad-9f8f-4e74-943d-863233803b4f",
+      "sequence_number": 1,
+      "action": "otp_number_change",
+      "status": "ESCALATED",
+      "pdv_code": null,
+      "phone": "0770000051",
+      "missing_fields": [
+        "pdv_code"
+      ],
+      "current_revision": 1,
+      "final_decision": "REVIEW_CORRECTION",
+      "execution_eligible": false,
+      "model_agreement": false
+    }
+  ],
+  "validation_decisions": [
+    {
+      "id": "4b8c16d4-60f4-481c-9f5f-f0de55b5ac9e",
+      "operation_id": "40864941-30c2-4151-a855-e4f0933acf71",
+      "decision": "REVIEW_CORRECTION",
+      "reasons": [
+        "missing_required_field:pdv_code",
+        "semantic_contradiction",
+        "analyzer_verifier_disagreement",
+        "required_field_evidence_incomplete",
+        "required_field_evidence_not_in_allowed_context"
+      ],
+      "hard_invariant_results": {
+        "authorized_sender": true,
+        "structured_output_valid": true,
+        "known_action": true,
+        "field_formats_and_completeness": false,
+        "no_correlation_conflict": true,
+        "no_previous_execution": true,
+        "operation_open": true,
+        "no_closed_history_field_source": true,
+        "required_evidence_from_allowed_context": false,
+        "configured_confidence_thresholds": true,
+        "additional_fields_allowlisted": true,
+        "additional_fields_evidence_supported": true,
+        "proposal_matches_stored_action": true,
+        "execution_mode_configured": true,
+        "input_context_complete": true
+      },
+      "analyzer_result": {
+        "local_operation_id": "1",
+        "action": "otp_number_change",
+        "pdv_code": null,
+        "phone": "0770000051",
+        "additional_fields": {},
+        "missing_fields": [],
+        "evidence": [
+          {
+            "field_name": "phone",
+            "value": "0770000051",
+            "source": "latest_user_message",
+            "evidence_text": "Le numéro est 0770000051 pour la référence {{marker_request.request_reference}}.",
+            "support": "unclear"
+          }
+        ],
+        "ambiguity_reasons": [],
+        "raw_action_confidence": null,
+        "raw_field_confidence": {}
+      },
+      "verifier_result": {
+        "action_supported": "no",
+        "pdv_supported": "no",
+        "phone_supported": "unclear",
+        "stored_state_compatible": "no",
+        "contradiction_present": true,
+        "contradiction_type": "missing_required_field",
+        "missing_fields": [],
+        "additional_fields_supported": {},
+        "correction_detected": true,
+        "new_request_detected": true,
+        "evidence_summary": [],
+        "raw_confidence": null
+      },
+      "policy_version": "hybrid-v1",
+      "created_at": "2026-07-20T09:35:53.600363"
+    }
+  ],
+  "clarifications": [],
+  "executions": [],
+  "escalations": [
+    {
+      "id": "cc4da2d5-178d-4f4d-ac8f-7a289d2d623d",
+      "reason_code": "review_correction",
+      "status": "open",
+      "summary": "Automatic execution was refused by the hybrid safety policy.",
+      "evidence": {
+        "operation_id": "40864941-30c2-4151-a855-e4f0933acf71",
+        "analysis": {
+          "message_kind": "new_request",
+          "referenced_existing_operation_ids": [],
+          "operations": [
+            {
+              "local_operation_id": "1",
+              "action": "otp_number_change",
+              "pdv_code": null,
+              "phone": "0770000051",
+              "additional_fields": {},
+              "missing_fields": [],
+              "evidence": [
+                {
+                  "field_name": "phone",
+                  "value": "0770000051",
+                  "source": "latest_user_message",
+                  "evidence_text": "Le numéro est 0770000051 pour la référence {{marker_request.request_reference}}.",
+                  "support": "unclear"
+                }
+              ],
+              "ambiguity_reasons": [],
+              "raw_action_confidence": null,
+              "raw_field_confidence": {}
+            }
+          ],
+          "new_request_present": true,
+          "contradiction_with_stored_state": true,
+          "contradiction_details": [],
+          "unresolved_ambiguities": []
+        },
+        "proposal": {
+          "local_operation_id": "1",
+          "action": "otp_number_change",
+          "pdv_code": null,
+          "phone": "0770000051",
+          "additional_fields": {},
+          "missing_fields": [],
+          "evidence": [
+            {
+              "field_name": "phone",
+              "value": "0770000051",
+              "source": "latest_user_message",
+              "evidence_text": "Le numéro est 0770000051 pour la référence {{marker_request.request_reference}}.",
+              "support": "unclear"
+            }
+          ],
+          "ambiguity_reasons": [],
+          "raw_action_confidence": null,
+          "raw_field_confidence": {}
+        },
+        "verification": {
+          "action_supported": "no",
+          "pdv_supported": "no",
+          "phone_supported": "unclear",
+          "stored_state_compatible": "no",
+          "contradiction_present": true,
+          "contradiction_type": "missing_required_field",
+          "missing_fields": [],
+          "additional_fields_supported": {},
+          "correction_detected": true,
+          "new_request_detected": true,
+          "evidence_summary": [],
+          "raw_confidence": null
+        },
+        "reasons": [
+          "missing_required_field:pdv_code",
+          "semantic_contradiction",
+          "analyzer_verifier_disagreement",
+          "required_field_evidence_incomplete",
+          "required_field_evidence_not_in_allowed_context"
+        ],
+        "hard_invariants": {
+          "authorized_sender": true,
+          "structured_output_valid": true,
+          "known_action": true,
+          "field_formats_and_completeness": false,
+          "no_correlation_conflict": true,
+          "no_previous_execution": true,
+          "operation_open": true,
+          "no_closed_history_field_source": true,
+          "required_evidence_from_allowed_context": false,
+          "configured_confidence_thresholds": true,
+          "additional_fields_allowlisted": true,
+          "additional_fields_evidence_supported": true,
+          "proposal_matches_stored_action": true,
+          "execution_mode_configured": true,
+          "input_context_complete": true
+        },
+        "email_context": {
+          "internal_email_id": "2729eedc-a482-49c3-9045-f7a83e031afb",
+          "sender": "Animateur Zone Iota <animateur.iota@example.invalid>",
+          "subject": "Re: [{{marker_request.request_reference}}] Information manquante",
+          "message_id": "<i-header-marker-conflict-002@fixtures.snoc.invalid>",
+          "in_reply_to": "<{{header_request.clarification_message_id}}>",
+          "references": [
+            "<{{header_request.inbound_message_id}}>",
+            "<{{header_request.clarification_message_id}}>"
+          ],
+          "latest_user_message": "Le numéro est 0770000051 pour la référence {{marker_request.request_reference}}.\nLes en-têtes de ce message proviennent pourtant d'une autre demande.\n\nMerci.",
+          "latest_user_message_truncated": false,
+          "raw_eml_path": "var/raw_eml/2729eedc-a482-49c3-9045-f7a83e031afb.eml"
+        },
+        "stored_request_state": {
+          "request_id": "640acdad-9f8f-4e74-943d-863233803b4f",
+          "public_reference": "SNOC-REQ-82D3504050E5",
+          "request_status": "ANALYZING",
+          "operations": [
+            {
+              "operation_id": "40864941-30c2-4151-a855-e4f0933acf71",
+              "action": "otp_number_change",
+              "status": "ESCALATED",
+              "pdv_code": null,
+              "phone": "0770000051",
+              "additional_payload": {},
+              "missing_fields": [
+                "pdv_code"
+              ],
+              "evidence": [
+                {
+                  "field_name": "phone",
+                  "value": "0770000051",
+                  "source": "latest_user_message",
+                  "evidence_text": "Le numéro est 0770000051 pour la référence {{marker_request.request_reference}}.",
+                  "support": "unclear"
+                }
+              ],
+              "field_provenance": {
+                "phone": "latest_user_message"
+              },
+              "contradiction_data": {},
+              "current_revision": 1,
+              "final_decision": "REVIEW_CORRECTION"
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "outbox": [
+    {
+      "id": "f4e9800a-adbc-4270-8ea5-b35cb3ae8f56",
+      "recipient": "animateur.iota@example.invalid",
+      "subject": "[SNOC-REQ-82D3504050E5] Résultat de traitement",
+      "status": "sent",
+      "retry_count": 0,
+      "last_error": null
+    }
+  ]
+}

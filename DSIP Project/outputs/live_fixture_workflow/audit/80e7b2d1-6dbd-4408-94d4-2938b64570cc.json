@@ -1,0 +1,830 @@
+{
+  "email": {
+    "id": "80e7b2d1-6dbd-4408-94d4-2938b64570cc",
+    "message_id": "<e-unresolved-vpn-002@fixtures.snoc.invalid>",
+    "sender": "Animateur Zone Epsilon <animateur.epsilon@example.invalid>",
+    "recipients": [
+      "Agent SNOC <snoc-agent@example.invalid>"
+    ],
+    "subject": "Re: Suivi demandes S-NOC Epsilon",
+    "processing_status": "processed",
+    "imap": {
+      "mailbox": "REPLAY",
+      "uidvalidity": 1,
+      "uid": 14,
+      "flags": [],
+      "internal_date": null
+    },
+    "parsing": {
+      "automated_classification": null,
+      "warnings": [],
+      "quarantine_category": null,
+      "quarantine_message": null,
+      "context_limit_metadata": {
+        "mime_limit_warnings": [],
+        "context_limit_warnings": [],
+        "automatic_execution_allowed": true
+      }
+    },
+    "authorization": {
+      "allowed": true,
+      "reason": "sender_whitelisted"
+    },
+    "correlation": {
+      "strength": "strong",
+      "matched_by": "in_reply_to",
+      "request_id": "6ba0bd29-7b82-4147-9a12-67d254ed899f",
+      "clarification_id": null,
+      "conflicts": []
+    },
+    "latest_user_message": "J'ajoute une nouvelle demande dans ce fil : créer un accès VPN pour le\nPDV 52000002. Le téléphone de contact sera également envoyé plus tard."
+  },
+  "model_runs": [
+    {
+      "id": "ab8b7bb7-d452-4239-9e28-6400a1a00c05",
+      "stage": "analysis",
+      "backend": "huggingface",
+      "base_model_id": "Qwen/Qwen2.5-7B-Instruct",
+      "resolved_model_id": "Qwen/Qwen2.5-7B-Instruct:cheapest",
+      "reported_provider": null,
+      "provider_request_id": "osrhM6M-6Ng1vN-a1e0f88fff61d6cf",
+      "prompt_version": "analyzer_v1",
+      "input_context": {
+        "mode": "correlated_request_reply",
+        "subject": "Re: Suivi demandes S-NOC Epsilon",
+        "request_reference": "SNOC-REQ-0C7A056F6DB5",
+        "request_status": "ESCALATED",
+        "latest_user_message": "J'ajoute une nouvelle demande dans ce fil : créer un accès VPN pour le\nPDV 52000002. Le téléphone de contact sera également envoyé plus tard.",
+        "closed_history_summary": null,
+        "stored_operations": [
+          {
+            "operation_id": "c8195ab1-34a5-4af9-9cb0-3c736113c4bc",
+            "action": "otp_number_change",
+            "known_fields": {
+              "pdv_code": "52000001",
+              "phone": null
+            },
+            "missing_fields": [
+              "new_phone"
+            ]
+          }
+        ],
+        "numeric_candidates": [
+          {
+            "value": "52000002",
+            "raw_value": "52000002",
+            "kind_hint": "pdv_or_unknown",
+            "section": "latest_user_message",
+            "start": 75,
+            "end": 83,
+            "context": "uvelle demande dans ce fil : créer un accès VPN pour le\nPDV 52000002. Le téléphone de contact sera également envoyé plus tard."
+          }
+        ],
+        "automatic_execution_allowed": true,
+        "preprocessing_notes": []
+      },
+      "raw_output": "{\"message_kind\": \"new_request\", \"operations\": [{\"local_operation_id\": \"new_vpn_access\", \"action\": \"vpn_access\", \"pdv_code\": \"52000002\", \"phone\": null, \"missing_fields\": [\"phone\"]}, {\"local_operation_id\": \"c8195ab1-34a5-4af9-9cb0-3c736113c4bc\", \"action\": \"otp_number_change\", \"pdv_code\": \"52000001\", \"phone\": null, \"missing_fields\": [\"new_phone\"]}], \"new_request_present\": true, \"contradiction_with_stored_state\": false, \"unresolved_ambiguities\": [\"phone for new vpn access is missing\", \"new phone for otp number change is missing\"]}",
+      "parsed_output": {
+        "message_kind": "new_request",
+        "referenced_existing_operation_ids": [],
+        "operations": [
+          {
+            "local_operation_id": "new_vpn_access",
+            "action": "vpn_access",
+            "pdv_code": "52000002",
+            "phone": null,
+            "additional_fields": {},
+            "missing_fields": [
+              "phone"
+            ],
+            "evidence": [],
+            "ambiguity_reasons": [],
+            "raw_action_confidence": null,
+            "raw_field_confidence": {}
+          },
+          {
+            "local_operation_id": "c8195ab1-34a5-4af9-9cb0-3c736113c4bc",
+            "action": "otp_number_change",
+            "pdv_code": "52000001",
+            "phone": null,
+            "additional_fields": {},
+            "missing_fields": [
+              "new_phone"
+            ],
+            "evidence": [],
+            "ambiguity_reasons": [],
+            "raw_action_confidence": null,
+            "raw_field_confidence": {}
+          }
+        ],
+        "new_request_present": true,
+        "contradiction_with_stored_state": false,
+        "contradiction_details": [],
+        "unresolved_ambiguities": [
+          "phone for new vpn access is missing",
+          "new phone for otp number change is missing"
+        ]
+      },
+      "structured_output_valid": true,
+      "structured_output_mode": "json_schema",
+      "schema_name": "EmailAnalysis",
+      "fallback_reason": null,
+      "parse_attempt_count": 1,
+      "validation_errors": [],
+      "reasoning_output": null,
+      "latency_seconds": 2.965539352000633,
+      "request_attempt_count": 1,
+      "usage": {
+        "prompt_tokens": 679,
+        "completion_tokens": 186,
+        "total_tokens": 865
+      },
+      "cost": {
+        "input_usd": null,
+        "output_usd": null,
+        "total_usd": null,
+        "basis": "unknown",
+        "pricing_metadata": {}
+      },
+      "error": null,
+      "error_category": null,
+      "cached_from_model_run_id": null,
+      "created_at": "2026-07-20T09:34:38.367999"
+    },
+    {
+      "id": "1a0d9dc6-30e7-4a74-a5af-9bb80bb9856f",
+      "stage": "verification",
+      "backend": "huggingface",
+      "base_model_id": "Qwen/Qwen3-8B",
+      "resolved_model_id": "Qwen/Qwen3-8B:cheapest",
+      "reported_provider": null,
+      "provider_request_id": "5b52c29d-bad0-4555-81d4-145bccf23d66",
+      "prompt_version": "verifier_v1",
+      "input_context": {
+        "context_mode": "correlated_request_reply",
+        "latest_user_message": "J'ajoute une nouvelle demande dans ce fil : créer un accès VPN pour le\nPDV 52000002. Le téléphone de contact sera également envoyé plus tard.",
+        "stored_operation_state": {
+          "operation_id": "1689c12b-0bd7-4218-a789-6fde908336f5",
+          "action": "vpn_access",
+          "pdv_code": "52000002",
+          "phone": null,
+          "missing_fields": [
+            "phone"
+          ],
+          "status": "NEW",
+          "current_revision": 1
+        },
+        "proposed_operation": {
+          "local_operation_id": "new_vpn_access",
+          "action": "vpn_access",
+          "pdv_code": "52000002",
+          "phone": null,
+          "additional_fields": {},
+          "missing_fields": [
+            "phone"
+          ],
+          "evidence": [],
+          "ambiguity_reasons": [],
+          "raw_action_confidence": null,
+          "raw_field_confidence": {}
+        },
+        "candidate_evidence": [
+          {
+            "value": "52000002",
+            "raw_value": "52000002",
+            "kind_hint": "pdv_or_unknown",
+            "section": "latest_user_message",
+            "start": 75,
+            "end": 83,
+            "context": "uvelle demande dans ce fil : créer un accès VPN pour le\nPDV 52000002. Le téléphone de contact sera également envoyé plus tard."
+          }
+        ],
+        "correlation_strength": "new"
+      },
+      "raw_output": "{\n\n\"action_supported\": \"yes\",\n\"additional_fields_supported\": {},\n\"contradiction_present\": false,\n\"contradiction_type\": \"none\",\n\"correction_detected\": false,\n\"new_request_detected\": false,\n\"pdv_supported\": \"yes\",\n\"phone_supported\": \"no\",\n\"raw_confidence\": null,\n\"stored_state_compatible\": \"yes\" \n}",
+      "parsed_output": {
+        "action_supported": "yes",
+        "pdv_supported": "yes",
+        "phone_supported": "no",
+        "stored_state_compatible": "yes",
+        "contradiction_present": false,
+        "contradiction_type": "none",
+        "missing_fields": [],
+        "additional_fields_supported": {},
+        "correction_detected": false,
+        "new_request_detected": false,
+        "evidence_summary": [],
+        "raw_confidence": null
+      },
+      "structured_output_valid": true,
+      "structured_output_mode": "json_schema",
+      "schema_name": "SemanticVerification",
+      "fallback_reason": null,
+      "parse_attempt_count": 1,
+      "validation_errors": [],
+      "reasoning_output": "Okay, let's tackle this verification. The user added a new request to create a VPN access for PDV 52000002. The stored operation state shows that the action is \"vpn_access\" with the pdv_code set to 52000002, but the phone field is missing. The proposed operation has the same pdv_code but the phone is still null, and the missing_fields list includes \"phone\". \n\nFirst, I need to check if the proposed operation's fields are supported by the latest message or stored state. The latest user message mentions the PDV code and notes that the phone will be sent later. The stored state already has the pdv_code correctly set. The proposed operation's pdv_code matches, so that's good. However, the phone is still null, and the missing_fields list includes \"phone\". \n\nThe candidate evidence only has the pdv_code from the latest message. There's no mention of a phone number in the latest message, so the phone field remains missing. The proposed operation's additional_fields is empty, which is fine. The missing_fields are correctly listed as [\"phone\"], so that's accurate. \n\nI should check if there are any contradictions or new requests. The user didn't provide a phone number, so it's correct to mark it as missing. The action is supported by the stored state. The additional_fields are empty, so no issues there. The correlation strength is \"new\", which matches the context. \n\nSo the verification should confirm that the proposed operation is valid based on the given context, with the phone field still missing as expected.",
+      "latency_seconds": 3.129167687999143,
+      "request_attempt_count": 1,
+      "usage": {
+        "prompt_tokens": 535,
+        "completion_tokens": 416,
+        "total_tokens": 951
+      },
+      "cost": {
+        "input_usd": null,
+        "output_usd": null,
+        "total_usd": null,
+        "basis": "unknown",
+        "pricing_metadata": {}
+      },
+      "error": null,
+      "error_category": null,
+      "cached_from_model_run_id": null,
+      "created_at": "2026-07-20T09:34:41.512596"
+    },
+    {
+      "id": "8e09f031-cad5-412e-aca5-c1138ec7d26c",
+      "stage": "verification",
+      "backend": "huggingface",
+      "base_model_id": "Qwen/Qwen3-8B",
+      "resolved_model_id": "Qwen/Qwen3-8B:cheapest",
+      "reported_provider": null,
+      "provider_request_id": "f035a059-3f75-4ed8-942b-39b50577daec",
+      "prompt_version": "verifier_v1",
+      "input_context": {
+        "context_mode": "correlated_request_reply",
+        "latest_user_message": "J'ajoute une nouvelle demande dans ce fil : créer un accès VPN pour le\nPDV 52000002. Le téléphone de contact sera également envoyé plus tard.",
+        "stored_operation_state": {
+          "operation_id": "ec33dd28-c130-4bd4-a092-fd5ee917b9cd",
+          "action": "otp_number_change",
+          "pdv_code": "52000001",
+          "phone": null,
+          "missing_fields": [
+            "new_phone"
+          ],
+          "status": "NEW",
+          "current_revision": 1
+        },
+        "proposed_operation": {
+          "local_operation_id": "c8195ab1-34a5-4af9-9cb0-3c736113c4bc",
+          "action": "otp_number_change",
+          "pdv_code": "52000001",
+          "phone": null,
+          "additional_fields": {},
+          "missing_fields": [
+            "new_phone"
+          ],
+          "evidence": [],
+          "ambiguity_reasons": [],
+          "raw_action_confidence": null,
+          "raw_field_confidence": {}
+        },
+        "candidate_evidence": [
+          {
+            "value": "52000002",
+            "raw_value": "52000002",
+            "kind_hint": "pdv_or_unknown",
+            "section": "latest_user_message",
+            "start": 75,
+            "end": 83,
+            "context": "uvelle demande dans ce fil : créer un accès VPN pour le\nPDV 52000002. Le téléphone de contact sera également envoyé plus tard."
+          }
+        ],
+        "correlation_strength": "new"
+      },
+      "raw_output": "{\n\n\"action_supported\": \"no\",\n\"additional_fields_supported\": {\n  \"pdv_code\": \"no\"\n},\n\"contradiction_present\": true,\n\"contradiction_type\": \"action_mismatch\",\n\"correction_detected\": true,\n\"new_request_detected\": true,\n\"pdv_supported\": \"no\",\n\"phone_supported\": \"not_required\",\n\"raw_confidence\": 0.0,\n\"stored_state_compatible\": \"no\" \n}",
+      "parsed_output": {
+        "action_supported": "no",
+        "pdv_supported": "no",
+        "phone_supported": "not_required",
+        "stored_state_compatible": "no",
+        "contradiction_present": true,
+        "contradiction_type": "action_mismatch",
+        "missing_fields": [],
+        "additional_fields_supported": {
+          "pdv_code": "no"
+        },
+        "correction_detected": true,
+        "new_request_detected": true,
+        "evidence_summary": [],
+        "raw_confidence": 0.0
+      },
+      "structured_output_valid": true,
+      "structured_output_mode": "json_schema",
+      "schema_name": "SemanticVerification",
+      "fallback_reason": null,
+      "parse_attempt_count": 1,
+      "validation_errors": [],
+      "reasoning_output": "Okay, let's tackle this verification. The user added a new request to create a VPN access for PDV 52000002. The stored operation state is for PDV 52000001 with an OTP number change, missing the new_phone field. The proposed operation is the same as the stored one but with PDV 52000001. The candidate evidence mentions PDV 52000002.\n\nFirst, check if the action matches. The stored action is otp_number_change, but the new request is about creating a VPN access. These are different actions. The proposed operation's action is otp_number_change, which doesn't align with the new request. So the action doesn't match.\n\nNext, the PDV code. The stored PDV is 52000001, but the new request is for 52000002. The proposed operation uses the stored PDV, which is incorrect. The candidate evidence has the correct PDV code, but the proposed operation doesn't use it. So the PDV code is wrong.\n\nThe phone field is null in both, but the new request mentions a phone will be sent later. However, the missing_fields still list new_phone, which is required. The proposed operation doesn't include the new PDV code, so the additional_fields are missing the correct PDV. Also, the action doesn't match the new request. \n\nSo, the main issues are the action mismatch, incorrect PDV code, and missing the new PDV in additional_fields. The evidence is present but not used in the proposed operation. Therefore, the verification should flag these contradictions.",
+      "latency_seconds": 3.032692455999495,
+      "request_attempt_count": 1,
+      "usage": {
+        "prompt_tokens": 562,
+        "completion_tokens": 454,
+        "total_tokens": 1016
+      },
+      "cost": {
+        "input_usd": null,
+        "output_usd": null,
+        "total_usd": null,
+        "basis": "unknown",
+        "pricing_metadata": {}
+      },
+      "error": null,
+      "error_category": null,
+      "cached_from_model_run_id": null,
+      "created_at": "2026-07-20T09:34:44.577428"
+    }
+  ],
+  "requests": [
+    {
+      "id": "51711724-5411-477e-9d00-28e82e1450ea",
+      "reference": "SNOC-REQ-10523BBBA32F",
+      "status": "ESCALATED",
+      "request_kind": "new",
+      "escalation_reason": "Automatic execution was refused by the hybrid safety policy."
+    }
+  ],
+  "operations": [
+    {
+      "id": "1689c12b-0bd7-4218-a789-6fde908336f5",
+      "request_id": "51711724-5411-477e-9d00-28e82e1450ea",
+      "sequence_number": 1,
+      "action": "vpn_access",
+      "status": "ESCALATED",
+      "pdv_code": "52000002",
+      "phone": null,
+      "missing_fields": [
+        "phone"
+      ],
+      "current_revision": 1,
+      "final_decision": "ESCALATE",
+      "execution_eligible": false,
+      "model_agreement": false
+    },
+    {
+      "id": "ec33dd28-c130-4bd4-a092-fd5ee917b9cd",
+      "request_id": "51711724-5411-477e-9d00-28e82e1450ea",
+      "sequence_number": 2,
+      "action": "otp_number_change",
+      "status": "ESCALATED",
+      "pdv_code": "52000001",
+      "phone": null,
+      "missing_fields": [
+        "new_phone"
+      ],
+      "current_revision": 1,
+      "final_decision": "REVIEW_CORRECTION",
+      "execution_eligible": false,
+      "model_agreement": false
+    }
+  ],
+  "validation_decisions": [
+    {
+      "id": "dcaa0172-6d5b-4c7d-857e-b59548f116bd",
+      "operation_id": "1689c12b-0bd7-4218-a789-6fde908336f5",
+      "decision": "ESCALATE",
+      "reasons": [
+        "missing_required_field:phone",
+        "ambiguous_operation_or_attribution",
+        "analyzer_verifier_disagreement",
+        "required_field_evidence_incomplete",
+        "required_field_evidence_not_in_allowed_context"
+      ],
+      "hard_invariant_results": {
+        "authorized_sender": true,
+        "structured_output_valid": true,
+        "known_action": true,
+        "field_formats_and_completeness": false,
+        "no_correlation_conflict": true,
+        "no_previous_execution": true,
+        "operation_open": true,
+        "no_closed_history_field_source": true,
+        "required_evidence_from_allowed_context": false,
+        "configured_confidence_thresholds": true,
+        "additional_fields_allowlisted": true,
+        "additional_fields_evidence_supported": true,
+        "proposal_matches_stored_action": true,
+        "execution_mode_configured": true,
+        "input_context_complete": true
+      },
+      "analyzer_result": {
+        "local_operation_id": "new_vpn_access",
+        "action": "vpn_access",
+        "pdv_code": "52000002",
+        "phone": null,
+        "additional_fields": {},
+        "missing_fields": [
+          "phone"
+        ],
+        "evidence": [],
+        "ambiguity_reasons": [],
+        "raw_action_confidence": null,
+        "raw_field_confidence": {}
+      },
+      "verifier_result": {
+        "action_supported": "yes",
+        "pdv_supported": "yes",
+        "phone_supported": "no",
+        "stored_state_compatible": "yes",
+        "contradiction_present": false,
+        "contradiction_type": "none",
+        "missing_fields": [],
+        "additional_fields_supported": {},
+        "correction_detected": false,
+        "new_request_detected": false,
+        "evidence_summary": [],
+        "raw_confidence": null
+      },
+      "policy_version": "hybrid-v1",
+      "created_at": "2026-07-20T09:34:41.514543"
+    },
+    {
+      "id": "a82c1c79-8c8c-49ff-a956-1c7810fa874e",
+      "operation_id": "ec33dd28-c130-4bd4-a092-fd5ee917b9cd",
+      "decision": "REVIEW_CORRECTION",
+      "reasons": [
+        "missing_required_field:new_phone",
+        "semantic_contradiction",
+        "ambiguous_operation_or_attribution",
+        "analyzer_verifier_disagreement",
+        "required_field_evidence_incomplete",
+        "required_field_evidence_not_in_allowed_context"
+      ],
+      "hard_invariant_results": {
+        "authorized_sender": true,
+        "structured_output_valid": true,
+        "known_action": true,
+        "field_formats_and_completeness": false,
+        "no_correlation_conflict": true,
+        "no_previous_execution": true,
+        "operation_open": true,
+        "no_closed_history_field_source": true,
+        "required_evidence_from_allowed_context": false,
+        "configured_confidence_thresholds": true,
+        "additional_fields_allowlisted": true,
+        "additional_fields_evidence_supported": true,
+        "proposal_matches_stored_action": true,
+        "execution_mode_configured": true,
+        "input_context_complete": true
+      },
+      "analyzer_result": {
+        "local_operation_id": "c8195ab1-34a5-4af9-9cb0-3c736113c4bc",
+        "action": "otp_number_change",
+        "pdv_code": "52000001",
+        "phone": null,
+        "additional_fields": {},
+        "missing_fields": [
+          "new_phone"
+        ],
+        "evidence": [],
+        "ambiguity_reasons": [],
+        "raw_action_confidence": null,
+        "raw_field_confidence": {}
+      },
+      "verifier_result": {
+        "action_supported": "no",
+        "pdv_supported": "no",
+        "phone_supported": "not_required",
+        "stored_state_compatible": "no",
+        "contradiction_present": true,
+        "contradiction_type": "action_mismatch",
+        "missing_fields": [],
+        "additional_fields_supported": {
+          "pdv_code": "no"
+        },
+        "correction_detected": true,
+        "new_request_detected": true,
+        "evidence_summary": [],
+        "raw_confidence": 0.0
+      },
+      "policy_version": "hybrid-v1",
+      "created_at": "2026-07-20T09:34:44.578999"
+    }
+  ],
+  "clarifications": [],
+  "executions": [],
+  "escalations": [
+    {
+      "id": "5fbc69d9-d8d1-4fb7-8b46-86c58db3297f",
+      "reason_code": "escalate",
+      "status": "open",
+      "summary": "Automatic execution was refused by the hybrid safety policy.",
+      "evidence": {
+        "operation_id": "1689c12b-0bd7-4218-a789-6fde908336f5",
+        "analysis": {
+          "message_kind": "new_request",
+          "referenced_existing_operation_ids": [],
+          "operations": [
+            {
+              "local_operation_id": "new_vpn_access",
+              "action": "vpn_access",
+              "pdv_code": "52000002",
+              "phone": null,
+              "additional_fields": {},
+              "missing_fields": [
+                "phone"
+              ],
+              "evidence": [],
+              "ambiguity_reasons": [],
+              "raw_action_confidence": null,
+              "raw_field_confidence": {}
+            },
+            {
+              "local_operation_id": "c8195ab1-34a5-4af9-9cb0-3c736113c4bc",
+              "action": "otp_number_change",
+              "pdv_code": "52000001",
+              "phone": null,
+              "additional_fields": {},
+              "missing_fields": [
+                "new_phone"
+              ],
+              "evidence": [],
+              "ambiguity_reasons": [],
+              "raw_action_confidence": null,
+              "raw_field_confidence": {}
+            }
+          ],
+          "new_request_present": true,
+          "contradiction_with_stored_state": false,
+          "contradiction_details": [],
+          "unresolved_ambiguities": [
+            "phone for new vpn access is missing",
+            "new phone for otp number change is missing"
+          ]
+        },
+        "proposal": {
+          "local_operation_id": "new_vpn_access",
+          "action": "vpn_access",
+          "pdv_code": "52000002",
+          "phone": null,
+          "additional_fields": {},
+          "missing_fields": [
+            "phone"
+          ],
+          "evidence": [],
+          "ambiguity_reasons": [],
+          "raw_action_confidence": null,
+          "raw_field_confidence": {}
+        },
+        "verification": {
+          "action_supported": "yes",
+          "pdv_supported": "yes",
+          "phone_supported": "no",
+          "stored_state_compatible": "yes",
+          "contradiction_present": false,
+          "contradiction_type": "none",
+          "missing_fields": [],
+          "additional_fields_supported": {},
+          "correction_detected": false,
+          "new_request_detected": false,
+          "evidence_summary": [],
+          "raw_confidence": null
+        },
+        "reasons": [
+          "missing_required_field:phone",
+          "ambiguous_operation_or_attribution",
+          "analyzer_verifier_disagreement",
+          "required_field_evidence_incomplete",
+          "required_field_evidence_not_in_allowed_context"
+        ],
+        "hard_invariants": {
+          "authorized_sender": true,
+          "structured_output_valid": true,
+          "known_action": true,
+          "field_formats_and_completeness": false,
+          "no_correlation_conflict": true,
+          "no_previous_execution": true,
+          "operation_open": true,
+          "no_closed_history_field_source": true,
+          "required_evidence_from_allowed_context": false,
+          "configured_confidence_thresholds": true,
+          "additional_fields_allowlisted": true,
+          "additional_fields_evidence_supported": true,
+          "proposal_matches_stored_action": true,
+          "execution_mode_configured": true,
+          "input_context_complete": true
+        },
+        "email_context": {
+          "internal_email_id": "80e7b2d1-6dbd-4408-94d4-2938b64570cc",
+          "sender": "Animateur Zone Epsilon <animateur.epsilon@example.invalid>",
+          "subject": "Re: Suivi demandes S-NOC Epsilon",
+          "message_id": "<e-unresolved-vpn-002@fixtures.snoc.invalid>",
+          "in_reply_to": "<e-unresolved-otp-001@fixtures.snoc.invalid>",
+          "references": [
+            "<e-unresolved-otp-001@fixtures.snoc.invalid>"
+          ],
+          "latest_user_message": "J'ajoute une nouvelle demande dans ce fil : créer un accès VPN pour le\nPDV 52000002. Le téléphone de contact sera également envoyé plus tard.",
+          "latest_user_message_truncated": false,
+          "raw_eml_path": "var/raw_eml/80e7b2d1-6dbd-4408-94d4-2938b64570cc.eml"
+        },
+        "stored_request_state": {
+          "request_id": "51711724-5411-477e-9d00-28e82e1450ea",
+          "public_reference": "SNOC-REQ-10523BBBA32F",
+          "request_status": "ANALYZING",
+          "operations": [
+            {
+              "operation_id": "1689c12b-0bd7-4218-a789-6fde908336f5",
+              "action": "vpn_access",
+              "status": "ESCALATED",
+              "pdv_code": "52000002",
+              "phone": null,
+              "additional_payload": {},
+              "missing_fields": [
+                "phone"
+              ],
+              "evidence": [],
+              "field_provenance": {},
+              "contradiction_data": {},
+              "current_revision": 1,
+              "final_decision": "ESCALATE"
+            },
+            {
+              "operation_id": "ec33dd28-c130-4bd4-a092-fd5ee917b9cd",
+              "action": "otp_number_change",
+              "status": "NEW",
+              "pdv_code": "52000001",
+              "phone": null,
+              "additional_payload": {},
+              "missing_fields": [
+                "new_phone"
+              ],
+              "evidence": [],
+              "field_provenance": {},
+              "contradiction_data": {},
+              "current_revision": 1,
+              "final_decision": null
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "845638d9-b9a0-4ce6-9b78-874001085ff2",
+      "reason_code": "review_correction",
+      "status": "open",
+      "summary": "Automatic execution was refused by the hybrid safety policy.",
+      "evidence": {
+        "operation_id": "ec33dd28-c130-4bd4-a092-fd5ee917b9cd",
+        "analysis": {
+          "message_kind": "new_request",
+          "referenced_existing_operation_ids": [],
+          "operations": [
+            {
+              "local_operation_id": "new_vpn_access",
+              "action": "vpn_access",
+              "pdv_code": "52000002",
+              "phone": null,
+              "additional_fields": {},
+              "missing_fields": [
+                "phone"
+              ],
+              "evidence": [],
+              "ambiguity_reasons": [],
+              "raw_action_confidence": null,
+              "raw_field_confidence": {}
+            },
+            {
+              "local_operation_id": "c8195ab1-34a5-4af9-9cb0-3c736113c4bc",
+              "action": "otp_number_change",
+              "pdv_code": "52000001",
+              "phone": null,
+              "additional_fields": {},
+              "missing_fields": [
+                "new_phone"
+              ],
+              "evidence": [],
+              "ambiguity_reasons": [],
+              "raw_action_confidence": null,
+              "raw_field_confidence": {}
+            }
+          ],
+          "new_request_present": true,
+          "contradiction_with_stored_state": false,
+          "contradiction_details": [],
+          "unresolved_ambiguities": [
+            "phone for new vpn access is missing",
+            "new phone for otp number change is missing"
+          ]
+        },
+        "proposal": {
+          "local_operation_id": "c8195ab1-34a5-4af9-9cb0-3c736113c4bc",
+          "action": "otp_number_change",
+          "pdv_code": "52000001",
+          "phone": null,
+          "additional_fields": {},
+          "missing_fields": [
+            "new_phone"
+          ],
+          "evidence": [],
+          "ambiguity_reasons": [],
+          "raw_action_confidence": null,
+          "raw_field_confidence": {}
+        },
+        "verification": {
+          "action_supported": "no",
+          "pdv_supported": "no",
+          "phone_supported": "not_required",
+          "stored_state_compatible": "no",
+          "contradiction_present": true,
+          "contradiction_type": "action_mismatch",
+          "missing_fields": [],
+          "additional_fields_supported": {
+            "pdv_code": "no"
+          },
+          "correction_detected": true,
+          "new_request_detected": true,
+          "evidence_summary": [],
+          "raw_confidence": 0.0
+        },
+        "reasons": [
+          "missing_required_field:new_phone",
+          "semantic_contradiction",
+          "ambiguous_operation_or_attribution",
+          "analyzer_verifier_disagreement",
+          "required_field_evidence_incomplete",
+          "required_field_evidence_not_in_allowed_context"
+        ],
+        "hard_invariants": {
+          "authorized_sender": true,
+          "structured_output_valid": true,
+          "known_action": true,
+          "field_formats_and_completeness": false,
+          "no_correlation_conflict": true,
+          "no_previous_execution": true,
+          "operation_open": true,
+          "no_closed_history_field_source": true,
+          "required_evidence_from_allowed_context": false,
+          "configured_confidence_thresholds": true,
+          "additional_fields_allowlisted": true,
+          "additional_fields_evidence_supported": true,
+          "proposal_matches_stored_action": true,
+          "execution_mode_configured": true,
+          "input_context_complete": true
+        },
+        "email_context": {
+          "internal_email_id": "80e7b2d1-6dbd-4408-94d4-2938b64570cc",
+          "sender": "Animateur Zone Epsilon <animateur.epsilon@example.invalid>",
+          "subject": "Re: Suivi demandes S-NOC Epsilon",
+          "message_id": "<e-unresolved-vpn-002@fixtures.snoc.invalid>",
+          "in_reply_to": "<e-unresolved-otp-001@fixtures.snoc.invalid>",
+          "references": [
+            "<e-unresolved-otp-001@fixtures.snoc.invalid>"
+          ],
+          "latest_user_message": "J'ajoute une nouvelle demande dans ce fil : créer un accès VPN pour le\nPDV 52000002. Le téléphone de contact sera également envoyé plus tard.",
+          "latest_user_message_truncated": false,
+          "raw_eml_path": "var/raw_eml/80e7b2d1-6dbd-4408-94d4-2938b64570cc.eml"
+        },
+        "stored_request_state": {
+          "request_id": "51711724-5411-477e-9d00-28e82e1450ea",
+          "public_reference": "SNOC-REQ-10523BBBA32F",
+          "request_status": "ANALYZING",
+          "operations": [
+            {
+              "operation_id": "1689c12b-0bd7-4218-a789-6fde908336f5",
+              "action": "vpn_access",
+              "status": "ESCALATED",
+              "pdv_code": "52000002",
+              "phone": null,
+              "additional_payload": {},
+              "missing_fields": [
+                "phone"
+              ],
+              "evidence": [],
+              "field_provenance": {},
+              "contradiction_data": {},
+              "current_revision": 1,
+              "final_decision": "ESCALATE"
+            },
+            {
+              "operation_id": "ec33dd28-c130-4bd4-a092-fd5ee917b9cd",
+              "action": "otp_number_change",
+              "status": "ESCALATED",
+              "pdv_code": "52000001",
+              "phone": null,
+              "additional_payload": {},
+              "missing_fields": [
+                "new_phone"
+              ],
+              "evidence": [],
+              "field_provenance": {},
+              "contradiction_data": {},
+              "current_revision": 1,
+              "final_decision": "REVIEW_CORRECTION"
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "outbox": [
+    {
+      "id": "bcd9d904-c1b7-4bf9-84e6-11750cf1a0bb",
+      "recipient": "animateur.epsilon@example.invalid",
+      "subject": "[SNOC-REQ-10523BBBA32F] Résultat de traitement",
+      "status": "sent",
+      "retry_count": 0,
+      "last_error": null
+    }
+  ]
+}

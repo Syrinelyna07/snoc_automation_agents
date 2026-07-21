@@ -1,0 +1,88 @@
+{
+  "email": {
+    "id": "cfdd4ba9-fd04-41a3-bfb2-9b58c00aacbb",
+    "message_id": "<b-phone-only-003@fixtures.snoc.invalid>",
+    "sender": "Superviseur Zone Beta <superviseur.beta@example.invalid>",
+    "recipients": [
+      "Agent SNOC <snoc-agent@example.invalid>"
+    ],
+    "subject": "Re: [SNOC-REQ-B00000000001] Information manquante",
+    "processing_status": "processed",
+    "imap": {
+      "mailbox": "REPLAY",
+      "uidvalidity": 1,
+      "uid": 8,
+      "flags": [],
+      "internal_date": null
+    },
+    "parsing": {
+      "automated_classification": null,
+      "warnings": [],
+      "quarantine_category": null,
+      "quarantine_message": null,
+      "context_limit_metadata": {
+        "mime_limit_warnings": []
+      }
+    },
+    "authorization": {
+      "allowed": true,
+      "reason": "sender_whitelisted"
+    },
+    "correlation": {
+      "strength": "conflict",
+      "matched_by": "conflicting_signals",
+      "request_id": "18da5df3-bf27-476d-8c02-d24e27c0c480",
+      "clarification_id": null,
+      "conflicts": [
+        "headers_reference_multiple_requests"
+      ]
+    },
+    "latest_user_message": "Le nouveau numéro est 0770000001."
+  },
+  "model_runs": [],
+  "requests": [],
+  "operations": [],
+  "validation_decisions": [],
+  "clarifications": [],
+  "executions": [],
+  "escalations": [
+    {
+      "id": "097cec9a-543f-4213-be49-32c946b951b0",
+      "reason_code": "request_correlation_conflict",
+      "status": "open",
+      "summary": "Independent request-correlation signals conflict or match several open requests.",
+      "evidence": {
+        "strength": "conflict",
+        "matched_by": "conflicting_signals",
+        "request_id": "18da5df3-bf27-476d-8c02-d24e27c0c480",
+        "clarification_id": null,
+        "conflicts": [
+          "headers_reference_multiple_requests"
+        ],
+        "email_context": {
+          "internal_email_id": "cfdd4ba9-fd04-41a3-bfb2-9b58c00aacbb",
+          "sender": "Superviseur Zone Beta <superviseur.beta@example.invalid>",
+          "subject": "Re: [SNOC-REQ-B00000000001] Information manquante",
+          "message_id": "<b-phone-only-003@fixtures.snoc.invalid>",
+          "in_reply_to": "<clarification-b-002@snoc-agent.invalid>",
+          "references": [
+            "<b-incomplete-otp-001@fixtures.snoc.invalid>",
+            "<clarification-b-001@snoc-agent.invalid>",
+            "<b-still-missing-002@fixtures.snoc.invalid>",
+            "<clarification-b-002@snoc-agent.invalid>"
+          ],
+          "latest_user_message": "Le nouveau numéro est 0770000001.",
+          "latest_user_message_truncated": false,
+          "raw_eml_path": "var/raw_eml/cfdd4ba9-fd04-41a3-bfb2-9b58c00aacbb.eml"
+        },
+        "stored_request_state": {
+          "request_id": null,
+          "public_reference": null,
+          "request_status": null,
+          "operations": []
+        }
+      }
+    }
+  ],
+  "outbox": []
+}

@@ -1,0 +1,445 @@
+{
+  "email": {
+    "id": "ec1000a7-c707-4301-bd6b-e6577cfe006a",
+    "message_id": "<b-still-missing-002@fixtures.snoc.invalid>",
+    "sender": "Superviseur Zone Beta <superviseur.beta@example.invalid>",
+    "recipients": [
+      "Agent SNOC <snoc-agent@example.invalid>"
+    ],
+    "subject": "Re: [SNOC-REQ-B00000000001] Changement numero OTP PDV 22000001",
+    "processing_status": "processed",
+    "imap": {
+      "mailbox": "REPLAY",
+      "uidvalidity": 1,
+      "uid": 7,
+      "flags": [],
+      "internal_date": null
+    },
+    "parsing": {
+      "automated_classification": null,
+      "warnings": [],
+      "quarantine_category": null,
+      "quarantine_message": null,
+      "context_limit_metadata": {
+        "mime_limit_warnings": [],
+        "context_limit_warnings": [],
+        "automatic_execution_allowed": true
+      }
+    },
+    "authorization": {
+      "allowed": true,
+      "reason": "sender_whitelisted"
+    },
+    "correlation": {
+      "strength": "strong",
+      "matched_by": "references",
+      "request_id": "18da5df3-bf27-476d-8c02-d24e27c0c480",
+      "clarification_id": null,
+      "conflicts": []
+    },
+    "latest_user_message": "Bonjour,\n\nBien reçu, merci de prendre la demande en charge rapidement.\nJe vous transmettrai le numéro dès que je l'aurai."
+  },
+  "model_runs": [
+    {
+      "id": "64e91649-1ee9-46fb-9450-2f5f1f86e02b",
+      "stage": "analysis",
+      "backend": "huggingface",
+      "base_model_id": "Qwen/Qwen2.5-7B-Instruct",
+      "resolved_model_id": "Qwen/Qwen2.5-7B-Instruct:cheapest",
+      "reported_provider": null,
+      "provider_request_id": "osrh52m-6Ng1vN-a1e0f73fdb60d909",
+      "prompt_version": "analyzer_v1",
+      "input_context": {
+        "mode": "correlated_request_reply",
+        "subject": "Re: [SNOC-REQ-B00000000001] Changement numero OTP PDV 22000001",
+        "request_reference": "SNOC-REQ-68563A47C4CA",
+        "request_status": "ESCALATED",
+        "latest_user_message": "Bonjour,\nBien reçu, merci de prendre la demande en charge rapidement.\nJe vous transmettrai le numéro dès que je l'aurai.",
+        "closed_history_summary": null,
+        "stored_operations": [
+          {
+            "operation_id": "029e31fa-fb70-4623-a0ed-e197f330f728",
+            "action": "otp_number_change",
+            "known_fields": {
+              "pdv_code": "22000001",
+              "phone": null
+            },
+            "missing_fields": [
+              "new_phone"
+            ]
+          }
+        ],
+        "numeric_candidates": [],
+        "automatic_execution_allowed": true,
+        "preprocessing_notes": []
+      },
+      "raw_output": "{\"message_kind\": \"new_request\", \"operations\": [{\"local_operation_id\": \"029e31fa-fb70-4623-a0ed-e197f330f728\", \"action\": \"otp_number_change\", \"pdv_code\": \"22000001\", \"phone\": null, \"missing_fields\": [\"new_phone\"]}], \"new_request_present\": true, \"contradiction_with_stored_state\": false, \"unresolved_ambiguities\": [\"The latest user message does not provide the new phone number.\"]}",
+      "parsed_output": {
+        "message_kind": "new_request",
+        "referenced_existing_operation_ids": [],
+        "operations": [
+          {
+            "local_operation_id": "029e31fa-fb70-4623-a0ed-e197f330f728",
+            "action": "otp_number_change",
+            "pdv_code": "22000001",
+            "phone": null,
+            "additional_fields": {},
+            "missing_fields": [
+              "new_phone"
+            ],
+            "evidence": [],
+            "ambiguity_reasons": [],
+            "raw_action_confidence": null,
+            "raw_field_confidence": {}
+          }
+        ],
+        "new_request_present": true,
+        "contradiction_with_stored_state": false,
+        "contradiction_details": [],
+        "unresolved_ambiguities": [
+          "The latest user message does not provide the new phone number."
+        ]
+      },
+      "structured_output_valid": true,
+      "structured_output_mode": "json_schema",
+      "schema_name": "EmailAnalysis",
+      "fallback_reason": null,
+      "parse_attempt_count": 1,
+      "validation_errors": [],
+      "reasoning_output": null,
+      "latency_seconds": 1.640281847998267,
+      "request_attempt_count": 1,
+      "usage": {
+        "prompt_tokens": 593,
+        "completion_tokens": 130,
+        "total_tokens": 723
+      },
+      "cost": {
+        "input_usd": null,
+        "output_usd": null,
+        "total_usd": null,
+        "basis": "unknown",
+        "pricing_metadata": {}
+      },
+      "error": null,
+      "error_category": null,
+      "cached_from_model_run_id": null,
+      "created_at": "2026-07-20T09:33:42.286016"
+    },
+    {
+      "id": "05c1899f-154f-40df-9dc6-605e7edc8c01",
+      "stage": "verification",
+      "backend": "huggingface",
+      "base_model_id": "Qwen/Qwen3-8B",
+      "resolved_model_id": "Qwen/Qwen3-8B:cheapest",
+      "reported_provider": null,
+      "provider_request_id": "464024ec-1d81-4db6-a2fc-4e80c89251dc",
+      "prompt_version": "verifier_v1",
+      "input_context": {
+        "context_mode": "correlated_request_reply",
+        "latest_user_message": "Bonjour,\nBien reçu, merci de prendre la demande en charge rapidement.\nJe vous transmettrai le numéro dès que je l'aurai.",
+        "stored_operation_state": {
+          "operation_id": "c80379d1-b589-4da9-ad2d-eb19f67195c3",
+          "action": "otp_number_change",
+          "pdv_code": "22000001",
+          "phone": null,
+          "missing_fields": [
+            "new_phone"
+          ],
+          "status": "NEW",
+          "current_revision": 1
+        },
+        "proposed_operation": {
+          "local_operation_id": "029e31fa-fb70-4623-a0ed-e197f330f728",
+          "action": "otp_number_change",
+          "pdv_code": "22000001",
+          "phone": null,
+          "additional_fields": {},
+          "missing_fields": [
+            "new_phone"
+          ],
+          "evidence": [],
+          "ambiguity_reasons": [],
+          "raw_action_confidence": null,
+          "raw_field_confidence": {}
+        },
+        "candidate_evidence": [],
+        "correlation_strength": "new"
+      },
+      "raw_output": "{\n\n  \"action_supported\": \"no\",\n  \"additional_fields_supported\": {\n    \"new_phone\": \"no\"\n  },\n  \"contradiction_present\": false,\n  \"contradiction_type\": \"missing_required_field\",\n  \"correction_detected\": false,\n  \"new_request_detected\": false,\n  \"pdv_supported\": \"yes\",\n  \"phone_supported\": \"no\",\n  \"stored_state_compatible\": \"no\"\n}",
+      "parsed_output": {
+        "action_supported": "no",
+        "pdv_supported": "yes",
+        "phone_supported": "no",
+        "stored_state_compatible": "no",
+        "contradiction_present": false,
+        "contradiction_type": "missing_required_field",
+        "missing_fields": [],
+        "additional_fields_supported": {
+          "new_phone": "no"
+        },
+        "correction_detected": false,
+        "new_request_detected": false,
+        "evidence_summary": [],
+        "raw_confidence": null
+      },
+      "structured_output_valid": true,
+      "structured_output_mode": "json_schema",
+      "schema_name": "SemanticVerification",
+      "fallback_reason": null,
+      "parse_attempt_count": 1,
+      "validation_errors": [],
+      "reasoning_output": "Okay, let's tackle this verification. The user provided a context where a telecom support operation is being checked. The main goal is to verify if the proposed operation is supported based on the latest message and stored state.\n\nFirst, I need to look at the stored_operation_state. The operation is \"otp_number_change\" with pdv_code \"22000001\". The missing_fields include \"new_phone\", and the phone field is null. The latest user message is in French, thanking and asking for quick processing, and mentioning they'll provide the number once they have it. \n\nThe proposed_operation has the same action and pdv_code, but phone is still null and missing_fields still list \"new_phone\". The additional_fields are empty, and there's no evidence provided. \n\nThe key point here is whether the latest message provides the new_phone number. The user says they'll transmit the number once they have it, but there's no actual number provided in the latest message. So the new_phone field isn't present in the latest message or stored state. \n\nSince the missing_fields still include \"new_phone\", and the proposed_operation doesn't have it, the action can't be executed. The additional_fields are empty, so no extra info is provided. The candidate_evidence is also empty, meaning no supporting data from previous messages. \n\nTherefore, the verification should indicate that the new_phone is missing, which is a required field for the otp_number_change action. The proposed operation lacks this necessary information, so it's not supported yet.",
+      "latency_seconds": 2.884992808998504,
+      "request_attempt_count": 1,
+      "usage": {
+        "prompt_tokens": 455,
+        "completion_tokens": 420,
+        "total_tokens": 875
+      },
+      "cost": {
+        "input_usd": null,
+        "output_usd": null,
+        "total_usd": null,
+        "basis": "unknown",
+        "pricing_metadata": {}
+      },
+      "error": null,
+      "error_category": null,
+      "cached_from_model_run_id": null,
+      "created_at": "2026-07-20T09:33:45.184109"
+    }
+  ],
+  "requests": [
+    {
+      "id": "e3e3bca6-416d-4e6c-b4f1-46500e545298",
+      "reference": "SNOC-REQ-41F01DDCD1D2",
+      "status": "ESCALATED",
+      "request_kind": "new",
+      "escalation_reason": "Automatic execution was refused by the hybrid safety policy."
+    }
+  ],
+  "operations": [
+    {
+      "id": "c80379d1-b589-4da9-ad2d-eb19f67195c3",
+      "request_id": "e3e3bca6-416d-4e6c-b4f1-46500e545298",
+      "sequence_number": 1,
+      "action": "otp_number_change",
+      "status": "ESCALATED",
+      "pdv_code": "22000001",
+      "phone": null,
+      "missing_fields": [
+        "new_phone"
+      ],
+      "current_revision": 1,
+      "final_decision": "ESCALATE",
+      "execution_eligible": false,
+      "model_agreement": false
+    }
+  ],
+  "validation_decisions": [
+    {
+      "id": "e55139ae-9023-4bf6-8e6c-de4062cbc2e1",
+      "operation_id": "c80379d1-b589-4da9-ad2d-eb19f67195c3",
+      "decision": "ESCALATE",
+      "reasons": [
+        "missing_required_field:new_phone",
+        "semantic_contradiction",
+        "ambiguous_operation_or_attribution",
+        "analyzer_verifier_disagreement",
+        "required_field_evidence_incomplete",
+        "required_field_evidence_not_in_allowed_context"
+      ],
+      "hard_invariant_results": {
+        "authorized_sender": true,
+        "structured_output_valid": true,
+        "known_action": true,
+        "field_formats_and_completeness": false,
+        "no_correlation_conflict": true,
+        "no_previous_execution": true,
+        "operation_open": true,
+        "no_closed_history_field_source": true,
+        "required_evidence_from_allowed_context": false,
+        "configured_confidence_thresholds": true,
+        "additional_fields_allowlisted": true,
+        "additional_fields_evidence_supported": true,
+        "proposal_matches_stored_action": true,
+        "execution_mode_configured": true,
+        "input_context_complete": true
+      },
+      "analyzer_result": {
+        "local_operation_id": "029e31fa-fb70-4623-a0ed-e197f330f728",
+        "action": "otp_number_change",
+        "pdv_code": "22000001",
+        "phone": null,
+        "additional_fields": {},
+        "missing_fields": [
+          "new_phone"
+        ],
+        "evidence": [],
+        "ambiguity_reasons": [],
+        "raw_action_confidence": null,
+        "raw_field_confidence": {}
+      },
+      "verifier_result": {
+        "action_supported": "no",
+        "pdv_supported": "yes",
+        "phone_supported": "no",
+        "stored_state_compatible": "no",
+        "contradiction_present": false,
+        "contradiction_type": "missing_required_field",
+        "missing_fields": [],
+        "additional_fields_supported": {
+          "new_phone": "no"
+        },
+        "correction_detected": false,
+        "new_request_detected": false,
+        "evidence_summary": [],
+        "raw_confidence": null
+      },
+      "policy_version": "hybrid-v1",
+      "created_at": "2026-07-20T09:33:45.186192"
+    }
+  ],
+  "clarifications": [],
+  "executions": [],
+  "escalations": [
+    {
+      "id": "77fb5a29-4103-433d-8af1-3713ef35b97b",
+      "reason_code": "escalate",
+      "status": "open",
+      "summary": "Automatic execution was refused by the hybrid safety policy.",
+      "evidence": {
+        "operation_id": "c80379d1-b589-4da9-ad2d-eb19f67195c3",
+        "analysis": {
+          "message_kind": "new_request",
+          "referenced_existing_operation_ids": [],
+          "operations": [
+            {
+              "local_operation_id": "029e31fa-fb70-4623-a0ed-e197f330f728",
+              "action": "otp_number_change",
+              "pdv_code": "22000001",
+              "phone": null,
+              "additional_fields": {},
+              "missing_fields": [
+                "new_phone"
+              ],
+              "evidence": [],
+              "ambiguity_reasons": [],
+              "raw_action_confidence": null,
+              "raw_field_confidence": {}
+            }
+          ],
+          "new_request_present": true,
+          "contradiction_with_stored_state": false,
+          "contradiction_details": [],
+          "unresolved_ambiguities": [
+            "The latest user message does not provide the new phone number."
+          ]
+        },
+        "proposal": {
+          "local_operation_id": "029e31fa-fb70-4623-a0ed-e197f330f728",
+          "action": "otp_number_change",
+          "pdv_code": "22000001",
+          "phone": null,
+          "additional_fields": {},
+          "missing_fields": [
+            "new_phone"
+          ],
+          "evidence": [],
+          "ambiguity_reasons": [],
+          "raw_action_confidence": null,
+          "raw_field_confidence": {}
+        },
+        "verification": {
+          "action_supported": "no",
+          "pdv_supported": "yes",
+          "phone_supported": "no",
+          "stored_state_compatible": "no",
+          "contradiction_present": false,
+          "contradiction_type": "missing_required_field",
+          "missing_fields": [],
+          "additional_fields_supported": {
+            "new_phone": "no"
+          },
+          "correction_detected": false,
+          "new_request_detected": false,
+          "evidence_summary": [],
+          "raw_confidence": null
+        },
+        "reasons": [
+          "missing_required_field:new_phone",
+          "semantic_contradiction",
+          "ambiguous_operation_or_attribution",
+          "analyzer_verifier_disagreement",
+          "required_field_evidence_incomplete",
+          "required_field_evidence_not_in_allowed_context"
+        ],
+        "hard_invariants": {
+          "authorized_sender": true,
+          "structured_output_valid": true,
+          "known_action": true,
+          "field_formats_and_completeness": false,
+          "no_correlation_conflict": true,
+          "no_previous_execution": true,
+          "operation_open": true,
+          "no_closed_history_field_source": true,
+          "required_evidence_from_allowed_context": false,
+          "configured_confidence_thresholds": true,
+          "additional_fields_allowlisted": true,
+          "additional_fields_evidence_supported": true,
+          "proposal_matches_stored_action": true,
+          "execution_mode_configured": true,
+          "input_context_complete": true
+        },
+        "email_context": {
+          "internal_email_id": "ec1000a7-c707-4301-bd6b-e6577cfe006a",
+          "sender": "Superviseur Zone Beta <superviseur.beta@example.invalid>",
+          "subject": "Re: [SNOC-REQ-B00000000001] Changement numero OTP PDV 22000001",
+          "message_id": "<b-still-missing-002@fixtures.snoc.invalid>",
+          "in_reply_to": "<clarification-b-001@snoc-agent.invalid>",
+          "references": [
+            "<b-incomplete-otp-001@fixtures.snoc.invalid>",
+            "<clarification-b-001@snoc-agent.invalid>"
+          ],
+          "latest_user_message": "Bonjour,\n\nBien reçu, merci de prendre la demande en charge rapidement.\nJe vous transmettrai le numéro dès que je l'aurai.",
+          "latest_user_message_truncated": false,
+          "raw_eml_path": "var/raw_eml/ec1000a7-c707-4301-bd6b-e6577cfe006a.eml"
+        },
+        "stored_request_state": {
+          "request_id": "e3e3bca6-416d-4e6c-b4f1-46500e545298",
+          "public_reference": "SNOC-REQ-41F01DDCD1D2",
+          "request_status": "ANALYZING",
+          "operations": [
+            {
+              "operation_id": "c80379d1-b589-4da9-ad2d-eb19f67195c3",
+              "action": "otp_number_change",
+              "status": "ESCALATED",
+              "pdv_code": "22000001",
+              "phone": null,
+              "additional_payload": {},
+              "missing_fields": [
+                "new_phone"
+              ],
+              "evidence": [],
+              "field_provenance": {},
+              "contradiction_data": {},
+              "current_revision": 1,
+              "final_decision": "ESCALATE"
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "outbox": [
+    {
+      "id": "6a0ff22c-ac1d-4411-8784-f2c4d94bf44d",
+      "recipient": "superviseur.beta@example.invalid",
+      "subject": "[SNOC-REQ-41F01DDCD1D2] Résultat de traitement",
+      "status": "sent",
+      "retry_count": 0,
+      "last_error": null
+    }
+  ]
+}

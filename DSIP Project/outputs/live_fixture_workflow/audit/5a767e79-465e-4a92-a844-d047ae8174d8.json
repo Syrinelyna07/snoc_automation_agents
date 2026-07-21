@@ -1,0 +1,1009 @@
+{
+  "email": {
+    "id": "5a767e79-465e-4a92-a844-d047ae8174d8",
+    "message_id": "<c-targeted-phone-002@fixtures.snoc.invalid>",
+    "sender": "Animateur Zone Gamma <animateur.gamma@example.invalid>",
+    "recipients": [
+      "Agent SNOC <snoc-agent@example.invalid>"
+    ],
+    "subject": "Re: [SNOC-REQ-C00000000001] Telephone pour operation VPN",
+    "processing_status": "processed",
+    "imap": {
+      "mailbox": "REPLAY",
+      "uidvalidity": 1,
+      "uid": 10,
+      "flags": [],
+      "internal_date": null
+    },
+    "parsing": {
+      "automated_classification": null,
+      "warnings": [],
+      "quarantine_category": null,
+      "quarantine_message": null,
+      "context_limit_metadata": {
+        "mime_limit_warnings": [],
+        "context_limit_warnings": [],
+        "automatic_execution_allowed": true
+      }
+    },
+    "authorization": {
+      "allowed": true,
+      "reason": "sender_whitelisted"
+    },
+    "correlation": {
+      "strength": "strong",
+      "matched_by": "references",
+      "request_id": "97eef1d4-2dc0-4606-a415-c6a020b42443",
+      "clarification_id": null,
+      "conflicts": []
+    },
+    "latest_user_message": "Pour l'opération VPN du PDV 32000003, utilisez uniquement le 0770000003.\nLes deux autres demandes ne changent pas."
+  },
+  "model_runs": [
+    {
+      "id": "a45bffea-48b2-47c8-8b10-0a64647fadd4",
+      "stage": "analysis",
+      "backend": "huggingface",
+      "base_model_id": "Qwen/Qwen2.5-7B-Instruct",
+      "resolved_model_id": "Qwen/Qwen2.5-7B-Instruct:cheapest",
+      "reported_provider": null,
+      "provider_request_id": "osrhAUK-6Ng1vN-a1e0f7b38890282c",
+      "prompt_version": "analyzer_v1",
+      "input_context": {
+        "mode": "correlated_request_reply",
+        "subject": "Re: [SNOC-REQ-C00000000001] Telephone pour operation VPN",
+        "request_reference": "SNOC-REQ-A6CB676BCF77",
+        "request_status": "ESCALATED",
+        "latest_user_message": "Pour l'opération VPN du PDV 32000003, utilisez uniquement le 0770000003.\nLes deux autres demandes ne changent pas.",
+        "closed_history_summary": null,
+        "stored_operations": [
+          {
+            "operation_id": "f5047501-eb81-49e4-9c91-63c4fda59b5f",
+            "action": "account_unblock",
+            "known_fields": {
+              "pdv_code": "32000001",
+              "phone": null
+            },
+            "missing_fields": []
+          },
+          {
+            "operation_id": "64ad4653-d322-4e3f-a6a8-b078b98d1610",
+            "action": "password_reset",
+            "known_fields": {
+              "pdv_code": "32000002",
+              "phone": null
+            },
+            "missing_fields": []
+          },
+          {
+            "operation_id": "30874006-f571-4b17-aebe-4485b0d89db7",
+            "action": "vpn_access",
+            "known_fields": {
+              "pdv_code": "32000003",
+              "phone": null
+            },
+            "missing_fields": [
+              "phone"
+            ]
+          }
+        ],
+        "numeric_candidates": [
+          {
+            "value": "32000003",
+            "raw_value": "32000003",
+            "kind_hint": "pdv_or_unknown",
+            "section": "latest_user_message",
+            "start": 28,
+            "end": 36,
+            "context": "Pour l'opération VPN du PDV 32000003, utilisez uniquement le 0770000003.\nLes deux autres demande"
+          },
+          {
+            "value": "0770000003",
+            "raw_value": "0770000003",
+            "kind_hint": "phone_or_unknown",
+            "section": "latest_user_message",
+            "start": 61,
+            "end": 71,
+            "context": "our l'opération VPN du PDV 32000003, utilisez uniquement le 0770000003.\nLes deux autres demandes ne changent pas."
+          }
+        ],
+        "automatic_execution_allowed": true,
+        "preprocessing_notes": []
+      },
+      "raw_output": "{\"message_kind\": \"new_request\", \"operations\": [{\"local_operation_id\": \"new_vpn_access\", \"action\": \"vpn_access\", \"pdv_code\": \"32000003\", \"phone\": \"0770000003\"}, {\"local_operation_id\": \"account_unblock\", \"action\": \"account_unblock\", \"pdv_code\": \"32000001\", \"phone\": null}, {\"local_operation_id\": \"password_reset\", \"action\": \"password_reset\", \"pdv_code\": \"32000002\", \"phone\": null}], \"new_request_present\": true, \"contradiction_with_stored_state\": false}",
+      "parsed_output": {
+        "message_kind": "new_request",
+        "referenced_existing_operation_ids": [],
+        "operations": [
+          {
+            "local_operation_id": "new_vpn_access",
+            "action": "vpn_access",
+            "pdv_code": "32000003",
+            "phone": "0770000003",
+            "additional_fields": {},
+            "missing_fields": [],
+            "evidence": [],
+            "ambiguity_reasons": [],
+            "raw_action_confidence": null,
+            "raw_field_confidence": {}
+          },
+          {
+            "local_operation_id": "account_unblock",
+            "action": "account_unblock",
+            "pdv_code": "32000001",
+            "phone": null,
+            "additional_fields": {},
+            "missing_fields": [],
+            "evidence": [],
+            "ambiguity_reasons": [],
+            "raw_action_confidence": null,
+            "raw_field_confidence": {}
+          },
+          {
+            "local_operation_id": "password_reset",
+            "action": "password_reset",
+            "pdv_code": "32000002",
+            "phone": null,
+            "additional_fields": {},
+            "missing_fields": [],
+            "evidence": [],
+            "ambiguity_reasons": [],
+            "raw_action_confidence": null,
+            "raw_field_confidence": {}
+          }
+        ],
+        "new_request_present": true,
+        "contradiction_with_stored_state": false,
+        "contradiction_details": [],
+        "unresolved_ambiguities": []
+      },
+      "structured_output_valid": true,
+      "structured_output_mode": "json_schema",
+      "schema_name": "EmailAnalysis",
+      "fallback_reason": null,
+      "parse_attempt_count": 1,
+      "validation_errors": [],
+      "reasoning_output": null,
+      "latency_seconds": 2.147457590996055,
+      "request_attempt_count": 1,
+      "usage": {
+        "prompt_tokens": 960,
+        "completion_tokens": 157,
+        "total_tokens": 1117
+      },
+      "cost": {
+        "input_usd": null,
+        "output_usd": null,
+        "total_usd": null,
+        "basis": "unknown",
+        "pricing_metadata": {}
+      },
+      "error": null,
+      "error_category": null,
+      "cached_from_model_run_id": null,
+      "created_at": "2026-07-20T09:34:01.432922"
+    },
+    {
+      "id": "2428c0e8-3edf-4a5c-b46b-5994a1c65d15",
+      "stage": "verification",
+      "backend": "huggingface",
+      "base_model_id": "Qwen/Qwen3-8B",
+      "resolved_model_id": "Qwen/Qwen3-8B:cheapest",
+      "reported_provider": null,
+      "provider_request_id": "d8e6cb69-c580-4d16-8649-45d558abad6d",
+      "prompt_version": "verifier_v1",
+      "input_context": {
+        "context_mode": "correlated_request_reply",
+        "latest_user_message": "Pour l'opération VPN du PDV 32000003, utilisez uniquement le 0770000003.\nLes deux autres demandes ne changent pas.",
+        "stored_operation_state": {
+          "operation_id": "abe4d3a4-7a4b-4848-a27e-32442f529ac6",
+          "action": "vpn_access",
+          "pdv_code": "32000003",
+          "phone": "0770000003",
+          "missing_fields": [],
+          "status": "NEW",
+          "current_revision": 1
+        },
+        "proposed_operation": {
+          "local_operation_id": "new_vpn_access",
+          "action": "vpn_access",
+          "pdv_code": "32000003",
+          "phone": "0770000003",
+          "additional_fields": {},
+          "missing_fields": [],
+          "evidence": [],
+          "ambiguity_reasons": [],
+          "raw_action_confidence": null,
+          "raw_field_confidence": {}
+        },
+        "candidate_evidence": [
+          {
+            "value": "32000003",
+            "raw_value": "32000003",
+            "kind_hint": "pdv_or_unknown",
+            "section": "latest_user_message",
+            "start": 28,
+            "end": 36,
+            "context": "Pour l'opération VPN du PDV 32000003, utilisez uniquement le 0770000003.\nLes deux autres demande"
+          },
+          {
+            "value": "0770000003",
+            "raw_value": "0770000003",
+            "kind_hint": "phone_or_unknown",
+            "section": "latest_user_message",
+            "start": 61,
+            "end": 71,
+            "context": "our l'opération VPN du PDV 32000003, utilisez uniquement le 0770000003.\nLes deux autres demandes ne changent pas."
+          }
+        ],
+        "correlation_strength": "new"
+      },
+      "raw_output": "{\n\n\"action_supported\": \"yes\",\n\"additional_fields_supported\": {},\n\"contradiction_present\": false,\n\"contradiction_type\": \"none\",\n\"correction_detected\": false,\n\"new_request_detected\": true,\n\"pdv_supported\": \"yes\",\n\"phone_supported\": \"yes\",\n\"raw_confidence\": null,\n\"stored_state_compatible\": \"yes\" \n}",
+      "parsed_output": {
+        "action_supported": "yes",
+        "pdv_supported": "yes",
+        "phone_supported": "yes",
+        "stored_state_compatible": "yes",
+        "contradiction_present": false,
+        "contradiction_type": "none",
+        "missing_fields": [],
+        "additional_fields_supported": {},
+        "correction_detected": false,
+        "new_request_detected": true,
+        "evidence_summary": [],
+        "raw_confidence": null
+      },
+      "structured_output_valid": true,
+      "structured_output_mode": "json_schema",
+      "schema_name": "SemanticVerification",
+      "fallback_reason": null,
+      "parse_attempt_count": 1,
+      "validation_errors": [],
+      "reasoning_output": "Okay, let's tackle this verification. The user provided a context with a stored operation state and a proposed operation. I need to check if the proposed operation is supported by the latest message and stored state.\n\nFirst, looking at the latest user message: \"Pour l'opération VPN du PDV 32000003, utilisez uniquement le 0770000003. Les deux autres demandes ne changent pas.\" Translating that, it says for the PDV 32000003 VPN operation, use only 0770000003. The other two requests don't change. \n\nThe stored_operation_state has operation_id, action as vpn_access, pdv_code 32000003, phone 0770000003, status NEW, and missing_fields empty. The proposed_operation has the same pdv_code and phone, action vpn_access, and no additional fields. \n\nThe candidate_evidence includes the pdv_code and phone from the latest message. The correlation_strength is new, meaning it's a new request. \n\nI need to verify if all required fields in the proposed operation are present in the latest message or stored state. The action is vpn_access, which matches. pdv_code 32000003 is in the message and stored. Phone 0770000003 is also there. Missing_fields are empty, so no missing info. \n\nAdditional_fields in the proposed are empty, so no need to check those. The status is NEW in stored, which aligns. The user mentioned \"les deux autres demandes ne changent pas,\" so other requests aren't affected. \n\nNo contradictions or missing fields. Everything seems to match. So the verification should confirm that the proposed operation is supported.",
+      "latency_seconds": 3.448700214998098,
+      "request_attempt_count": 1,
+      "usage": {
+        "prompt_tokens": 669,
+        "completion_tokens": 471,
+        "total_tokens": 1140
+      },
+      "cost": {
+        "input_usd": null,
+        "output_usd": null,
+        "total_usd": null,
+        "basis": "unknown",
+        "pricing_metadata": {}
+      },
+      "error": null,
+      "error_category": null,
+      "cached_from_model_run_id": null,
+      "created_at": "2026-07-20T09:34:04.913187"
+    },
+    {
+      "id": "c3022595-32d6-4531-8c50-9a191fb8c72f",
+      "stage": "verification",
+      "backend": "huggingface",
+      "base_model_id": "Qwen/Qwen3-8B",
+      "resolved_model_id": "Qwen/Qwen3-8B:cheapest",
+      "reported_provider": null,
+      "provider_request_id": "5cc20e1c-d8af-41a8-b4b0-e74be0d0de9b",
+      "prompt_version": "verifier_v1",
+      "input_context": {
+        "context_mode": "correlated_request_reply",
+        "latest_user_message": "Pour l'opération VPN du PDV 32000003, utilisez uniquement le 0770000003.\nLes deux autres demandes ne changent pas.",
+        "stored_operation_state": {
+          "operation_id": "c452cfc6-f7d4-4245-ab1d-5d4254ce8f8f",
+          "action": "account_unblock",
+          "pdv_code": "32000001",
+          "phone": null,
+          "missing_fields": [],
+          "status": "NEW",
+          "current_revision": 1
+        },
+        "proposed_operation": {
+          "local_operation_id": "account_unblock",
+          "action": "account_unblock",
+          "pdv_code": "32000001",
+          "phone": null,
+          "additional_fields": {},
+          "missing_fields": [],
+          "evidence": [],
+          "ambiguity_reasons": [],
+          "raw_action_confidence": null,
+          "raw_field_confidence": {}
+        },
+        "candidate_evidence": [
+          {
+            "value": "32000003",
+            "raw_value": "32000003",
+            "kind_hint": "pdv_or_unknown",
+            "section": "latest_user_message",
+            "start": 28,
+            "end": 36,
+            "context": "Pour l'opération VPN du PDV 32000003, utilisez uniquement le 0770000003.\nLes deux autres demande"
+          },
+          {
+            "value": "0770000003",
+            "raw_value": "0770000003",
+            "kind_hint": "phone_or_unknown",
+            "section": "latest_user_message",
+            "start": 61,
+            "end": 71,
+            "context": "our l'opération VPN du PDV 32000003, utilisez uniquement le 0770000003.\nLes deux autres demandes ne changent pas."
+          }
+        ],
+        "correlation_strength": "new"
+      },
+      "raw_output": "",
+      "parsed_output": {},
+      "structured_output_valid": false,
+      "structured_output_mode": "json_schema",
+      "schema_name": "SemanticVerification",
+      "fallback_reason": null,
+      "parse_attempt_count": 1,
+      "validation_errors": [
+        {
+          "attempt": 1,
+          "message": "model response is not a single JSON value: Expecting value: line 1 column 1 (char 0)"
+        }
+      ],
+      "reasoning_output": "Okay, let's tackle this verification. The user provided a context with a proposed telecom support operation. My job is to check if the proposal matches the context without relying on any prior knowledge or confidence from the proposal.\n\nFirst, looking at the stored_operation_state. The operation ID is c452cfc6-f7d4-4245-ab1d-5d4254ce8f8f, action is account_unblock, pdv_code is 32000001, phone is null, missing_fields is empty, status is NEW, and current_revision is 1. The proposed_operation has local_operation_id as account_unblock, same action, pdv_code 32000001, phone null, additional_fields empty, missing_fields empty, etc. \n\nNow, the latest_user_message says: \"Pour l'opération VPN du PDV 32000003, utilisez uniquement le 0770000003. Les deux autres demandes ne changent pas.\" Translating that, it's about using only 0770000003 for the VPN operation of PDV 32000003, and the other two requests don't change. \n\nThe candidate_evidence has two entries: one PDV code 32000003 and a phone number 0770000003. But the stored_operation_state's pdv_code is 32000001, which doesn't match the PDV code in the user message (32000003). The proposed_operation also has pdv_code 32000001, which is different from the one mentioned in the user's message. \n\nThe user's message mentions two other requests that don't change, but the stored_operation_state only has one operation. The proposed_operation is for account_unblock on PDV 32000001, but the user's message is about PDV 32000003. So there's a discrepancy here. The phone number provided in the evidence is 0770000003, but the stored_operation_state's phone is null. The proposed_operation also has phone as null. \n\nThe key issue is that the PDV code in the stored_operation_state (32000001) doesn't match the PDV code in the user's message (32000003). The proposed_operation is using the stored PDV code, but the user's message refers to a different PDV. Also, the user mentions using a specific phone number for the VPN operation, but the proposed_operation doesn't include that phone number. \n\nSince the stored_operation_state's pdv_code is 32000001, and the user's message is about 32000003, there's a conflict. The proposed_operation is based on the stored state, but the user's message might be referring to a different operation. The phone number in the evidence isn't applied to the proposed_operation. \n\nTherefore, the verification should flag the mismatch between the PDV code in the stored operation and the one in the user's message. Also, the",
+      "latency_seconds": 4.69634178099659,
+      "request_attempt_count": 1,
+      "usage": {
+        "prompt_tokens": 649,
+        "completion_tokens": 700,
+        "total_tokens": 1349
+      },
+      "cost": {
+        "input_usd": null,
+        "output_usd": null,
+        "total_usd": null,
+        "basis": "unknown",
+        "pricing_metadata": {}
+      },
+      "error": "structured response failed validation after 1 parse attempt(s)",
+      "error_category": "malformed_output",
+      "cached_from_model_run_id": null,
+      "created_at": "2026-07-20T09:34:09.625583"
+    },
+    {
+      "id": "d029927c-fa14-4ff9-80ba-ab8826db88e4",
+      "stage": "verification",
+      "backend": "huggingface",
+      "base_model_id": "Qwen/Qwen3-8B",
+      "resolved_model_id": "Qwen/Qwen3-8B:cheapest",
+      "reported_provider": null,
+      "provider_request_id": "14be087d-baba-4aa9-81ad-9913160370de",
+      "prompt_version": "verifier_v1",
+      "input_context": {
+        "context_mode": "correlated_request_reply",
+        "latest_user_message": "Pour l'opération VPN du PDV 32000003, utilisez uniquement le 0770000003.\nLes deux autres demandes ne changent pas.",
+        "stored_operation_state": {
+          "operation_id": "f1cae2e2-999a-4d6f-b9cd-4f983d537c18",
+          "action": "password_reset",
+          "pdv_code": "32000002",
+          "phone": null,
+          "missing_fields": [],
+          "status": "NEW",
+          "current_revision": 1
+        },
+        "proposed_operation": {
+          "local_operation_id": "password_reset",
+          "action": "password_reset",
+          "pdv_code": "32000002",
+          "phone": null,
+          "additional_fields": {},
+          "missing_fields": [],
+          "evidence": [],
+          "ambiguity_reasons": [],
+          "raw_action_confidence": null,
+          "raw_field_confidence": {}
+        },
+        "candidate_evidence": [
+          {
+            "value": "32000003",
+            "raw_value": "32000003",
+            "kind_hint": "pdv_or_unknown",
+            "section": "latest_user_message",
+            "start": 28,
+            "end": 36,
+            "context": "Pour l'opération VPN du PDV 32000003, utilisez uniquement le 0770000003.\nLes deux autres demande"
+          },
+          {
+            "value": "0770000003",
+            "raw_value": "0770000003",
+            "kind_hint": "phone_or_unknown",
+            "section": "latest_user_message",
+            "start": 61,
+            "end": 71,
+            "context": "our l'opération VPN du PDV 32000003, utilisez uniquement le 0770000003.\nLes deux autres demandes ne changent pas."
+          }
+        ],
+        "correlation_strength": "new"
+      },
+      "raw_output": "",
+      "parsed_output": {},
+      "structured_output_valid": false,
+      "structured_output_mode": "json_schema",
+      "schema_name": "SemanticVerification",
+      "fallback_reason": null,
+      "parse_attempt_count": 1,
+      "validation_errors": [
+        {
+          "attempt": 1,
+          "message": "model response is not a single JSON value: Expecting value: line 1 column 1 (char 0)"
+        }
+      ],
+      "reasoning_output": "Okay, let's tackle this verification. The user provided a context with a proposed telecom support operation. My job is to check if the proposal matches the context without relying on any prior knowledge or confidence from the proposal.\n\nFirst, looking at the stored_operation_state. The operation has an ID, action as password_reset, pdv_code 32000002, phone is null, missing_fields is empty, status NEW, and current_revision 1. The proposed_operation has the same action and pdv_code, but the phone is still null. The additional_fields are empty. \n\nNow, the latest_user_message mentions \"Pour l'opération VPN du PDV 32000003, utilisez uniquement le 0770000003.\" So there's a PDV code 32000003 and a phone number 0770000003. But the stored_operation_state has pdv_code 32000002. The proposed_operation uses 32000002, which doesn't match the PDV code in the user message. Wait, but the user says \"Les deux autres demandes ne changent pas.\" So maybe the PDV code in the stored operation is correct, and the user is referring to another PDV (32000003) but the operation is for 32000002. \n\nThe candidate_evidence includes PDV 32000003 and phone 0770000003. But the stored operation's pdv_code is 32000002. The proposed operation's pdv_code is also 32000002. So the user's message is about PDV 32000003, but the operation is for 32000002. That might be a discrepancy. However, the user says \"Les deux autres demandes ne changent pas,\" implying that the current operation (32000002) remains the same, while the PDV 32000003 is a separate case. \n\nThe proposed_operation doesn't have the phone number, but the user message mentions a phone number for PDV 32000003. However, the stored operation's phone is null, and the proposed operation's phone is also null. Since the operation is for PDV 32000002, maybe the phone number in the user message is for a different PDV, so it's not relevant here. \n\nThe additional_fields in the proposed_operation are empty, which is okay. The missing_fields are empty, which is correct because all required fields are present. The evidence in the proposed_operation is empty, but the user message has evidence for PDV 32000003 and phone 0770000003. However, since the operation is for PDV 32000002, those pieces of evidence might not apply. \n\nWait, but the user's message says \"utilisez uniquement le 0770000003\" for PDV 32000003.",
+      "latency_seconds": 4.579301853002107,
+      "request_attempt_count": 1,
+      "usage": {
+        "prompt_tokens": 647,
+        "completion_tokens": 700,
+        "total_tokens": 1347
+      },
+      "cost": {
+        "input_usd": null,
+        "output_usd": null,
+        "total_usd": null,
+        "basis": "unknown",
+        "pricing_metadata": {}
+      },
+      "error": "structured response failed validation after 1 parse attempt(s)",
+      "error_category": "malformed_output",
+      "cached_from_model_run_id": null,
+      "created_at": "2026-07-20T09:34:14.219097"
+    }
+  ],
+  "requests": [
+    {
+      "id": "2e26d2b1-dc08-40ec-89df-23b5be887a3b",
+      "reference": "SNOC-REQ-BDD198A84819",
+      "status": "ESCALATED",
+      "request_kind": "new",
+      "escalation_reason": "Semantic verification failed; execution was refused."
+    }
+  ],
+  "operations": [
+    {
+      "id": "abe4d3a4-7a4b-4848-a27e-32442f529ac6",
+      "request_id": "2e26d2b1-dc08-40ec-89df-23b5be887a3b",
+      "sequence_number": 1,
+      "action": "vpn_access",
+      "status": "ESCALATED",
+      "pdv_code": "32000003",
+      "phone": "0770000003",
+      "missing_fields": [],
+      "current_revision": 1,
+      "final_decision": "ESCALATE",
+      "execution_eligible": false,
+      "model_agreement": false
+    },
+    {
+      "id": "c452cfc6-f7d4-4245-ab1d-5d4254ce8f8f",
+      "request_id": "2e26d2b1-dc08-40ec-89df-23b5be887a3b",
+      "sequence_number": 2,
+      "action": "account_unblock",
+      "status": "ESCALATED",
+      "pdv_code": "32000001",
+      "phone": null,
+      "missing_fields": [],
+      "current_revision": 1,
+      "final_decision": "ESCALATE",
+      "execution_eligible": false,
+      "model_agreement": null
+    },
+    {
+      "id": "f1cae2e2-999a-4d6f-b9cd-4f983d537c18",
+      "request_id": "2e26d2b1-dc08-40ec-89df-23b5be887a3b",
+      "sequence_number": 3,
+      "action": "password_reset",
+      "status": "ESCALATED",
+      "pdv_code": "32000002",
+      "phone": null,
+      "missing_fields": [],
+      "current_revision": 1,
+      "final_decision": "ESCALATE",
+      "execution_eligible": false,
+      "model_agreement": null
+    }
+  ],
+  "validation_decisions": [
+    {
+      "id": "21969232-3977-4cda-999b-a823c5db8797",
+      "operation_id": "abe4d3a4-7a4b-4848-a27e-32442f529ac6",
+      "decision": "ESCALATE",
+      "reasons": [
+        "analyzer_verifier_disagreement",
+        "required_field_evidence_incomplete",
+        "required_field_evidence_not_in_allowed_context"
+      ],
+      "hard_invariant_results": {
+        "authorized_sender": true,
+        "structured_output_valid": true,
+        "known_action": true,
+        "field_formats_and_completeness": true,
+        "no_correlation_conflict": true,
+        "no_previous_execution": true,
+        "operation_open": true,
+        "no_closed_history_field_source": true,
+        "required_evidence_from_allowed_context": false,
+        "configured_confidence_thresholds": true,
+        "additional_fields_allowlisted": true,
+        "additional_fields_evidence_supported": true,
+        "proposal_matches_stored_action": true,
+        "execution_mode_configured": true,
+        "input_context_complete": true
+      },
+      "analyzer_result": {
+        "local_operation_id": "new_vpn_access",
+        "action": "vpn_access",
+        "pdv_code": "32000003",
+        "phone": "0770000003",
+        "additional_fields": {},
+        "missing_fields": [],
+        "evidence": [],
+        "ambiguity_reasons": [],
+        "raw_action_confidence": null,
+        "raw_field_confidence": {}
+      },
+      "verifier_result": {
+        "action_supported": "yes",
+        "pdv_supported": "yes",
+        "phone_supported": "yes",
+        "stored_state_compatible": "yes",
+        "contradiction_present": false,
+        "contradiction_type": "none",
+        "missing_fields": [],
+        "additional_fields_supported": {},
+        "correction_detected": false,
+        "new_request_detected": true,
+        "evidence_summary": [],
+        "raw_confidence": null
+      },
+      "policy_version": "hybrid-v1",
+      "created_at": "2026-07-20T09:34:04.915178"
+    }
+  ],
+  "clarifications": [],
+  "executions": [],
+  "escalations": [
+    {
+      "id": "364744bc-e39b-440f-94c7-262171c375bf",
+      "reason_code": "escalate",
+      "status": "open",
+      "summary": "Automatic execution was refused by the hybrid safety policy.",
+      "evidence": {
+        "operation_id": "abe4d3a4-7a4b-4848-a27e-32442f529ac6",
+        "analysis": {
+          "message_kind": "new_request",
+          "referenced_existing_operation_ids": [],
+          "operations": [
+            {
+              "local_operation_id": "new_vpn_access",
+              "action": "vpn_access",
+              "pdv_code": "32000003",
+              "phone": "0770000003",
+              "additional_fields": {},
+              "missing_fields": [],
+              "evidence": [],
+              "ambiguity_reasons": [],
+              "raw_action_confidence": null,
+              "raw_field_confidence": {}
+            },
+            {
+              "local_operation_id": "account_unblock",
+              "action": "account_unblock",
+              "pdv_code": "32000001",
+              "phone": null,
+              "additional_fields": {},
+              "missing_fields": [],
+              "evidence": [],
+              "ambiguity_reasons": [],
+              "raw_action_confidence": null,
+              "raw_field_confidence": {}
+            },
+            {
+              "local_operation_id": "password_reset",
+              "action": "password_reset",
+              "pdv_code": "32000002",
+              "phone": null,
+              "additional_fields": {},
+              "missing_fields": [],
+              "evidence": [],
+              "ambiguity_reasons": [],
+              "raw_action_confidence": null,
+              "raw_field_confidence": {}
+            }
+          ],
+          "new_request_present": true,
+          "contradiction_with_stored_state": false,
+          "contradiction_details": [],
+          "unresolved_ambiguities": []
+        },
+        "proposal": {
+          "local_operation_id": "new_vpn_access",
+          "action": "vpn_access",
+          "pdv_code": "32000003",
+          "phone": "0770000003",
+          "additional_fields": {},
+          "missing_fields": [],
+          "evidence": [],
+          "ambiguity_reasons": [],
+          "raw_action_confidence": null,
+          "raw_field_confidence": {}
+        },
+        "verification": {
+          "action_supported": "yes",
+          "pdv_supported": "yes",
+          "phone_supported": "yes",
+          "stored_state_compatible": "yes",
+          "contradiction_present": false,
+          "contradiction_type": "none",
+          "missing_fields": [],
+          "additional_fields_supported": {},
+          "correction_detected": false,
+          "new_request_detected": true,
+          "evidence_summary": [],
+          "raw_confidence": null
+        },
+        "reasons": [
+          "analyzer_verifier_disagreement",
+          "required_field_evidence_incomplete",
+          "required_field_evidence_not_in_allowed_context"
+        ],
+        "hard_invariants": {
+          "authorized_sender": true,
+          "structured_output_valid": true,
+          "known_action": true,
+          "field_formats_and_completeness": true,
+          "no_correlation_conflict": true,
+          "no_previous_execution": true,
+          "operation_open": true,
+          "no_closed_history_field_source": true,
+          "required_evidence_from_allowed_context": false,
+          "configured_confidence_thresholds": true,
+          "additional_fields_allowlisted": true,
+          "additional_fields_evidence_supported": true,
+          "proposal_matches_stored_action": true,
+          "execution_mode_configured": true,
+          "input_context_complete": true
+        },
+        "email_context": {
+          "internal_email_id": "5a767e79-465e-4a92-a844-d047ae8174d8",
+          "sender": "Animateur Zone Gamma <animateur.gamma@example.invalid>",
+          "subject": "Re: [SNOC-REQ-C00000000001] Telephone pour operation VPN",
+          "message_id": "<c-targeted-phone-002@fixtures.snoc.invalid>",
+          "in_reply_to": "<clarification-c-001@snoc-agent.invalid>",
+          "references": [
+            "<c-three-operations-001@fixtures.snoc.invalid>",
+            "<clarification-c-001@snoc-agent.invalid>"
+          ],
+          "latest_user_message": "Pour l'opération VPN du PDV 32000003, utilisez uniquement le 0770000003.\nLes deux autres demandes ne changent pas.",
+          "latest_user_message_truncated": false,
+          "raw_eml_path": "var/raw_eml/5a767e79-465e-4a92-a844-d047ae8174d8.eml"
+        },
+        "stored_request_state": {
+          "request_id": "2e26d2b1-dc08-40ec-89df-23b5be887a3b",
+          "public_reference": "SNOC-REQ-BDD198A84819",
+          "request_status": "ANALYZING",
+          "operations": [
+            {
+              "operation_id": "abe4d3a4-7a4b-4848-a27e-32442f529ac6",
+              "action": "vpn_access",
+              "status": "ESCALATED",
+              "pdv_code": "32000003",
+              "phone": "0770000003",
+              "additional_payload": {},
+              "missing_fields": [],
+              "evidence": [],
+              "field_provenance": {},
+              "contradiction_data": {},
+              "current_revision": 1,
+              "final_decision": "ESCALATE"
+            },
+            {
+              "operation_id": "c452cfc6-f7d4-4245-ab1d-5d4254ce8f8f",
+              "action": "account_unblock",
+              "status": "NEW",
+              "pdv_code": "32000001",
+              "phone": null,
+              "additional_payload": {},
+              "missing_fields": [],
+              "evidence": [],
+              "field_provenance": {},
+              "contradiction_data": {},
+              "current_revision": 1,
+              "final_decision": null
+            },
+            {
+              "operation_id": "f1cae2e2-999a-4d6f-b9cd-4f983d537c18",
+              "action": "password_reset",
+              "status": "NEW",
+              "pdv_code": "32000002",
+              "phone": null,
+              "additional_payload": {},
+              "missing_fields": [],
+              "evidence": [],
+              "field_provenance": {},
+              "contradiction_data": {},
+              "current_revision": 1,
+              "final_decision": null
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "74d78f40-28be-4885-85ec-174c651fd4d2",
+      "reason_code": "semantic_verifier_failure",
+      "status": "open",
+      "summary": "Semantic verification failed; execution was refused.",
+      "evidence": {
+        "error": "structured response failed validation after 1 parse attempt(s)",
+        "analysis": {
+          "message_kind": "new_request",
+          "referenced_existing_operation_ids": [],
+          "operations": [
+            {
+              "local_operation_id": "new_vpn_access",
+              "action": "vpn_access",
+              "pdv_code": "32000003",
+              "phone": "0770000003",
+              "additional_fields": {},
+              "missing_fields": [],
+              "evidence": [],
+              "ambiguity_reasons": [],
+              "raw_action_confidence": null,
+              "raw_field_confidence": {}
+            },
+            {
+              "local_operation_id": "account_unblock",
+              "action": "account_unblock",
+              "pdv_code": "32000001",
+              "phone": null,
+              "additional_fields": {},
+              "missing_fields": [],
+              "evidence": [],
+              "ambiguity_reasons": [],
+              "raw_action_confidence": null,
+              "raw_field_confidence": {}
+            },
+            {
+              "local_operation_id": "password_reset",
+              "action": "password_reset",
+              "pdv_code": "32000002",
+              "phone": null,
+              "additional_fields": {},
+              "missing_fields": [],
+              "evidence": [],
+              "ambiguity_reasons": [],
+              "raw_action_confidence": null,
+              "raw_field_confidence": {}
+            }
+          ],
+          "new_request_present": true,
+          "contradiction_with_stored_state": false,
+          "contradiction_details": [],
+          "unresolved_ambiguities": []
+        },
+        "proposal": {
+          "local_operation_id": "account_unblock",
+          "action": "account_unblock",
+          "pdv_code": "32000001",
+          "phone": null,
+          "additional_fields": {},
+          "missing_fields": [],
+          "evidence": [],
+          "ambiguity_reasons": [],
+          "raw_action_confidence": null,
+          "raw_field_confidence": {}
+        },
+        "email_context": {
+          "internal_email_id": "5a767e79-465e-4a92-a844-d047ae8174d8",
+          "sender": "Animateur Zone Gamma <animateur.gamma@example.invalid>",
+          "subject": "Re: [SNOC-REQ-C00000000001] Telephone pour operation VPN",
+          "message_id": "<c-targeted-phone-002@fixtures.snoc.invalid>",
+          "in_reply_to": "<clarification-c-001@snoc-agent.invalid>",
+          "references": [
+            "<c-three-operations-001@fixtures.snoc.invalid>",
+            "<clarification-c-001@snoc-agent.invalid>"
+          ],
+          "latest_user_message": "Pour l'opération VPN du PDV 32000003, utilisez uniquement le 0770000003.\nLes deux autres demandes ne changent pas.",
+          "latest_user_message_truncated": false,
+          "raw_eml_path": "var/raw_eml/5a767e79-465e-4a92-a844-d047ae8174d8.eml"
+        },
+        "stored_request_state": {
+          "request_id": "2e26d2b1-dc08-40ec-89df-23b5be887a3b",
+          "public_reference": "SNOC-REQ-BDD198A84819",
+          "request_status": "ANALYZING",
+          "operations": [
+            {
+              "operation_id": "abe4d3a4-7a4b-4848-a27e-32442f529ac6",
+              "action": "vpn_access",
+              "status": "ESCALATED",
+              "pdv_code": "32000003",
+              "phone": "0770000003",
+              "additional_payload": {},
+              "missing_fields": [],
+              "evidence": [],
+              "field_provenance": {},
+              "contradiction_data": {},
+              "current_revision": 1,
+              "final_decision": "ESCALATE"
+            },
+            {
+              "operation_id": "c452cfc6-f7d4-4245-ab1d-5d4254ce8f8f",
+              "action": "account_unblock",
+              "status": "ESCALATED",
+              "pdv_code": "32000001",
+              "phone": null,
+              "additional_payload": {},
+              "missing_fields": [],
+              "evidence": [],
+              "field_provenance": {},
+              "contradiction_data": {},
+              "current_revision": 1,
+              "final_decision": "ESCALATE"
+            },
+            {
+              "operation_id": "f1cae2e2-999a-4d6f-b9cd-4f983d537c18",
+              "action": "password_reset",
+              "status": "NEW",
+              "pdv_code": "32000002",
+              "phone": null,
+              "additional_payload": {},
+              "missing_fields": [],
+              "evidence": [],
+              "field_provenance": {},
+              "contradiction_data": {},
+              "current_revision": 1,
+              "final_decision": null
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "f05df763-4a3c-4c0d-b7f3-20a2ac8fb610",
+      "reason_code": "semantic_verifier_failure",
+      "status": "open",
+      "summary": "Semantic verification failed; execution was refused.",
+      "evidence": {
+        "error": "structured response failed validation after 1 parse attempt(s)",
+        "analysis": {
+          "message_kind": "new_request",
+          "referenced_existing_operation_ids": [],
+          "operations": [
+            {
+              "local_operation_id": "new_vpn_access",
+              "action": "vpn_access",
+              "pdv_code": "32000003",
+              "phone": "0770000003",
+              "additional_fields": {},
+              "missing_fields": [],
+              "evidence": [],
+              "ambiguity_reasons": [],
+              "raw_action_confidence": null,
+              "raw_field_confidence": {}
+            },
+            {
+              "local_operation_id": "account_unblock",
+              "action": "account_unblock",
+              "pdv_code": "32000001",
+              "phone": null,
+              "additional_fields": {},
+              "missing_fields": [],
+              "evidence": [],
+              "ambiguity_reasons": [],
+              "raw_action_confidence": null,
+              "raw_field_confidence": {}
+            },
+            {
+              "local_operation_id": "password_reset",
+              "action": "password_reset",
+              "pdv_code": "32000002",
+              "phone": null,
+              "additional_fields": {},
+              "missing_fields": [],
+              "evidence": [],
+              "ambiguity_reasons": [],
+              "raw_action_confidence": null,
+              "raw_field_confidence": {}
+            }
+          ],
+          "new_request_present": true,
+          "contradiction_with_stored_state": false,
+          "contradiction_details": [],
+          "unresolved_ambiguities": []
+        },
+        "proposal": {
+          "local_operation_id": "password_reset",
+          "action": "password_reset",
+          "pdv_code": "32000002",
+          "phone": null,
+          "additional_fields": {},
+          "missing_fields": [],
+          "evidence": [],
+          "ambiguity_reasons": [],
+          "raw_action_confidence": null,
+          "raw_field_confidence": {}
+        },
+        "email_context": {
+          "internal_email_id": "5a767e79-465e-4a92-a844-d047ae8174d8",
+          "sender": "Animateur Zone Gamma <animateur.gamma@example.invalid>",
+          "subject": "Re: [SNOC-REQ-C00000000001] Telephone pour operation VPN",
+          "message_id": "<c-targeted-phone-002@fixtures.snoc.invalid>",
+          "in_reply_to": "<clarification-c-001@snoc-agent.invalid>",
+          "references": [
+            "<c-three-operations-001@fixtures.snoc.invalid>",
+            "<clarification-c-001@snoc-agent.invalid>"
+          ],
+          "latest_user_message": "Pour l'opération VPN du PDV 32000003, utilisez uniquement le 0770000003.\nLes deux autres demandes ne changent pas.",
+          "latest_user_message_truncated": false,
+          "raw_eml_path": "var/raw_eml/5a767e79-465e-4a92-a844-d047ae8174d8.eml"
+        },
+        "stored_request_state": {
+          "request_id": "2e26d2b1-dc08-40ec-89df-23b5be887a3b",
+          "public_reference": "SNOC-REQ-BDD198A84819",
+          "request_status": "ANALYZING",
+          "operations": [
+            {
+              "operation_id": "abe4d3a4-7a4b-4848-a27e-32442f529ac6",
+              "action": "vpn_access",
+              "status": "ESCALATED",
+              "pdv_code": "32000003",
+              "phone": "0770000003",
+              "additional_payload": {},
+              "missing_fields": [],
+              "evidence": [],
+              "field_provenance": {},
+              "contradiction_data": {},
+              "current_revision": 1,
+              "final_decision": "ESCALATE"
+            },
+            {
+              "operation_id": "c452cfc6-f7d4-4245-ab1d-5d4254ce8f8f",
+              "action": "account_unblock",
+              "status": "ESCALATED",
+              "pdv_code": "32000001",
+              "phone": null,
+              "additional_payload": {},
+              "missing_fields": [],
+              "evidence": [],
+              "field_provenance": {},
+              "contradiction_data": {},
+              "current_revision": 1,
+              "final_decision": "ESCALATE"
+            },
+            {
+              "operation_id": "f1cae2e2-999a-4d6f-b9cd-4f983d537c18",
+              "action": "password_reset",
+              "status": "ESCALATED",
+              "pdv_code": "32000002",
+              "phone": null,
+              "additional_payload": {},
+              "missing_fields": [],
+              "evidence": [],
+              "field_provenance": {},
+              "contradiction_data": {},
+              "current_revision": 1,
+              "final_decision": "ESCALATE"
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "outbox": [
+    {
+      "id": "aeadfc6d-299e-4764-b66d-0ceea59e2e7d",
+      "recipient": "animateur.gamma@example.invalid",
+      "subject": "[SNOC-REQ-BDD198A84819] Résultat de traitement",
+      "status": "sent",
+      "retry_count": 0,
+      "last_error": null
+    }
+  ]
+}

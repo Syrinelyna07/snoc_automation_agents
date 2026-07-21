@@ -1,0 +1,452 @@
+{
+  "email": {
+    "id": "4f9ead11-35a3-44b4-8a76-8f358747e52e",
+    "message_id": "<i-broken-header-001@fixtures.snoc.invalid>",
+    "sender": "Animateur Zone Iota <animateur.iota@example.invalid>",
+    "recipients": [
+      "Agent SNOC <snoc-agent@example.invalid>"
+    ],
+    "subject": "Re: [{{marker_request.request_reference}}] Telephone demande",
+    "processing_status": "processed",
+    "imap": {
+      "mailbox": "REPLAY",
+      "uidvalidity": 1,
+      "uid": 24,
+      "flags": [],
+      "internal_date": null
+    },
+    "parsing": {
+      "automated_classification": null,
+      "warnings": [
+        "invalid_in_reply_to"
+      ],
+      "quarantine_category": null,
+      "quarantine_message": null,
+      "context_limit_metadata": {
+        "mime_limit_warnings": [],
+        "context_limit_warnings": [],
+        "automatic_execution_allowed": true
+      }
+    },
+    "authorization": {
+      "allowed": true,
+      "reason": "sender_whitelisted"
+    },
+    "correlation": {
+      "strength": "new",
+      "matched_by": "new_conversation",
+      "request_id": null,
+      "clarification_id": null,
+      "conflicts": []
+    },
+    "latest_user_message": "Référence {{marker_request.request_reference}}.\nLe nouveau numéro demandé est 0770000050."
+  },
+  "model_runs": [
+    {
+      "id": "62abc556-16ff-402b-9a35-738691db4269",
+      "stage": "analysis",
+      "backend": "huggingface",
+      "base_model_id": "Qwen/Qwen2.5-7B-Instruct",
+      "resolved_model_id": "Qwen/Qwen2.5-7B-Instruct:cheapest",
+      "reported_provider": null,
+      "provider_request_id": "osrhgre-6Ng1vN-a1e0fa311c31fe41",
+      "prompt_version": "analyzer_v1",
+      "input_context": {
+        "mode": "new_request",
+        "subject": "Re: [{{marker_request.request_reference}}] Telephone demande",
+        "latest_user_message": "Référence {{marker_request.request_reference}}.\nLe nouveau numéro demandé est 0770000050.",
+        "text_since_last_closed_request": "Référence {{marker_request.request_reference}}.\nLe nouveau numéro demandé est 0770000050.",
+        "numeric_candidates": [
+          {
+            "value": "0770000050",
+            "raw_value": "0770000050",
+            "kind_hint": "phone_or_unknown",
+            "section": "latest_user_message",
+            "start": 78,
+            "end": 88,
+            "context": "_request.request_reference}}.\nLe nouveau numéro demandé est 0770000050."
+          }
+        ],
+        "closed_history_summary": null,
+        "preprocessing_notes": [],
+        "segmentation_confidence": 0.8
+      },
+      "raw_output": "{\"message_kind\": \"new_request\", \"operations\": [{\"local_operation_id\": \"1\", \"action\": \"otp_number_change\", \"pdv_code\": null, \"phone\": \"0770000050\"}], \"new_request_present\": true, \"contradiction_with_stored_state\": false, \"unresolved_ambiguities\": [\"pdv_code_missing\"]}",
+      "parsed_output": {
+        "message_kind": "new_request",
+        "referenced_existing_operation_ids": [],
+        "operations": [
+          {
+            "local_operation_id": "1",
+            "action": "otp_number_change",
+            "pdv_code": null,
+            "phone": "0770000050",
+            "additional_fields": {},
+            "missing_fields": [],
+            "evidence": [],
+            "ambiguity_reasons": [],
+            "raw_action_confidence": null,
+            "raw_field_confidence": {}
+          }
+        ],
+        "new_request_present": true,
+        "contradiction_with_stored_state": false,
+        "contradiction_details": [],
+        "unresolved_ambiguities": [
+          "pdv_code_missing"
+        ]
+      },
+      "structured_output_valid": true,
+      "structured_output_mode": "json_schema",
+      "schema_name": "EmailAnalysis",
+      "fallback_reason": null,
+      "parse_attempt_count": 1,
+      "validation_errors": [],
+      "reasoning_output": null,
+      "latency_seconds": 1.5228803720019641,
+      "request_attempt_count": 1,
+      "usage": {
+        "prompt_tokens": 578,
+        "completion_tokens": 87,
+        "total_tokens": 665
+      },
+      "cost": {
+        "input_usd": null,
+        "output_usd": null,
+        "total_usd": null,
+        "basis": "unknown",
+        "pricing_metadata": {}
+      },
+      "error": null,
+      "error_category": null,
+      "cached_from_model_run_id": null,
+      "created_at": "2026-07-20T09:35:43.593209"
+    },
+    {
+      "id": "c6056beb-f8f7-4baa-b49d-26db74d7c12e",
+      "stage": "verification",
+      "backend": "huggingface",
+      "base_model_id": "Qwen/Qwen3-8B",
+      "resolved_model_id": "Qwen/Qwen3-8B:cheapest",
+      "reported_provider": null,
+      "provider_request_id": "0afd648c-5375-4c05-86f1-6673ee9e727e",
+      "prompt_version": "verifier_v1",
+      "input_context": {
+        "context_mode": "new_request",
+        "latest_user_message": "Référence {{marker_request.request_reference}}.\nLe nouveau numéro demandé est 0770000050.",
+        "stored_operation_state": {
+          "operation_id": "8f7f1c2b-7ccd-44f8-a1af-792de48a3389",
+          "action": "otp_number_change",
+          "pdv_code": null,
+          "phone": "0770000050",
+          "missing_fields": [
+            "pdv_code"
+          ],
+          "status": "NEW",
+          "current_revision": 1
+        },
+        "proposed_operation": {
+          "local_operation_id": "1",
+          "action": "otp_number_change",
+          "pdv_code": null,
+          "phone": "0770000050",
+          "additional_fields": {},
+          "missing_fields": [],
+          "evidence": [],
+          "ambiguity_reasons": [],
+          "raw_action_confidence": null,
+          "raw_field_confidence": {}
+        },
+        "candidate_evidence": [
+          {
+            "value": "0770000050",
+            "raw_value": "0770000050",
+            "kind_hint": "phone_or_unknown",
+            "section": "latest_user_message",
+            "start": 78,
+            "end": 88,
+            "context": "_request.request_reference}}.\nLe nouveau numéro demandé est 0770000050."
+          }
+        ],
+        "correlation_strength": "new"
+      },
+      "raw_output": "{\n\n\"action_supported\": \"yes\",\n\"additional_fields_supported\": {\n  \"pdv_code\": \"no\"\n},\n\"contradiction_present\": true,\n\"contradiction_type\": \"missing_required_field\",\n\"correction_detected\": true,\n\"evidence_summary\": [\n  \"Phone number '0770000050' found in latest user message\"\n],\n\"missing_fields\": [\n  \"pdv_code\"\n],\n\"new_request_detected\": true,\n\"pdv_supported\": \"no\",\n\"phone_supported\": \"yes\",\n\"raw_confidence\": 0.5,\n\"stored_state_compatible\": \"no\"\n}",
+      "parsed_output": {
+        "action_supported": "yes",
+        "pdv_supported": "no",
+        "phone_supported": "yes",
+        "stored_state_compatible": "no",
+        "contradiction_present": true,
+        "contradiction_type": "missing_required_field",
+        "missing_fields": [
+          "pdv_code"
+        ],
+        "additional_fields_supported": {
+          "pdv_code": "no"
+        },
+        "correction_detected": true,
+        "new_request_detected": true,
+        "evidence_summary": [
+          "Phone number '0770000050' found in latest user message"
+        ],
+        "raw_confidence": 0.5
+      },
+      "structured_output_valid": true,
+      "structured_output_mode": "json_schema",
+      "schema_name": "SemanticVerification",
+      "fallback_reason": null,
+      "parse_attempt_count": 1,
+      "validation_errors": [],
+      "reasoning_output": "Okay, let's tackle this verification. The user provided a context where a telecom support operation is being checked. The main goal is to verify if the proposed operation meets all the necessary criteria based on the given context.\n\nFirst, I need to look at the stored_operation_state. The operation is of type \"otp_number_change\", and the phone number provided is \"0770000050\". However, the missing_fields list includes \"pdv_code\", which is null in the stored state. The proposed_operation has the same phone number but doesn't include pdv_code, and the missing_fields are now empty. \n\nWait, the stored_operation has pdv_code as null, but the proposed_operation also has pdv_code as null. However, the missing_fields in stored_operation includes pdv_code, but in the proposed_operation, it's not listed as missing. That might be a problem because pdv_code is required. The user's latest message mentions the new number but doesn't provide pdv_code. \n\nLooking at the candidate_evidence, there's a phone number extracted from the latest user message. The proposed_operation's phone is correct. But since pdv_code is missing, the operation might be incomplete. The stored_operation's missing_fields include pdv_code, so the proposed_operation should also have it as missing. However, in the proposed_operation, missing_fields is empty, which could be an error. \n\nAdditionally, the additional_fields in the proposed_operation is empty, but the stored_operation's additional_fields is also empty. The action is the same, and the phone number matches. The correlation_strength is \"new\", so it's a new request. \n\nThe key issue here is the pdv_code. Since the stored_operation has pdv_code as null and it's in missing_fields, the proposed_operation should also have pdv_code as missing. But in the proposed_operation, missing_fields is empty, which might be incorrect. Therefore, the proposed_operation is missing the pdv_code field, which is required. \n\nSo, the verification should flag that pdv_code is missing in the proposed_operation, even though the stored_operation has it as null. The user hasn't provided pdv_code in the latest message, so it's not present in the evidence. Therefore, the proposed_operation is incomplete.",
+      "latency_seconds": 4.258450717999949,
+      "request_attempt_count": 1,
+      "usage": {
+        "prompt_tokens": 509,
+        "completion_tokens": 617,
+        "total_tokens": 1126
+      },
+      "cost": {
+        "input_usd": null,
+        "output_usd": null,
+        "total_usd": null,
+        "basis": "unknown",
+        "pricing_metadata": {}
+      },
+      "error": null,
+      "error_category": null,
+      "cached_from_model_run_id": null,
+      "created_at": "2026-07-20T09:35:47.864374"
+    }
+  ],
+  "requests": [
+    {
+      "id": "ddb47040-6257-458f-8742-1279c324d8c4",
+      "reference": "SNOC-REQ-4F515FC65173",
+      "status": "ESCALATED",
+      "request_kind": "new",
+      "escalation_reason": "Automatic execution was refused by the hybrid safety policy."
+    }
+  ],
+  "operations": [
+    {
+      "id": "8f7f1c2b-7ccd-44f8-a1af-792de48a3389",
+      "request_id": "ddb47040-6257-458f-8742-1279c324d8c4",
+      "sequence_number": 1,
+      "action": "otp_number_change",
+      "status": "ESCALATED",
+      "pdv_code": null,
+      "phone": "0770000050",
+      "missing_fields": [
+        "pdv_code"
+      ],
+      "current_revision": 1,
+      "final_decision": "REVIEW_CORRECTION",
+      "execution_eligible": false,
+      "model_agreement": false
+    }
+  ],
+  "validation_decisions": [
+    {
+      "id": "f66651eb-e877-47a5-9e60-39d49d56a93b",
+      "operation_id": "8f7f1c2b-7ccd-44f8-a1af-792de48a3389",
+      "decision": "REVIEW_CORRECTION",
+      "reasons": [
+        "missing_required_field:pdv_code",
+        "semantic_contradiction",
+        "ambiguous_operation_or_attribution",
+        "analyzer_verifier_disagreement",
+        "required_field_evidence_incomplete",
+        "required_field_evidence_not_in_allowed_context"
+      ],
+      "hard_invariant_results": {
+        "authorized_sender": true,
+        "structured_output_valid": true,
+        "known_action": true,
+        "field_formats_and_completeness": false,
+        "no_correlation_conflict": true,
+        "no_previous_execution": true,
+        "operation_open": true,
+        "no_closed_history_field_source": true,
+        "required_evidence_from_allowed_context": false,
+        "configured_confidence_thresholds": true,
+        "additional_fields_allowlisted": true,
+        "additional_fields_evidence_supported": true,
+        "proposal_matches_stored_action": true,
+        "execution_mode_configured": true,
+        "input_context_complete": true
+      },
+      "analyzer_result": {
+        "local_operation_id": "1",
+        "action": "otp_number_change",
+        "pdv_code": null,
+        "phone": "0770000050",
+        "additional_fields": {},
+        "missing_fields": [],
+        "evidence": [],
+        "ambiguity_reasons": [],
+        "raw_action_confidence": null,
+        "raw_field_confidence": {}
+      },
+      "verifier_result": {
+        "action_supported": "yes",
+        "pdv_supported": "no",
+        "phone_supported": "yes",
+        "stored_state_compatible": "no",
+        "contradiction_present": true,
+        "contradiction_type": "missing_required_field",
+        "missing_fields": [
+          "pdv_code"
+        ],
+        "additional_fields_supported": {
+          "pdv_code": "no"
+        },
+        "correction_detected": true,
+        "new_request_detected": true,
+        "evidence_summary": [
+          "Phone number '0770000050' found in latest user message"
+        ],
+        "raw_confidence": 0.5
+      },
+      "policy_version": "hybrid-v1",
+      "created_at": "2026-07-20T09:35:47.865924"
+    }
+  ],
+  "clarifications": [],
+  "executions": [],
+  "escalations": [
+    {
+      "id": "5224fd71-bb5b-4d83-a3e0-16fdbaf3136a",
+      "reason_code": "review_correction",
+      "status": "open",
+      "summary": "Automatic execution was refused by the hybrid safety policy.",
+      "evidence": {
+        "operation_id": "8f7f1c2b-7ccd-44f8-a1af-792de48a3389",
+        "analysis": {
+          "message_kind": "new_request",
+          "referenced_existing_operation_ids": [],
+          "operations": [
+            {
+              "local_operation_id": "1",
+              "action": "otp_number_change",
+              "pdv_code": null,
+              "phone": "0770000050",
+              "additional_fields": {},
+              "missing_fields": [],
+              "evidence": [],
+              "ambiguity_reasons": [],
+              "raw_action_confidence": null,
+              "raw_field_confidence": {}
+            }
+          ],
+          "new_request_present": true,
+          "contradiction_with_stored_state": false,
+          "contradiction_details": [],
+          "unresolved_ambiguities": [
+            "pdv_code_missing"
+          ]
+        },
+        "proposal": {
+          "local_operation_id": "1",
+          "action": "otp_number_change",
+          "pdv_code": null,
+          "phone": "0770000050",
+          "additional_fields": {},
+          "missing_fields": [],
+          "evidence": [],
+          "ambiguity_reasons": [],
+          "raw_action_confidence": null,
+          "raw_field_confidence": {}
+        },
+        "verification": {
+          "action_supported": "yes",
+          "pdv_supported": "no",
+          "phone_supported": "yes",
+          "stored_state_compatible": "no",
+          "contradiction_present": true,
+          "contradiction_type": "missing_required_field",
+          "missing_fields": [
+            "pdv_code"
+          ],
+          "additional_fields_supported": {
+            "pdv_code": "no"
+          },
+          "correction_detected": true,
+          "new_request_detected": true,
+          "evidence_summary": [
+            "Phone number '0770000050' found in latest user message"
+          ],
+          "raw_confidence": 0.5
+        },
+        "reasons": [
+          "missing_required_field:pdv_code",
+          "semantic_contradiction",
+          "ambiguous_operation_or_attribution",
+          "analyzer_verifier_disagreement",
+          "required_field_evidence_incomplete",
+          "required_field_evidence_not_in_allowed_context"
+        ],
+        "hard_invariants": {
+          "authorized_sender": true,
+          "structured_output_valid": true,
+          "known_action": true,
+          "field_formats_and_completeness": false,
+          "no_correlation_conflict": true,
+          "no_previous_execution": true,
+          "operation_open": true,
+          "no_closed_history_field_source": true,
+          "required_evidence_from_allowed_context": false,
+          "configured_confidence_thresholds": true,
+          "additional_fields_allowlisted": true,
+          "additional_fields_evidence_supported": true,
+          "proposal_matches_stored_action": true,
+          "execution_mode_configured": true,
+          "input_context_complete": true
+        },
+        "email_context": {
+          "internal_email_id": "4f9ead11-35a3-44b4-8a76-8f358747e52e",
+          "sender": "Animateur Zone Iota <animateur.iota@example.invalid>",
+          "subject": "Re: [{{marker_request.request_reference}}] Telephone demande",
+          "message_id": "<i-broken-header-001@fixtures.snoc.invalid>",
+          "in_reply_to": null,
+          "references": [],
+          "latest_user_message": "Référence {{marker_request.request_reference}}.\nLe nouveau numéro demandé est 0770000050.",
+          "latest_user_message_truncated": false,
+          "raw_eml_path": "var/raw_eml/4f9ead11-35a3-44b4-8a76-8f358747e52e.eml"
+        },
+        "stored_request_state": {
+          "request_id": "ddb47040-6257-458f-8742-1279c324d8c4",
+          "public_reference": "SNOC-REQ-4F515FC65173",
+          "request_status": "ANALYZING",
+          "operations": [
+            {
+              "operation_id": "8f7f1c2b-7ccd-44f8-a1af-792de48a3389",
+              "action": "otp_number_change",
+              "status": "ESCALATED",
+              "pdv_code": null,
+              "phone": "0770000050",
+              "additional_payload": {},
+              "missing_fields": [
+                "pdv_code"
+              ],
+              "evidence": [],
+              "field_provenance": {},
+              "contradiction_data": {},
+              "current_revision": 1,
+              "final_decision": "REVIEW_CORRECTION"
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "outbox": [
+    {
+      "id": "fea22291-0da6-4de4-871e-1fd029048304",
+      "recipient": "animateur.iota@example.invalid",
+      "subject": "[SNOC-REQ-4F515FC65173] Résultat de traitement",
+      "status": "sent",
+      "retry_count": 0,
+      "last_error": null
+    }
+  ]
+}

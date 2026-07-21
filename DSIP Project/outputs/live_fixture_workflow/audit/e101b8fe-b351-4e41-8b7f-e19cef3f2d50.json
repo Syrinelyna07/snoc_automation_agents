@@ -1,0 +1,776 @@
+{
+  "email": {
+    "id": "e101b8fe-b351-4e41-8b7f-e19cef3f2d50",
+    "message_id": "<d-reused-reset-002@fixtures.snoc.invalid>",
+    "sender": "Superviseur Zone Delta <superviseur.delta@example.invalid>",
+    "recipients": [
+      "Agent SNOC <snoc-agent@example.invalid>"
+    ],
+    "subject": "Re: [SNOC-REQ-D00000000001] Creation acces VPN PDV 42000001",
+    "processing_status": "processed",
+    "imap": {
+      "mailbox": "REPLAY",
+      "uidvalidity": 1,
+      "uid": 12,
+      "flags": [],
+      "internal_date": null
+    },
+    "parsing": {
+      "automated_classification": null,
+      "warnings": [],
+      "quarantine_category": null,
+      "quarantine_message": null,
+      "context_limit_metadata": {
+        "mime_limit_warnings": [],
+        "context_limit_warnings": [],
+        "automatic_execution_allowed": true
+      }
+    },
+    "authorization": {
+      "allowed": true,
+      "reason": "sender_whitelisted"
+    },
+    "correlation": {
+      "strength": "strong",
+      "matched_by": "references",
+      "request_id": "389c7059-4b63-4f90-a927-da07106d0111",
+      "clarification_id": null,
+      "conflicts": []
+    },
+    "latest_user_message": "Bonjour,\n\nNouvelle demande indépendante : merci de réinitialiser le mot de passe du\nPDV 42000002. Ne reprenez pas l'ancien code ni l'ancien téléphone cités plus bas."
+  },
+  "model_runs": [
+    {
+      "id": "e4f420bf-d664-4d3d-a547-d4c3eee505bf",
+      "stage": "analysis",
+      "backend": "huggingface",
+      "base_model_id": "Qwen/Qwen2.5-7B-Instruct",
+      "resolved_model_id": "Qwen/Qwen2.5-7B-Instruct:cheapest",
+      "reported_provider": null,
+      "provider_request_id": "osrhGMg-6Ng1vN-a1e0f82f6ab2d65f",
+      "prompt_version": "analyzer_v1",
+      "input_context": {
+        "mode": "correlated_request_reply",
+        "subject": "Re: [SNOC-REQ-D00000000001] Creation acces VPN PDV 42000001",
+        "request_reference": "SNOC-REQ-A1E327FCFEDF",
+        "request_status": "ESCALATED",
+        "latest_user_message": "Bonjour,\nNouvelle demande indépendante : merci de réinitialiser le mot de passe du\nPDV 42000002. Ne reprenez pas l'ancien code ni l'ancien téléphone cités plus bas.",
+        "closed_history_summary": null,
+        "stored_operations": [
+          {
+            "operation_id": "17c18ce6-84a5-4db5-b6bd-eca57f6fca76",
+            "action": "vpn_access",
+            "known_fields": {
+              "pdv_code": "42000001",
+              "phone": "0770000010"
+            },
+            "missing_fields": []
+          }
+        ],
+        "numeric_candidates": [
+          {
+            "value": "42000002",
+            "raw_value": "42000002",
+            "kind_hint": "pdv_or_unknown",
+            "section": "latest_user_message",
+            "start": 87,
+            "end": 95,
+            "context": "ndépendante : merci de réinitialiser le mot de passe du\nPDV 42000002. Ne reprenez pas l'ancien code ni l'ancien téléphone cités "
+          }
+        ],
+        "automatic_execution_allowed": true,
+        "preprocessing_notes": []
+      },
+      "raw_output": "{\"message_kind\": \"new_request\", \"operations\": [{\"local_operation_id\": \"17c18ce6-84a5-4db5-b6bd-eca57f6fca76\", \"action\": \"vpn_access\", \"pdv_code\": \"42000001\", \"phone\": \"0770000010\"}, {\"local_operation_id\": \"new_operation\", \"action\": \"password_reset\", \"pdv_code\": \"42000002\", \"phone\": null}], \"new_request_present\": true, \"contradiction_with_stored_state\": false}",
+      "parsed_output": {
+        "message_kind": "new_request",
+        "referenced_existing_operation_ids": [],
+        "operations": [
+          {
+            "local_operation_id": "17c18ce6-84a5-4db5-b6bd-eca57f6fca76",
+            "action": "vpn_access",
+            "pdv_code": "42000001",
+            "phone": "0770000010",
+            "additional_fields": {},
+            "missing_fields": [],
+            "evidence": [],
+            "ambiguity_reasons": [],
+            "raw_action_confidence": null,
+            "raw_field_confidence": {}
+          },
+          {
+            "local_operation_id": "new_operation",
+            "action": "password_reset",
+            "pdv_code": "42000002",
+            "phone": null,
+            "additional_fields": {},
+            "missing_fields": [],
+            "evidence": [],
+            "ambiguity_reasons": [],
+            "raw_action_confidence": null,
+            "raw_field_confidence": {}
+          }
+        ],
+        "new_request_present": true,
+        "contradiction_with_stored_state": false,
+        "contradiction_details": [],
+        "unresolved_ambiguities": []
+      },
+      "structured_output_valid": true,
+      "structured_output_mode": "json_schema",
+      "schema_name": "EmailAnalysis",
+      "fallback_reason": null,
+      "parse_attempt_count": 1,
+      "validation_errors": [],
+      "reasoning_output": null,
+      "latency_seconds": 2.6080458240030566,
+      "request_attempt_count": 1,
+      "usage": {
+        "prompt_tokens": 728,
+        "completion_tokens": 145,
+        "total_tokens": 873
+      },
+      "cost": {
+        "input_usd": null,
+        "output_usd": null,
+        "total_usd": null,
+        "basis": "unknown",
+        "pricing_metadata": {}
+      },
+      "error": null,
+      "error_category": null,
+      "cached_from_model_run_id": null,
+      "created_at": "2026-07-20T09:34:21.676709"
+    },
+    {
+      "id": "63e5848b-99ea-4c0f-b4aa-3a11efd60376",
+      "stage": "verification",
+      "backend": "huggingface",
+      "base_model_id": "Qwen/Qwen3-8B",
+      "resolved_model_id": "Qwen/Qwen3-8B:cheapest",
+      "reported_provider": null,
+      "provider_request_id": "9914d130-92a4-440f-a5d5-e0a1f11020a2",
+      "prompt_version": "verifier_v1",
+      "input_context": {
+        "context_mode": "correlated_request_reply",
+        "latest_user_message": "Bonjour,\nNouvelle demande indépendante : merci de réinitialiser le mot de passe du\nPDV 42000002. Ne reprenez pas l'ancien code ni l'ancien téléphone cités plus bas.",
+        "stored_operation_state": {
+          "operation_id": "4e5ca25d-38f1-4748-9866-98f255d9b5e9",
+          "action": "vpn_access",
+          "pdv_code": "42000001",
+          "phone": "0770000010",
+          "missing_fields": [],
+          "status": "NEW",
+          "current_revision": 1
+        },
+        "proposed_operation": {
+          "local_operation_id": "17c18ce6-84a5-4db5-b6bd-eca57f6fca76",
+          "action": "vpn_access",
+          "pdv_code": "42000001",
+          "phone": "0770000010",
+          "additional_fields": {},
+          "missing_fields": [],
+          "evidence": [],
+          "ambiguity_reasons": [],
+          "raw_action_confidence": null,
+          "raw_field_confidence": {}
+        },
+        "candidate_evidence": [
+          {
+            "value": "42000002",
+            "raw_value": "42000002",
+            "kind_hint": "pdv_or_unknown",
+            "section": "latest_user_message",
+            "start": 87,
+            "end": 95,
+            "context": "ndépendante : merci de réinitialiser le mot de passe du\nPDV 42000002. Ne reprenez pas l'ancien code ni l'ancien téléphone cités "
+          }
+        ],
+        "correlation_strength": "new"
+      },
+      "raw_output": "{\n\n\"action_supported\": \"no\",\n\"contradiction_present\": true,\n\"contradiction_type\": \"field_mismatch\",\n\"correction_detected\": true,\n\"missing_fields\": [\"pdv_code\", \"phone\"],\n\"new_request_detected\": true,\n\"pdv_supported\": \"no\",\n\"phone_supported\": \"no\",\n\"raw_confidence\": 0.0,\n\"stored_state_compatible\": \"no\" \n}",
+      "parsed_output": {
+        "action_supported": "no",
+        "pdv_supported": "no",
+        "phone_supported": "no",
+        "stored_state_compatible": "no",
+        "contradiction_present": true,
+        "contradiction_type": "field_mismatch",
+        "missing_fields": [
+          "pdv_code",
+          "phone"
+        ],
+        "additional_fields_supported": {},
+        "correction_detected": true,
+        "new_request_detected": true,
+        "evidence_summary": [],
+        "raw_confidence": 0.0
+      },
+      "structured_output_valid": true,
+      "structured_output_mode": "json_schema",
+      "schema_name": "SemanticVerification",
+      "fallback_reason": null,
+      "parse_attempt_count": 1,
+      "validation_errors": [],
+      "reasoning_output": "Okay, let's tackle this verification. The user wants me to check if the proposed telecom support operation matches the context provided. \n\nFirst, I need to look at the latest user message. The user is asking to reset the password for PDV 42000002 and mentions not to use the old code or phone number mentioned below. The stored operation state has an operation ID, action as vpn_access, pdv_code 42000001, and phone 0770000010. The proposed operation has the same action but the pdv_code is still 42000001, and the phone is the same. However, the user is referring to PDV 42000002 in their request.\n\nThe candidate evidence shows that the user mentioned PDV 42000002 in their message. So the proposed operation's pdv_code is 42000001, which doesn't match the 42000002 in the user's request. That's a discrepancy. The stored operation state's pdv_code is 42000001, but the user is asking about 42000002. \n\nThe proposed operation's additional_fields is empty, so there's no other info there. The missing_fields in both stored and proposed are empty, but the pdv_code is incorrect. The action is vpn_access, which might be correct, but the PDV code is wrong. The user also says not to use the old code or phone, which are in the stored state. The proposed operation is using the old phone number, which the user wants to avoid. \n\nSo, the main issues are: the pdv_code in the proposed operation doesn't match the one in the user's request (42000001 vs 42000002), and the phone number is the same as the stored one, which the user says not to use. Therefore, the proposed operation has incorrect pdv_code and uses the old phone number. The missing_fields are empty, but the required fields are not properly filled. \n\nI need to mark these as contradictions. The pdv_code is wrong, and the phone should not be used. Also, the additional_fields might need to include the new PDV code. But since the proposed operation doesn't have that, it's missing. So the verification should point out these issues.",
+      "latency_seconds": 4.02365533500415,
+      "request_attempt_count": 1,
+      "usage": {
+        "prompt_tokens": 603,
+        "completion_tokens": 626,
+        "total_tokens": 1229
+      },
+      "cost": {
+        "input_usd": null,
+        "output_usd": null,
+        "total_usd": null,
+        "basis": "unknown",
+        "pricing_metadata": {}
+      },
+      "error": null,
+      "error_category": null,
+      "cached_from_model_run_id": null,
+      "created_at": "2026-07-20T09:34:25.716397"
+    },
+    {
+      "id": "5406cfc8-19f9-4f94-bb9f-cd7b30f30199",
+      "stage": "verification",
+      "backend": "huggingface",
+      "base_model_id": "Qwen/Qwen3-8B",
+      "resolved_model_id": "Qwen/Qwen3-8B:cheapest",
+      "reported_provider": null,
+      "provider_request_id": "c79832a7-7387-4d45-a14d-be5b88e2e942",
+      "prompt_version": "verifier_v1",
+      "input_context": {
+        "context_mode": "correlated_request_reply",
+        "latest_user_message": "Bonjour,\nNouvelle demande indépendante : merci de réinitialiser le mot de passe du\nPDV 42000002. Ne reprenez pas l'ancien code ni l'ancien téléphone cités plus bas.",
+        "stored_operation_state": {
+          "operation_id": "45eddf94-de81-480b-895d-2aa81f40cce8",
+          "action": "password_reset",
+          "pdv_code": "42000002",
+          "phone": null,
+          "missing_fields": [],
+          "status": "NEW",
+          "current_revision": 1
+        },
+        "proposed_operation": {
+          "local_operation_id": "new_operation",
+          "action": "password_reset",
+          "pdv_code": "42000002",
+          "phone": null,
+          "additional_fields": {},
+          "missing_fields": [],
+          "evidence": [],
+          "ambiguity_reasons": [],
+          "raw_action_confidence": null,
+          "raw_field_confidence": {}
+        },
+        "candidate_evidence": [
+          {
+            "value": "42000002",
+            "raw_value": "42000002",
+            "kind_hint": "pdv_or_unknown",
+            "section": "latest_user_message",
+            "start": 87,
+            "end": 95,
+            "context": "ndépendante : merci de réinitialiser le mot de passe du\nPDV 42000002. Ne reprenez pas l'ancien code ni l'ancien téléphone cités "
+          }
+        ],
+        "correlation_strength": "new"
+      },
+      "raw_output": "{\n\n\"action_supported\": \"yes\",\n\"additional_fields_supported\": {},\n\"contradiction_present\": false,\n\"contradiction_type\": \"none\",\n\"correction_detected\": false,\n\"new_request_detected\": false,\n\"pdv_supported\": \"yes\",\n\"phone_supported\": \"not_required\",\n\"raw_confidence\": 0.95,\n\"stored_state_compatible\": \"yes\" \n}",
+      "parsed_output": {
+        "action_supported": "yes",
+        "pdv_supported": "yes",
+        "phone_supported": "not_required",
+        "stored_state_compatible": "yes",
+        "contradiction_present": false,
+        "contradiction_type": "none",
+        "missing_fields": [],
+        "additional_fields_supported": {},
+        "correction_detected": false,
+        "new_request_detected": false,
+        "evidence_summary": [],
+        "raw_confidence": 0.95
+      },
+      "structured_output_valid": true,
+      "structured_output_mode": "json_schema",
+      "schema_name": "SemanticVerification",
+      "fallback_reason": null,
+      "parse_attempt_count": 1,
+      "validation_errors": [],
+      "reasoning_output": "Okay, let's tackle this verification. The user wants me to check if the proposed telecom support operation is valid based on the given context. \n\nFirst, I need to look at the latest user message. The user is asking to reset the password for PDV 42000002 and mentions not to use the old code or phone number mentioned below. The stored operation state has an operation ID, action as password_reset, pdv_code as 42000002, and phone is null. The missing_fields are empty, and the status is NEW.\n\nThe proposed operation has the same pdv_code, action, and phone as null. The additional_fields are empty. The candidate evidence is the pdv_code extracted from the latest message. \n\nI need to verify if all required fields are present. The action is password_reset, which is supported. The pdv_code is provided and matches. The phone is null, which might be okay if it's not required. The missing_fields are empty, so no fields are missing. The candidate evidence supports the pdv_code. \n\nWait, the user mentioned not to use the old code or phone. But the stored operation's phone is null, and the proposed operation also has phone as null. So maybe the old phone isn't needed here. The additional_fields are empty, so no extra info is required. \n\nI should check if there are any contradictions or missing fields. The pdv_code is correctly provided. The phone isn't required here since it's null. The proposed operation doesn't have any additional fields, which is fine. The evidence from the latest message supports the pdv_code. \n\nSo the verification should confirm that all required fields are present and supported by the context. No contradictions or missing fields. The status is NEW, so it's valid. The answer should be a JSON object with the verification result.",
+      "latency_seconds": 3.2316039529978298,
+      "request_attempt_count": 1,
+      "usage": {
+        "prompt_tokens": 550,
+        "completion_tokens": 475,
+        "total_tokens": 1025
+      },
+      "cost": {
+        "input_usd": null,
+        "output_usd": null,
+        "total_usd": null,
+        "basis": "unknown",
+        "pricing_metadata": {}
+      },
+      "error": null,
+      "error_category": null,
+      "cached_from_model_run_id": null,
+      "created_at": "2026-07-20T09:34:29.836254"
+    }
+  ],
+  "requests": [
+    {
+      "id": "5d42ec85-3a67-4ea2-8f5a-868b12845a64",
+      "reference": "SNOC-REQ-8D0922B2B2CE",
+      "status": "ESCALATED",
+      "request_kind": "new",
+      "escalation_reason": "Automatic execution was refused by the hybrid safety policy."
+    }
+  ],
+  "operations": [
+    {
+      "id": "4e5ca25d-38f1-4748-9866-98f255d9b5e9",
+      "request_id": "5d42ec85-3a67-4ea2-8f5a-868b12845a64",
+      "sequence_number": 1,
+      "action": "vpn_access",
+      "status": "ESCALATED",
+      "pdv_code": "42000001",
+      "phone": "0770000010",
+      "missing_fields": [],
+      "current_revision": 1,
+      "final_decision": "REVIEW_CORRECTION",
+      "execution_eligible": false,
+      "model_agreement": false
+    },
+    {
+      "id": "45eddf94-de81-480b-895d-2aa81f40cce8",
+      "request_id": "5d42ec85-3a67-4ea2-8f5a-868b12845a64",
+      "sequence_number": 2,
+      "action": "password_reset",
+      "status": "ESCALATED",
+      "pdv_code": "42000002",
+      "phone": null,
+      "missing_fields": [],
+      "current_revision": 1,
+      "final_decision": "ESCALATE",
+      "execution_eligible": false,
+      "model_agreement": false
+    }
+  ],
+  "validation_decisions": [
+    {
+      "id": "d6cc19e3-5df9-4c97-97aa-dbc309f4f590",
+      "operation_id": "4e5ca25d-38f1-4748-9866-98f255d9b5e9",
+      "decision": "REVIEW_CORRECTION",
+      "reasons": [
+        "semantic_contradiction",
+        "analyzer_verifier_disagreement",
+        "required_field_evidence_incomplete",
+        "required_field_evidence_not_in_allowed_context"
+      ],
+      "hard_invariant_results": {
+        "authorized_sender": true,
+        "structured_output_valid": true,
+        "known_action": true,
+        "field_formats_and_completeness": true,
+        "no_correlation_conflict": true,
+        "no_previous_execution": true,
+        "operation_open": true,
+        "no_closed_history_field_source": true,
+        "required_evidence_from_allowed_context": false,
+        "configured_confidence_thresholds": true,
+        "additional_fields_allowlisted": true,
+        "additional_fields_evidence_supported": true,
+        "proposal_matches_stored_action": true,
+        "execution_mode_configured": true,
+        "input_context_complete": true
+      },
+      "analyzer_result": {
+        "local_operation_id": "17c18ce6-84a5-4db5-b6bd-eca57f6fca76",
+        "action": "vpn_access",
+        "pdv_code": "42000001",
+        "phone": "0770000010",
+        "additional_fields": {},
+        "missing_fields": [],
+        "evidence": [],
+        "ambiguity_reasons": [],
+        "raw_action_confidence": null,
+        "raw_field_confidence": {}
+      },
+      "verifier_result": {
+        "action_supported": "no",
+        "pdv_supported": "no",
+        "phone_supported": "no",
+        "stored_state_compatible": "no",
+        "contradiction_present": true,
+        "contradiction_type": "field_mismatch",
+        "missing_fields": [
+          "pdv_code",
+          "phone"
+        ],
+        "additional_fields_supported": {},
+        "correction_detected": true,
+        "new_request_detected": true,
+        "evidence_summary": [],
+        "raw_confidence": 0.0
+      },
+      "policy_version": "hybrid-v1",
+      "created_at": "2026-07-20T09:34:25.717791"
+    },
+    {
+      "id": "893d1f42-569a-4536-857d-72bc20f817c2",
+      "operation_id": "45eddf94-de81-480b-895d-2aa81f40cce8",
+      "decision": "ESCALATE",
+      "reasons": [
+        "analyzer_verifier_disagreement",
+        "required_field_evidence_incomplete",
+        "required_field_evidence_not_in_allowed_context"
+      ],
+      "hard_invariant_results": {
+        "authorized_sender": true,
+        "structured_output_valid": true,
+        "known_action": true,
+        "field_formats_and_completeness": true,
+        "no_correlation_conflict": true,
+        "no_previous_execution": true,
+        "operation_open": true,
+        "no_closed_history_field_source": true,
+        "required_evidence_from_allowed_context": false,
+        "configured_confidence_thresholds": true,
+        "additional_fields_allowlisted": true,
+        "additional_fields_evidence_supported": true,
+        "proposal_matches_stored_action": true,
+        "execution_mode_configured": true,
+        "input_context_complete": true
+      },
+      "analyzer_result": {
+        "local_operation_id": "new_operation",
+        "action": "password_reset",
+        "pdv_code": "42000002",
+        "phone": null,
+        "additional_fields": {},
+        "missing_fields": [],
+        "evidence": [],
+        "ambiguity_reasons": [],
+        "raw_action_confidence": null,
+        "raw_field_confidence": {}
+      },
+      "verifier_result": {
+        "action_supported": "yes",
+        "pdv_supported": "yes",
+        "phone_supported": "not_required",
+        "stored_state_compatible": "yes",
+        "contradiction_present": false,
+        "contradiction_type": "none",
+        "missing_fields": [],
+        "additional_fields_supported": {},
+        "correction_detected": false,
+        "new_request_detected": false,
+        "evidence_summary": [],
+        "raw_confidence": 0.95
+      },
+      "policy_version": "hybrid-v1",
+      "created_at": "2026-07-20T09:34:29.838418"
+    }
+  ],
+  "clarifications": [],
+  "executions": [],
+  "escalations": [
+    {
+      "id": "385126d4-0bb2-4df4-b10e-94a0ae5b11f5",
+      "reason_code": "review_correction",
+      "status": "open",
+      "summary": "Automatic execution was refused by the hybrid safety policy.",
+      "evidence": {
+        "operation_id": "4e5ca25d-38f1-4748-9866-98f255d9b5e9",
+        "analysis": {
+          "message_kind": "new_request",
+          "referenced_existing_operation_ids": [],
+          "operations": [
+            {
+              "local_operation_id": "17c18ce6-84a5-4db5-b6bd-eca57f6fca76",
+              "action": "vpn_access",
+              "pdv_code": "42000001",
+              "phone": "0770000010",
+              "additional_fields": {},
+              "missing_fields": [],
+              "evidence": [],
+              "ambiguity_reasons": [],
+              "raw_action_confidence": null,
+              "raw_field_confidence": {}
+            },
+            {
+              "local_operation_id": "new_operation",
+              "action": "password_reset",
+              "pdv_code": "42000002",
+              "phone": null,
+              "additional_fields": {},
+              "missing_fields": [],
+              "evidence": [],
+              "ambiguity_reasons": [],
+              "raw_action_confidence": null,
+              "raw_field_confidence": {}
+            }
+          ],
+          "new_request_present": true,
+          "contradiction_with_stored_state": false,
+          "contradiction_details": [],
+          "unresolved_ambiguities": []
+        },
+        "proposal": {
+          "local_operation_id": "17c18ce6-84a5-4db5-b6bd-eca57f6fca76",
+          "action": "vpn_access",
+          "pdv_code": "42000001",
+          "phone": "0770000010",
+          "additional_fields": {},
+          "missing_fields": [],
+          "evidence": [],
+          "ambiguity_reasons": [],
+          "raw_action_confidence": null,
+          "raw_field_confidence": {}
+        },
+        "verification": {
+          "action_supported": "no",
+          "pdv_supported": "no",
+          "phone_supported": "no",
+          "stored_state_compatible": "no",
+          "contradiction_present": true,
+          "contradiction_type": "field_mismatch",
+          "missing_fields": [
+            "pdv_code",
+            "phone"
+          ],
+          "additional_fields_supported": {},
+          "correction_detected": true,
+          "new_request_detected": true,
+          "evidence_summary": [],
+          "raw_confidence": 0.0
+        },
+        "reasons": [
+          "semantic_contradiction",
+          "analyzer_verifier_disagreement",
+          "required_field_evidence_incomplete",
+          "required_field_evidence_not_in_allowed_context"
+        ],
+        "hard_invariants": {
+          "authorized_sender": true,
+          "structured_output_valid": true,
+          "known_action": true,
+          "field_formats_and_completeness": true,
+          "no_correlation_conflict": true,
+          "no_previous_execution": true,
+          "operation_open": true,
+          "no_closed_history_field_source": true,
+          "required_evidence_from_allowed_context": false,
+          "configured_confidence_thresholds": true,
+          "additional_fields_allowlisted": true,
+          "additional_fields_evidence_supported": true,
+          "proposal_matches_stored_action": true,
+          "execution_mode_configured": true,
+          "input_context_complete": true
+        },
+        "email_context": {
+          "internal_email_id": "e101b8fe-b351-4e41-8b7f-e19cef3f2d50",
+          "sender": "Superviseur Zone Delta <superviseur.delta@example.invalid>",
+          "subject": "Re: [SNOC-REQ-D00000000001] Creation acces VPN PDV 42000001",
+          "message_id": "<d-reused-reset-002@fixtures.snoc.invalid>",
+          "in_reply_to": "<completion-d-001@snoc-agent.invalid>",
+          "references": [
+            "<d-original-vpn-001@fixtures.snoc.invalid>",
+            "<completion-d-001@snoc-agent.invalid>"
+          ],
+          "latest_user_message": "Bonjour,\n\nNouvelle demande indépendante : merci de réinitialiser le mot de passe du\nPDV 42000002. Ne reprenez pas l'ancien code ni l'ancien téléphone cités plus bas.",
+          "latest_user_message_truncated": false,
+          "raw_eml_path": "var/raw_eml/e101b8fe-b351-4e41-8b7f-e19cef3f2d50.eml"
+        },
+        "stored_request_state": {
+          "request_id": "5d42ec85-3a67-4ea2-8f5a-868b12845a64",
+          "public_reference": "SNOC-REQ-8D0922B2B2CE",
+          "request_status": "ANALYZING",
+          "operations": [
+            {
+              "operation_id": "4e5ca25d-38f1-4748-9866-98f255d9b5e9",
+              "action": "vpn_access",
+              "status": "ESCALATED",
+              "pdv_code": "42000001",
+              "phone": "0770000010",
+              "additional_payload": {},
+              "missing_fields": [],
+              "evidence": [],
+              "field_provenance": {},
+              "contradiction_data": {},
+              "current_revision": 1,
+              "final_decision": "REVIEW_CORRECTION"
+            },
+            {
+              "operation_id": "45eddf94-de81-480b-895d-2aa81f40cce8",
+              "action": "password_reset",
+              "status": "NEW",
+              "pdv_code": "42000002",
+              "phone": null,
+              "additional_payload": {},
+              "missing_fields": [],
+              "evidence": [],
+              "field_provenance": {},
+              "contradiction_data": {},
+              "current_revision": 1,
+              "final_decision": null
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "1c23bb63-78fd-488f-b822-50f14c9bd159",
+      "reason_code": "escalate",
+      "status": "open",
+      "summary": "Automatic execution was refused by the hybrid safety policy.",
+      "evidence": {
+        "operation_id": "45eddf94-de81-480b-895d-2aa81f40cce8",
+        "analysis": {
+          "message_kind": "new_request",
+          "referenced_existing_operation_ids": [],
+          "operations": [
+            {
+              "local_operation_id": "17c18ce6-84a5-4db5-b6bd-eca57f6fca76",
+              "action": "vpn_access",
+              "pdv_code": "42000001",
+              "phone": "0770000010",
+              "additional_fields": {},
+              "missing_fields": [],
+              "evidence": [],
+              "ambiguity_reasons": [],
+              "raw_action_confidence": null,
+              "raw_field_confidence": {}
+            },
+            {
+              "local_operation_id": "new_operation",
+              "action": "password_reset",
+              "pdv_code": "42000002",
+              "phone": null,
+              "additional_fields": {},
+              "missing_fields": [],
+              "evidence": [],
+              "ambiguity_reasons": [],
+              "raw_action_confidence": null,
+              "raw_field_confidence": {}
+            }
+          ],
+          "new_request_present": true,
+          "contradiction_with_stored_state": false,
+          "contradiction_details": [],
+          "unresolved_ambiguities": []
+        },
+        "proposal": {
+          "local_operation_id": "new_operation",
+          "action": "password_reset",
+          "pdv_code": "42000002",
+          "phone": null,
+          "additional_fields": {},
+          "missing_fields": [],
+          "evidence": [],
+          "ambiguity_reasons": [],
+          "raw_action_confidence": null,
+          "raw_field_confidence": {}
+        },
+        "verification": {
+          "action_supported": "yes",
+          "pdv_supported": "yes",
+          "phone_supported": "not_required",
+          "stored_state_compatible": "yes",
+          "contradiction_present": false,
+          "contradiction_type": "none",
+          "missing_fields": [],
+          "additional_fields_supported": {},
+          "correction_detected": false,
+          "new_request_detected": false,
+          "evidence_summary": [],
+          "raw_confidence": 0.95
+        },
+        "reasons": [
+          "analyzer_verifier_disagreement",
+          "required_field_evidence_incomplete",
+          "required_field_evidence_not_in_allowed_context"
+        ],
+        "hard_invariants": {
+          "authorized_sender": true,
+          "structured_output_valid": true,
+          "known_action": true,
+          "field_formats_and_completeness": true,
+          "no_correlation_conflict": true,
+          "no_previous_execution": true,
+          "operation_open": true,
+          "no_closed_history_field_source": true,
+          "required_evidence_from_allowed_context": false,
+          "configured_confidence_thresholds": true,
+          "additional_fields_allowlisted": true,
+          "additional_fields_evidence_supported": true,
+          "proposal_matches_stored_action": true,
+          "execution_mode_configured": true,
+          "input_context_complete": true
+        },
+        "email_context": {
+          "internal_email_id": "e101b8fe-b351-4e41-8b7f-e19cef3f2d50",
+          "sender": "Superviseur Zone Delta <superviseur.delta@example.invalid>",
+          "subject": "Re: [SNOC-REQ-D00000000001] Creation acces VPN PDV 42000001",
+          "message_id": "<d-reused-reset-002@fixtures.snoc.invalid>",
+          "in_reply_to": "<completion-d-001@snoc-agent.invalid>",
+          "references": [
+            "<d-original-vpn-001@fixtures.snoc.invalid>",
+            "<completion-d-001@snoc-agent.invalid>"
+          ],
+          "latest_user_message": "Bonjour,\n\nNouvelle demande indépendante : merci de réinitialiser le mot de passe du\nPDV 42000002. Ne reprenez pas l'ancien code ni l'ancien téléphone cités plus bas.",
+          "latest_user_message_truncated": false,
+          "raw_eml_path": "var/raw_eml/e101b8fe-b351-4e41-8b7f-e19cef3f2d50.eml"
+        },
+        "stored_request_state": {
+          "request_id": "5d42ec85-3a67-4ea2-8f5a-868b12845a64",
+          "public_reference": "SNOC-REQ-8D0922B2B2CE",
+          "request_status": "ANALYZING",
+          "operations": [
+            {
+              "operation_id": "4e5ca25d-38f1-4748-9866-98f255d9b5e9",
+              "action": "vpn_access",
+              "status": "ESCALATED",
+              "pdv_code": "42000001",
+              "phone": "0770000010",
+              "additional_payload": {},
+              "missing_fields": [],
+              "evidence": [],
+              "field_provenance": {},
+              "contradiction_data": {},
+              "current_revision": 1,
+              "final_decision": "REVIEW_CORRECTION"
+            },
+            {
+              "operation_id": "45eddf94-de81-480b-895d-2aa81f40cce8",
+              "action": "password_reset",
+              "status": "ESCALATED",
+              "pdv_code": "42000002",
+              "phone": null,
+              "additional_payload": {},
+              "missing_fields": [],
+              "evidence": [],
+              "field_provenance": {},
+              "contradiction_data": {},
+              "current_revision": 1,
+              "final_decision": "ESCALATE"
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "outbox": [
+    {
+      "id": "5a795f8c-46ab-4ea1-bcc0-ffba4f83cd99",
+      "recipient": "superviseur.delta@example.invalid",
+      "subject": "[SNOC-REQ-8D0922B2B2CE] Résultat de traitement",
+      "status": "sent",
+      "retry_count": 0,
+      "last_error": null
+    }
+  ]
+}

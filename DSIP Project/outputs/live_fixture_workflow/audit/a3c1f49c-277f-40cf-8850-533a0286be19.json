@@ -1,0 +1,1148 @@
+{
+  "email": {
+    "id": "a3c1f49c-277f-40cf-8850-533a0286be19",
+    "message_id": "<multi-complete-005@fixtures.snoc.invalid>",
+    "sender": "Superviseur Zone Mu <superviseur.mu@example.invalid>",
+    "recipients": [
+      "Agent SNOC <snoc-agent@example.invalid>"
+    ],
+    "subject": "Plusieurs operations completes a traiter",
+    "processing_status": "processed",
+    "imap": {
+      "mailbox": "REPLAY",
+      "uidvalidity": 1,
+      "uid": 4,
+      "flags": [],
+      "internal_date": null
+    },
+    "parsing": {
+      "automated_classification": null,
+      "warnings": [],
+      "quarantine_category": null,
+      "quarantine_message": null,
+      "context_limit_metadata": {
+        "mime_limit_warnings": [],
+        "context_limit_warnings": [],
+        "automatic_execution_allowed": true
+      }
+    },
+    "authorization": {
+      "allowed": true,
+      "reason": "sender_whitelisted"
+    },
+    "correlation": {
+      "strength": "new",
+      "matched_by": "new_conversation",
+      "request_id": null,
+      "clarification_id": null,
+      "conflicts": []
+    },
+    "latest_user_message": "Bonjour,\n\nMerci de traiter les opérations indépendantes suivantes :\n\n- débloquer le compte du PDV 32500001 ;\n- réinitialiser le mot de passe du PDV 32500002 ;\n- changer le numéro OTP du PDV 32500003 vers 0770000004.\n\nToutes les informations sont confirmées."
+  },
+  "model_runs": [
+    {
+      "id": "b2230d66-8981-417c-8b18-d1c9ca15e0c4",
+      "stage": "analysis",
+      "backend": "huggingface",
+      "base_model_id": "Qwen/Qwen2.5-7B-Instruct",
+      "resolved_model_id": "Qwen/Qwen2.5-7B-Instruct:cheapest",
+      "reported_provider": null,
+      "provider_request_id": "osrgwxZ-6Ng1vN-a1e0f6ab99009bb5",
+      "prompt_version": "analyzer_v1",
+      "input_context": {
+        "mode": "new_request",
+        "subject": "Plusieurs operations completes a traiter",
+        "latest_user_message": "Bonjour,\nMerci de traiter les opérations indépendantes suivantes :\n- débloquer le compte du PDV 32500001 ;\n- réinitialiser le mot de passe du PDV 32500002 ;\n- changer le numéro OTP du PDV 32500003 vers 0770000004.\nToutes les informations sont confirmées.",
+        "text_since_last_closed_request": "Bonjour,\nMerci de traiter les opérations indépendantes suivantes :\n- débloquer le compte du PDV 32500001 ;\n- réinitialiser le mot de passe du PDV 32500002 ;\n- changer le numéro OTP du PDV 32500003 vers 0770000004.\nToutes les informations sont confirmées.",
+        "numeric_candidates": [
+          {
+            "value": "32500001",
+            "raw_value": "32500001",
+            "kind_hint": "pdv_or_unknown",
+            "section": "latest_user_message",
+            "start": 96,
+            "end": 104,
+            "context": "ions indépendantes suivantes :\n- débloquer le compte du PDV 32500001 ;\n- réinitialiser le mot de passe du PDV 32500002 ;\n- chang"
+          },
+          {
+            "value": "32500002",
+            "raw_value": "32500002",
+            "kind_hint": "pdv_or_unknown",
+            "section": "latest_user_message",
+            "start": 146,
+            "end": 154,
+            "context": "te du PDV 32500001 ;\n- réinitialiser le mot de passe du PDV 32500002 ;\n- changer le numéro OTP du PDV 32500003 vers 0770000004.\n"
+          },
+          {
+            "value": "32500003",
+            "raw_value": "32500003",
+            "kind_hint": "pdv_or_unknown",
+            "section": "latest_user_message",
+            "start": 188,
+            "end": 196,
+            "context": "t de passe du PDV 32500002 ;\n- changer le numéro OTP du PDV 32500003 vers 0770000004.\nToutes les informations sont confirmées."
+          },
+          {
+            "value": "0770000004",
+            "raw_value": "0770000004",
+            "kind_hint": "phone_or_unknown",
+            "section": "latest_user_message",
+            "start": 202,
+            "end": 212,
+            "context": "PDV 32500002 ;\n- changer le numéro OTP du PDV 32500003 vers 0770000004.\nToutes les informations sont confirmées."
+          }
+        ],
+        "closed_history_summary": null,
+        "preprocessing_notes": [],
+        "segmentation_confidence": 0.8
+      },
+      "raw_output": "{\"message_kind\": \"new_request\", \"operations\": [{\"local_operation_id\": \"1\", \"action\": \"account_unblock\", \"pdv_code\": \"32500001\", \"phone\": null}, {\"local_operation_id\": \"2\", \"action\": \"password_reset\", \"pdv_code\": \"32500002\", \"phone\": null}, {\"local_operation_id\": \"3\", \"action\": \"otp_number_change\", \"pdv_code\": \"32500003\", \"phone\": \"0770000004\"}], \"new_request_present\": true, \"contradiction_with_stored_state\": false}",
+      "parsed_output": {
+        "message_kind": "new_request",
+        "referenced_existing_operation_ids": [],
+        "operations": [
+          {
+            "local_operation_id": "1",
+            "action": "account_unblock",
+            "pdv_code": "32500001",
+            "phone": null,
+            "additional_fields": {},
+            "missing_fields": [],
+            "evidence": [],
+            "ambiguity_reasons": [],
+            "raw_action_confidence": null,
+            "raw_field_confidence": {}
+          },
+          {
+            "local_operation_id": "2",
+            "action": "password_reset",
+            "pdv_code": "32500002",
+            "phone": null,
+            "additional_fields": {},
+            "missing_fields": [],
+            "evidence": [],
+            "ambiguity_reasons": [],
+            "raw_action_confidence": null,
+            "raw_field_confidence": {}
+          },
+          {
+            "local_operation_id": "3",
+            "action": "otp_number_change",
+            "pdv_code": "32500003",
+            "phone": "0770000004",
+            "additional_fields": {},
+            "missing_fields": [],
+            "evidence": [],
+            "ambiguity_reasons": [],
+            "raw_action_confidence": null,
+            "raw_field_confidence": {}
+          }
+        ],
+        "new_request_present": true,
+        "contradiction_with_stored_state": false,
+        "contradiction_details": [],
+        "unresolved_ambiguities": []
+      },
+      "structured_output_valid": true,
+      "structured_output_mode": "json_schema",
+      "schema_name": "EmailAnalysis",
+      "fallback_reason": null,
+      "parse_attempt_count": 1,
+      "validation_errors": [],
+      "reasoning_output": null,
+      "latency_seconds": 1.8982395499988343,
+      "request_attempt_count": 1,
+      "usage": {
+        "prompt_tokens": 1133,
+        "completion_tokens": 157,
+        "total_tokens": 1290
+      },
+      "cost": {
+        "input_usd": null,
+        "output_usd": null,
+        "total_usd": null,
+        "basis": "unknown",
+        "pricing_metadata": {}
+      },
+      "error": null,
+      "error_category": null,
+      "cached_from_model_run_id": null,
+      "created_at": "2026-07-20T09:33:18.936083"
+    },
+    {
+      "id": "3b89775f-7f51-4a7d-a121-7dc2888d1521",
+      "stage": "verification",
+      "backend": "huggingface",
+      "base_model_id": "Qwen/Qwen3-8B",
+      "resolved_model_id": "Qwen/Qwen3-8B:cheapest",
+      "reported_provider": null,
+      "provider_request_id": "c4db7657-a166-40dc-bbfd-b7f685db66dd",
+      "prompt_version": "verifier_v1",
+      "input_context": {
+        "context_mode": "new_request",
+        "latest_user_message": "Bonjour,\nMerci de traiter les opérations indépendantes suivantes :\n- débloquer le compte du PDV 32500001 ;\n- réinitialiser le mot de passe du PDV 32500002 ;\n- changer le numéro OTP du PDV 32500003 vers 0770000004.\nToutes les informations sont confirmées.",
+        "stored_operation_state": {
+          "operation_id": "a6297362-4a14-404a-b0bb-0b473abe5169",
+          "action": "account_unblock",
+          "pdv_code": "32500001",
+          "phone": null,
+          "missing_fields": [],
+          "status": "NEW",
+          "current_revision": 1
+        },
+        "proposed_operation": {
+          "local_operation_id": "1",
+          "action": "account_unblock",
+          "pdv_code": "32500001",
+          "phone": null,
+          "additional_fields": {},
+          "missing_fields": [],
+          "evidence": [],
+          "ambiguity_reasons": [],
+          "raw_action_confidence": null,
+          "raw_field_confidence": {}
+        },
+        "candidate_evidence": [
+          {
+            "value": "32500001",
+            "raw_value": "32500001",
+            "kind_hint": "pdv_or_unknown",
+            "section": "latest_user_message",
+            "start": 96,
+            "end": 104,
+            "context": "ions indépendantes suivantes :\n- débloquer le compte du PDV 32500001 ;\n- réinitialiser le mot de passe du PDV 32500002 ;\n- chang"
+          },
+          {
+            "value": "32500002",
+            "raw_value": "32500002",
+            "kind_hint": "pdv_or_unknown",
+            "section": "latest_user_message",
+            "start": 146,
+            "end": 154,
+            "context": "te du PDV 32500001 ;\n- réinitialiser le mot de passe du PDV 32500002 ;\n- changer le numéro OTP du PDV 32500003 vers 0770000004.\n"
+          },
+          {
+            "value": "32500003",
+            "raw_value": "32500003",
+            "kind_hint": "pdv_or_unknown",
+            "section": "latest_user_message",
+            "start": 188,
+            "end": 196,
+            "context": "t de passe du PDV 32500002 ;\n- changer le numéro OTP du PDV 32500003 vers 0770000004.\nToutes les informations sont confirmées."
+          },
+          {
+            "value": "0770000004",
+            "raw_value": "0770000004",
+            "kind_hint": "phone_or_unknown",
+            "section": "latest_user_message",
+            "start": 202,
+            "end": 212,
+            "context": "PDV 32500002 ;\n- changer le numéro OTP du PDV 32500003 vers 0770000004.\nToutes les informations sont confirmées."
+          }
+        ],
+        "correlation_strength": "new"
+      },
+      "raw_output": "{\n\n\"action_supported\": \"yes\",\n\"additional_fields_supported\": {\n  \"phone\": \"no\",\n  \"pdv_code\": \"yes\"\n},\n\"contradiction_present\": false,\n\"contradiction_type\": \"none\",\n\"correction_detected\": false,\n\"new_request_detected\": true,\n\"pdv_supported\": \"yes\",\n\"phone_supported\": \"no\",\n\"raw_confidence\": 0.95,\n\"stored_state_compatible\": \"yes\" \n}",
+      "parsed_output": {
+        "action_supported": "yes",
+        "pdv_supported": "yes",
+        "phone_supported": "no",
+        "stored_state_compatible": "yes",
+        "contradiction_present": false,
+        "contradiction_type": "none",
+        "missing_fields": [],
+        "additional_fields_supported": {
+          "phone": "no",
+          "pdv_code": "yes"
+        },
+        "correction_detected": false,
+        "new_request_detected": true,
+        "evidence_summary": [],
+        "raw_confidence": 0.95
+      },
+      "structured_output_valid": true,
+      "structured_output_mode": "json_schema",
+      "schema_name": "SemanticVerification",
+      "fallback_reason": null,
+      "parse_attempt_count": 1,
+      "validation_errors": [],
+      "reasoning_output": "Okay, let's tackle this verification. The user provided a context where they want to check a proposed telecom support operation. The main task is to verify if the proposed operation matches the latest user message and stored state.\n\nFirst, looking at the latest user message, they listed three operations: unblock PDV 32500001, reset password for PDV 32500002, and change OTP number for PDV 32500003 to 0770000004. The stored_operation_state has an operation_id with action \"account_unblock\" for PDV 32500001. The proposed_operation is for the same PDV 32500001, action \"account_unblock\", and no phone number. \n\nThe candidate_evidence includes the PDV codes and the phone number. The first operation in the user message is to unblock PDV 32500001, which matches the stored_operation_state. The proposed_operation's action and PDV code align with this. However, the user message also mentions other operations, but the proposed_operation only covers the first one. \n\nThe additional_fields in the proposed_operation are empty, which is okay since the action doesn't require them. The phone field is null, which is correct because the action is account unblock, not requiring a phone number. The stored_operation_state's missing_fields are empty, so that's good. \n\nBut wait, the user message has three operations, but the proposed_operation is only for the first one. The verification context says the stored_operation_state is for PDV 32500001. The other operations (password reset and OTP change) aren't in the proposed_operation. However, the task is to verify the proposed operation against the context. Since the proposed_operation is for the first action, and the stored state matches, it's valid. \n\nNo contradictions or missing fields here. The phone isn't needed for unblock. The candidate_evidence has the PDV code correctly extracted. So the verification should confirm that the proposed operation is supported based on the latest message and stored state.",
+      "latency_seconds": 3.7721139499990386,
+      "request_attempt_count": 1,
+      "usage": {
+        "prompt_tokens": 987,
+        "completion_tokens": 564,
+        "total_tokens": 1551
+      },
+      "cost": {
+        "input_usd": null,
+        "output_usd": null,
+        "total_usd": null,
+        "basis": "unknown",
+        "pricing_metadata": {}
+      },
+      "error": null,
+      "error_category": null,
+      "cached_from_model_run_id": null,
+      "created_at": "2026-07-20T09:33:22.723981"
+    },
+    {
+      "id": "3c26adc7-5324-45e9-8454-015f58eb648f",
+      "stage": "verification",
+      "backend": "huggingface",
+      "base_model_id": "Qwen/Qwen3-8B",
+      "resolved_model_id": "Qwen/Qwen3-8B:cheapest",
+      "reported_provider": null,
+      "provider_request_id": "9a8e8f85-7634-414e-92fa-a67e505ef116",
+      "prompt_version": "verifier_v1",
+      "input_context": {
+        "context_mode": "new_request",
+        "latest_user_message": "Bonjour,\nMerci de traiter les opérations indépendantes suivantes :\n- débloquer le compte du PDV 32500001 ;\n- réinitialiser le mot de passe du PDV 32500002 ;\n- changer le numéro OTP du PDV 32500003 vers 0770000004.\nToutes les informations sont confirmées.",
+        "stored_operation_state": {
+          "operation_id": "32e2d2b8-b8db-484e-a08f-b03500fdc60e",
+          "action": "password_reset",
+          "pdv_code": "32500002",
+          "phone": null,
+          "missing_fields": [],
+          "status": "NEW",
+          "current_revision": 1
+        },
+        "proposed_operation": {
+          "local_operation_id": "2",
+          "action": "password_reset",
+          "pdv_code": "32500002",
+          "phone": null,
+          "additional_fields": {},
+          "missing_fields": [],
+          "evidence": [],
+          "ambiguity_reasons": [],
+          "raw_action_confidence": null,
+          "raw_field_confidence": {}
+        },
+        "candidate_evidence": [
+          {
+            "value": "32500001",
+            "raw_value": "32500001",
+            "kind_hint": "pdv_or_unknown",
+            "section": "latest_user_message",
+            "start": 96,
+            "end": 104,
+            "context": "ions indépendantes suivantes :\n- débloquer le compte du PDV 32500001 ;\n- réinitialiser le mot de passe du PDV 32500002 ;\n- chang"
+          },
+          {
+            "value": "32500002",
+            "raw_value": "32500002",
+            "kind_hint": "pdv_or_unknown",
+            "section": "latest_user_message",
+            "start": 146,
+            "end": 154,
+            "context": "te du PDV 32500001 ;\n- réinitialiser le mot de passe du PDV 32500002 ;\n- changer le numéro OTP du PDV 32500003 vers 0770000004.\n"
+          },
+          {
+            "value": "32500003",
+            "raw_value": "32500003",
+            "kind_hint": "pdv_or_unknown",
+            "section": "latest_user_message",
+            "start": 188,
+            "end": 196,
+            "context": "t de passe du PDV 32500002 ;\n- changer le numéro OTP du PDV 32500003 vers 0770000004.\nToutes les informations sont confirmées."
+          },
+          {
+            "value": "0770000004",
+            "raw_value": "0770000004",
+            "kind_hint": "phone_or_unknown",
+            "section": "latest_user_message",
+            "start": 202,
+            "end": 212,
+            "context": "PDV 32500002 ;\n- changer le numéro OTP du PDV 32500003 vers 0770000004.\nToutes les informations sont confirmées."
+          }
+        ],
+        "correlation_strength": "new"
+      },
+      "raw_output": "",
+      "parsed_output": {},
+      "structured_output_valid": false,
+      "structured_output_mode": "json_schema",
+      "schema_name": "SemanticVerification",
+      "fallback_reason": null,
+      "parse_attempt_count": 1,
+      "validation_errors": [
+        {
+          "attempt": 1,
+          "message": "model response is not a single JSON value: Expecting value: line 1 column 1 (char 0)"
+        }
+      ],
+      "reasoning_output": "Okay, let's tackle this verification. The user provided a context where they want to check a proposed telecom support operation against the given information. The main task is to ensure that the proposed operation is correctly supported by the latest user message and stored state.\n\nFirst, I need to look at the latest user message. The user is asking to perform three independent operations: unlock PDV 32500001, reset the password for PDV 32500002, and change the OTP number of PDV 32500003 to 0770000004. They confirm all information is correct.\n\nNow, the stored_operation_state has an operation_id with action \"password_reset\" for PDV 32500002. The proposed_operation is for the same PDV, action \"password_reset\", and the same PDV code. The phone is null here. The candidate_evidence includes the PDV codes and the phone number for PDV 32500003.\n\nThe proposed_operation's additional_fields is empty. The action is password_reset, which matches the stored operation. The PDV code is 32500002, which is in the user message. However, the user message mentions three separate operations. The stored_operation_state is for PDV 32500002, which is the second item in the user's list. The proposed_operation is for the same PDV, so that's consistent. \n\nBut wait, the user's message includes three operations. The stored_operation_state is for the password reset of PDV 32500002. The proposed_operation is also for that same PDV. However, the user's message also mentions changing the OTP for PDV 32500003. The candidate_evidence includes the phone number 0770000004 for PDV 32500003, but the proposed_operation doesn't mention that. \n\nThe proposed_operation's phone is null, which is okay because the action is password_reset, and maybe the phone isn't required here. However, the user's message mentions changing the OTP number for PDV 32500003, which might require a phone number. But the proposed_operation is for PDV 32500002, so maybe that's a separate operation. \n\nWait, the stored_operation_state is for PDV 32500002, and the proposed_operation is the same. The user's message includes three operations, but the stored_operation_state is only for the second one. The proposed_operation is for the same PDV, so it's valid. However, the user's message also mentions the third operation (changing OTP for PDV 32500003), but that's not part of the stored_operation_state. \n\nBut the task is to verify the proposed_operation against the context. The proposed_operation is for PDV 32500002, which is in the user's message. The stored_operation_state is for the same PDV, so the proposed_operation is correctly aligned. The phone is null, but maybe that's acceptable. The additional_fields is empty, which is okay. \n\nWait, the",
+      "latency_seconds": 4.680954426999961,
+      "request_attempt_count": 1,
+      "usage": {
+        "prompt_tokens": 983,
+        "completion_tokens": 700,
+        "total_tokens": 1683
+      },
+      "cost": {
+        "input_usd": null,
+        "output_usd": null,
+        "total_usd": null,
+        "basis": "unknown",
+        "pricing_metadata": {}
+      },
+      "error": "structured response failed validation after 1 parse attempt(s)",
+      "error_category": "malformed_output",
+      "cached_from_model_run_id": null,
+      "created_at": "2026-07-20T09:33:27.435484"
+    },
+    {
+      "id": "c2d40bbc-1db0-4325-b7fe-6d6beb7ec38b",
+      "stage": "verification",
+      "backend": "huggingface",
+      "base_model_id": "Qwen/Qwen3-8B",
+      "resolved_model_id": "Qwen/Qwen3-8B:cheapest",
+      "reported_provider": null,
+      "provider_request_id": "a84d86a6-4540-462d-8d24-069286483acc",
+      "prompt_version": "verifier_v1",
+      "input_context": {
+        "context_mode": "new_request",
+        "latest_user_message": "Bonjour,\nMerci de traiter les opérations indépendantes suivantes :\n- débloquer le compte du PDV 32500001 ;\n- réinitialiser le mot de passe du PDV 32500002 ;\n- changer le numéro OTP du PDV 32500003 vers 0770000004.\nToutes les informations sont confirmées.",
+        "stored_operation_state": {
+          "operation_id": "19b5f4d6-dcb8-40ac-a408-6d5773225449",
+          "action": "otp_number_change",
+          "pdv_code": "32500003",
+          "phone": "0770000004",
+          "missing_fields": [],
+          "status": "NEW",
+          "current_revision": 1
+        },
+        "proposed_operation": {
+          "local_operation_id": "3",
+          "action": "otp_number_change",
+          "pdv_code": "32500003",
+          "phone": "0770000004",
+          "additional_fields": {},
+          "missing_fields": [],
+          "evidence": [],
+          "ambiguity_reasons": [],
+          "raw_action_confidence": null,
+          "raw_field_confidence": {}
+        },
+        "candidate_evidence": [
+          {
+            "value": "32500001",
+            "raw_value": "32500001",
+            "kind_hint": "pdv_or_unknown",
+            "section": "latest_user_message",
+            "start": 96,
+            "end": 104,
+            "context": "ions indépendantes suivantes :\n- débloquer le compte du PDV 32500001 ;\n- réinitialiser le mot de passe du PDV 32500002 ;\n- chang"
+          },
+          {
+            "value": "32500002",
+            "raw_value": "32500002",
+            "kind_hint": "pdv_or_unknown",
+            "section": "latest_user_message",
+            "start": 146,
+            "end": 154,
+            "context": "te du PDV 32500001 ;\n- réinitialiser le mot de passe du PDV 32500002 ;\n- changer le numéro OTP du PDV 32500003 vers 0770000004.\n"
+          },
+          {
+            "value": "32500003",
+            "raw_value": "32500003",
+            "kind_hint": "pdv_or_unknown",
+            "section": "latest_user_message",
+            "start": 188,
+            "end": 196,
+            "context": "t de passe du PDV 32500002 ;\n- changer le numéro OTP du PDV 32500003 vers 0770000004.\nToutes les informations sont confirmées."
+          },
+          {
+            "value": "0770000004",
+            "raw_value": "0770000004",
+            "kind_hint": "phone_or_unknown",
+            "section": "latest_user_message",
+            "start": 202,
+            "end": 212,
+            "context": "PDV 32500002 ;\n- changer le numéro OTP du PDV 32500003 vers 0770000004.\nToutes les informations sont confirmées."
+          }
+        ],
+        "correlation_strength": "new"
+      },
+      "raw_output": "{\n\n\"action_supported\": \"yes\",\n\"additional_fields_supported\": {},\n\"contradiction_present\": false,\n\"contradiction_type\": \"none\",\n\"correction_detected\": false,\n\"new_request_detected\": true,\n\"pdv_supported\": \"yes\",\n\"phone_supported\": \"yes\",\n\"raw_confidence\": null,\n\"stored_state_compatible\": \"yes\" \n}",
+      "parsed_output": {
+        "action_supported": "yes",
+        "pdv_supported": "yes",
+        "phone_supported": "yes",
+        "stored_state_compatible": "yes",
+        "contradiction_present": false,
+        "contradiction_type": "none",
+        "missing_fields": [],
+        "additional_fields_supported": {},
+        "correction_detected": false,
+        "new_request_detected": true,
+        "evidence_summary": [],
+        "raw_confidence": null
+      },
+      "structured_output_valid": true,
+      "structured_output_mode": "json_schema",
+      "schema_name": "SemanticVerification",
+      "fallback_reason": null,
+      "parse_attempt_count": 1,
+      "validation_errors": [],
+      "reasoning_output": "Okay, let's tackle this verification. The user provided a context where they want to check a proposed telecom support operation against the given information. The main task is to ensure that the proposed operation is correctly supported by the latest message and stored state.\n\nFirst, I need to look at the latest user message. They mentioned three independent operations: unlocking PDV 32500001, resetting the password for PDV 32500002, and changing the OTP number for PDV 32500003 to 0770000004. All info is confirmed.\n\nNow, the stored_operation_state has an operation_id with action \"otp_number_change\" for PDV 32500003, phone 0770000004, status NEW, and no missing fields. The proposed_operation is for the same PDV and phone, action otp_number_change, with no additional fields. The candidate_evidence includes the PDV codes and phone number from the user message.\n\nThe verification needs to check if the proposed operation is correctly derived from the context. The action in the proposed operation matches the user's request for changing the OTP number. The PDV code 32500003 and phone 0770000004 are directly quoted from the user message, so they are supported. The stored_operation_state's action is the same as the proposed one, so that's consistent. The missing_fields are empty, which is correct because all required info is present. The candidate_evidence has the necessary values, so there's no missing data. \n\nI should check if there are any contradictions or missing fields. The user message confirms all info, so the proposed operation is valid. The additional_fields in the proposed operation are empty, which is okay. The stored_operation_state's action is otp_number_change, which matches the proposed action. \n\nNo contradictions here. All required fields are present in the latest message. The status is NEW, which aligns with the stored state. The correlation_strength is \"new\", which might indicate it's a new request, but since the stored operation is already marked as NEW, that's consistent. \n\nSo the verification should confirm that the proposed operation is valid, with all fields supported by the context. No errors or missing fields. The answer should be a JSON object indicating that the operation is valid with the given fields.",
+      "latency_seconds": 4.069724423003208,
+      "request_attempt_count": 1,
+      "usage": {
+        "prompt_tokens": 1007,
+        "completion_tokens": 593,
+        "total_tokens": 1600
+      },
+      "cost": {
+        "input_usd": null,
+        "output_usd": null,
+        "total_usd": null,
+        "basis": "unknown",
+        "pricing_metadata": {}
+      },
+      "error": null,
+      "error_category": null,
+      "cached_from_model_run_id": null,
+      "created_at": "2026-07-20T09:33:31.535709"
+    }
+  ],
+  "requests": [
+    {
+      "id": "15468cfe-07ac-494e-a63a-e1b4367f5bd4",
+      "reference": "SNOC-REQ-1D8C0CBCF5E4",
+      "status": "ESCALATED",
+      "request_kind": "new",
+      "escalation_reason": "Automatic execution was refused by the hybrid safety policy."
+    }
+  ],
+  "operations": [
+    {
+      "id": "a6297362-4a14-404a-b0bb-0b473abe5169",
+      "request_id": "15468cfe-07ac-494e-a63a-e1b4367f5bd4",
+      "sequence_number": 1,
+      "action": "account_unblock",
+      "status": "ESCALATED",
+      "pdv_code": "32500001",
+      "phone": null,
+      "missing_fields": [],
+      "current_revision": 1,
+      "final_decision": "ESCALATE",
+      "execution_eligible": false,
+      "model_agreement": false
+    },
+    {
+      "id": "32e2d2b8-b8db-484e-a08f-b03500fdc60e",
+      "request_id": "15468cfe-07ac-494e-a63a-e1b4367f5bd4",
+      "sequence_number": 2,
+      "action": "password_reset",
+      "status": "ESCALATED",
+      "pdv_code": "32500002",
+      "phone": null,
+      "missing_fields": [],
+      "current_revision": 1,
+      "final_decision": "ESCALATE",
+      "execution_eligible": false,
+      "model_agreement": null
+    },
+    {
+      "id": "19b5f4d6-dcb8-40ac-a408-6d5773225449",
+      "request_id": "15468cfe-07ac-494e-a63a-e1b4367f5bd4",
+      "sequence_number": 3,
+      "action": "otp_number_change",
+      "status": "ESCALATED",
+      "pdv_code": "32500003",
+      "phone": "0770000004",
+      "missing_fields": [],
+      "current_revision": 1,
+      "final_decision": "ESCALATE",
+      "execution_eligible": false,
+      "model_agreement": false
+    }
+  ],
+  "validation_decisions": [
+    {
+      "id": "96a42068-79c9-45d8-aacf-549d5afe9806",
+      "operation_id": "a6297362-4a14-404a-b0bb-0b473abe5169",
+      "decision": "ESCALATE",
+      "reasons": [
+        "analyzer_verifier_disagreement",
+        "required_field_evidence_incomplete",
+        "required_field_evidence_not_in_allowed_context"
+      ],
+      "hard_invariant_results": {
+        "authorized_sender": true,
+        "structured_output_valid": true,
+        "known_action": true,
+        "field_formats_and_completeness": true,
+        "no_correlation_conflict": true,
+        "no_previous_execution": true,
+        "operation_open": true,
+        "no_closed_history_field_source": true,
+        "required_evidence_from_allowed_context": false,
+        "configured_confidence_thresholds": true,
+        "additional_fields_allowlisted": true,
+        "additional_fields_evidence_supported": true,
+        "proposal_matches_stored_action": true,
+        "execution_mode_configured": true,
+        "input_context_complete": true
+      },
+      "analyzer_result": {
+        "local_operation_id": "1",
+        "action": "account_unblock",
+        "pdv_code": "32500001",
+        "phone": null,
+        "additional_fields": {},
+        "missing_fields": [],
+        "evidence": [],
+        "ambiguity_reasons": [],
+        "raw_action_confidence": null,
+        "raw_field_confidence": {}
+      },
+      "verifier_result": {
+        "action_supported": "yes",
+        "pdv_supported": "yes",
+        "phone_supported": "no",
+        "stored_state_compatible": "yes",
+        "contradiction_present": false,
+        "contradiction_type": "none",
+        "missing_fields": [],
+        "additional_fields_supported": {
+          "phone": "no",
+          "pdv_code": "yes"
+        },
+        "correction_detected": false,
+        "new_request_detected": true,
+        "evidence_summary": [],
+        "raw_confidence": 0.95
+      },
+      "policy_version": "hybrid-v1",
+      "created_at": "2026-07-20T09:33:22.725848"
+    },
+    {
+      "id": "0a2a69c9-302e-434d-9dfa-0e5b4687012f",
+      "operation_id": "19b5f4d6-dcb8-40ac-a408-6d5773225449",
+      "decision": "ESCALATE",
+      "reasons": [
+        "analyzer_verifier_disagreement",
+        "required_field_evidence_incomplete",
+        "required_field_evidence_not_in_allowed_context"
+      ],
+      "hard_invariant_results": {
+        "authorized_sender": true,
+        "structured_output_valid": true,
+        "known_action": true,
+        "field_formats_and_completeness": true,
+        "no_correlation_conflict": true,
+        "no_previous_execution": true,
+        "operation_open": true,
+        "no_closed_history_field_source": true,
+        "required_evidence_from_allowed_context": false,
+        "configured_confidence_thresholds": true,
+        "additional_fields_allowlisted": true,
+        "additional_fields_evidence_supported": true,
+        "proposal_matches_stored_action": true,
+        "execution_mode_configured": true,
+        "input_context_complete": true
+      },
+      "analyzer_result": {
+        "local_operation_id": "3",
+        "action": "otp_number_change",
+        "pdv_code": "32500003",
+        "phone": "0770000004",
+        "additional_fields": {},
+        "missing_fields": [],
+        "evidence": [],
+        "ambiguity_reasons": [],
+        "raw_action_confidence": null,
+        "raw_field_confidence": {}
+      },
+      "verifier_result": {
+        "action_supported": "yes",
+        "pdv_supported": "yes",
+        "phone_supported": "yes",
+        "stored_state_compatible": "yes",
+        "contradiction_present": false,
+        "contradiction_type": "none",
+        "missing_fields": [],
+        "additional_fields_supported": {},
+        "correction_detected": false,
+        "new_request_detected": true,
+        "evidence_summary": [],
+        "raw_confidence": null
+      },
+      "policy_version": "hybrid-v1",
+      "created_at": "2026-07-20T09:33:31.537667"
+    }
+  ],
+  "clarifications": [],
+  "executions": [],
+  "escalations": [
+    {
+      "id": "3655ea4a-9e25-4e76-921f-5faa5fce6d31",
+      "reason_code": "escalate",
+      "status": "open",
+      "summary": "Automatic execution was refused by the hybrid safety policy.",
+      "evidence": {
+        "operation_id": "a6297362-4a14-404a-b0bb-0b473abe5169",
+        "analysis": {
+          "message_kind": "new_request",
+          "referenced_existing_operation_ids": [],
+          "operations": [
+            {
+              "local_operation_id": "1",
+              "action": "account_unblock",
+              "pdv_code": "32500001",
+              "phone": null,
+              "additional_fields": {},
+              "missing_fields": [],
+              "evidence": [],
+              "ambiguity_reasons": [],
+              "raw_action_confidence": null,
+              "raw_field_confidence": {}
+            },
+            {
+              "local_operation_id": "2",
+              "action": "password_reset",
+              "pdv_code": "32500002",
+              "phone": null,
+              "additional_fields": {},
+              "missing_fields": [],
+              "evidence": [],
+              "ambiguity_reasons": [],
+              "raw_action_confidence": null,
+              "raw_field_confidence": {}
+            },
+            {
+              "local_operation_id": "3",
+              "action": "otp_number_change",
+              "pdv_code": "32500003",
+              "phone": "0770000004",
+              "additional_fields": {},
+              "missing_fields": [],
+              "evidence": [],
+              "ambiguity_reasons": [],
+              "raw_action_confidence": null,
+              "raw_field_confidence": {}
+            }
+          ],
+          "new_request_present": true,
+          "contradiction_with_stored_state": false,
+          "contradiction_details": [],
+          "unresolved_ambiguities": []
+        },
+        "proposal": {
+          "local_operation_id": "1",
+          "action": "account_unblock",
+          "pdv_code": "32500001",
+          "phone": null,
+          "additional_fields": {},
+          "missing_fields": [],
+          "evidence": [],
+          "ambiguity_reasons": [],
+          "raw_action_confidence": null,
+          "raw_field_confidence": {}
+        },
+        "verification": {
+          "action_supported": "yes",
+          "pdv_supported": "yes",
+          "phone_supported": "no",
+          "stored_state_compatible": "yes",
+          "contradiction_present": false,
+          "contradiction_type": "none",
+          "missing_fields": [],
+          "additional_fields_supported": {
+            "phone": "no",
+            "pdv_code": "yes"
+          },
+          "correction_detected": false,
+          "new_request_detected": true,
+          "evidence_summary": [],
+          "raw_confidence": 0.95
+        },
+        "reasons": [
+          "analyzer_verifier_disagreement",
+          "required_field_evidence_incomplete",
+          "required_field_evidence_not_in_allowed_context"
+        ],
+        "hard_invariants": {
+          "authorized_sender": true,
+          "structured_output_valid": true,
+          "known_action": true,
+          "field_formats_and_completeness": true,
+          "no_correlation_conflict": true,
+          "no_previous_execution": true,
+          "operation_open": true,
+          "no_closed_history_field_source": true,
+          "required_evidence_from_allowed_context": false,
+          "configured_confidence_thresholds": true,
+          "additional_fields_allowlisted": true,
+          "additional_fields_evidence_supported": true,
+          "proposal_matches_stored_action": true,
+          "execution_mode_configured": true,
+          "input_context_complete": true
+        },
+        "email_context": {
+          "internal_email_id": "a3c1f49c-277f-40cf-8850-533a0286be19",
+          "sender": "Superviseur Zone Mu <superviseur.mu@example.invalid>",
+          "subject": "Plusieurs operations completes a traiter",
+          "message_id": "<multi-complete-005@fixtures.snoc.invalid>",
+          "in_reply_to": null,
+          "references": [],
+          "latest_user_message": "Bonjour,\n\nMerci de traiter les opérations indépendantes suivantes :\n\n- débloquer le compte du PDV 32500001 ;\n- réinitialiser le mot de passe du PDV 32500002 ;\n- changer le numéro OTP du PDV 32500003 vers 0770000004.\n\nToutes les informations sont confirmées.",
+          "latest_user_message_truncated": false,
+          "raw_eml_path": "var/raw_eml/a3c1f49c-277f-40cf-8850-533a0286be19.eml"
+        },
+        "stored_request_state": {
+          "request_id": "15468cfe-07ac-494e-a63a-e1b4367f5bd4",
+          "public_reference": "SNOC-REQ-1D8C0CBCF5E4",
+          "request_status": "ANALYZING",
+          "operations": [
+            {
+              "operation_id": "a6297362-4a14-404a-b0bb-0b473abe5169",
+              "action": "account_unblock",
+              "status": "ESCALATED",
+              "pdv_code": "32500001",
+              "phone": null,
+              "additional_payload": {},
+              "missing_fields": [],
+              "evidence": [],
+              "field_provenance": {},
+              "contradiction_data": {},
+              "current_revision": 1,
+              "final_decision": "ESCALATE"
+            },
+            {
+              "operation_id": "32e2d2b8-b8db-484e-a08f-b03500fdc60e",
+              "action": "password_reset",
+              "status": "NEW",
+              "pdv_code": "32500002",
+              "phone": null,
+              "additional_payload": {},
+              "missing_fields": [],
+              "evidence": [],
+              "field_provenance": {},
+              "contradiction_data": {},
+              "current_revision": 1,
+              "final_decision": null
+            },
+            {
+              "operation_id": "19b5f4d6-dcb8-40ac-a408-6d5773225449",
+              "action": "otp_number_change",
+              "status": "NEW",
+              "pdv_code": "32500003",
+              "phone": "0770000004",
+              "additional_payload": {},
+              "missing_fields": [],
+              "evidence": [],
+              "field_provenance": {},
+              "contradiction_data": {},
+              "current_revision": 1,
+              "final_decision": null
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "9f4dab9f-1897-4677-ac1a-6302247ca192",
+      "reason_code": "semantic_verifier_failure",
+      "status": "open",
+      "summary": "Semantic verification failed; execution was refused.",
+      "evidence": {
+        "error": "structured response failed validation after 1 parse attempt(s)",
+        "analysis": {
+          "message_kind": "new_request",
+          "referenced_existing_operation_ids": [],
+          "operations": [
+            {
+              "local_operation_id": "1",
+              "action": "account_unblock",
+              "pdv_code": "32500001",
+              "phone": null,
+              "additional_fields": {},
+              "missing_fields": [],
+              "evidence": [],
+              "ambiguity_reasons": [],
+              "raw_action_confidence": null,
+              "raw_field_confidence": {}
+            },
+            {
+              "local_operation_id": "2",
+              "action": "password_reset",
+              "pdv_code": "32500002",
+              "phone": null,
+              "additional_fields": {},
+              "missing_fields": [],
+              "evidence": [],
+              "ambiguity_reasons": [],
+              "raw_action_confidence": null,
+              "raw_field_confidence": {}
+            },
+            {
+              "local_operation_id": "3",
+              "action": "otp_number_change",
+              "pdv_code": "32500003",
+              "phone": "0770000004",
+              "additional_fields": {},
+              "missing_fields": [],
+              "evidence": [],
+              "ambiguity_reasons": [],
+              "raw_action_confidence": null,
+              "raw_field_confidence": {}
+            }
+          ],
+          "new_request_present": true,
+          "contradiction_with_stored_state": false,
+          "contradiction_details": [],
+          "unresolved_ambiguities": []
+        },
+        "proposal": {
+          "local_operation_id": "2",
+          "action": "password_reset",
+          "pdv_code": "32500002",
+          "phone": null,
+          "additional_fields": {},
+          "missing_fields": [],
+          "evidence": [],
+          "ambiguity_reasons": [],
+          "raw_action_confidence": null,
+          "raw_field_confidence": {}
+        },
+        "email_context": {
+          "internal_email_id": "a3c1f49c-277f-40cf-8850-533a0286be19",
+          "sender": "Superviseur Zone Mu <superviseur.mu@example.invalid>",
+          "subject": "Plusieurs operations completes a traiter",
+          "message_id": "<multi-complete-005@fixtures.snoc.invalid>",
+          "in_reply_to": null,
+          "references": [],
+          "latest_user_message": "Bonjour,\n\nMerci de traiter les opérations indépendantes suivantes :\n\n- débloquer le compte du PDV 32500001 ;\n- réinitialiser le mot de passe du PDV 32500002 ;\n- changer le numéro OTP du PDV 32500003 vers 0770000004.\n\nToutes les informations sont confirmées.",
+          "latest_user_message_truncated": false,
+          "raw_eml_path": "var/raw_eml/a3c1f49c-277f-40cf-8850-533a0286be19.eml"
+        },
+        "stored_request_state": {
+          "request_id": "15468cfe-07ac-494e-a63a-e1b4367f5bd4",
+          "public_reference": "SNOC-REQ-1D8C0CBCF5E4",
+          "request_status": "ANALYZING",
+          "operations": [
+            {
+              "operation_id": "a6297362-4a14-404a-b0bb-0b473abe5169",
+              "action": "account_unblock",
+              "status": "ESCALATED",
+              "pdv_code": "32500001",
+              "phone": null,
+              "additional_payload": {},
+              "missing_fields": [],
+              "evidence": [],
+              "field_provenance": {},
+              "contradiction_data": {},
+              "current_revision": 1,
+              "final_decision": "ESCALATE"
+            },
+            {
+              "operation_id": "32e2d2b8-b8db-484e-a08f-b03500fdc60e",
+              "action": "password_reset",
+              "status": "ESCALATED",
+              "pdv_code": "32500002",
+              "phone": null,
+              "additional_payload": {},
+              "missing_fields": [],
+              "evidence": [],
+              "field_provenance": {},
+              "contradiction_data": {},
+              "current_revision": 1,
+              "final_decision": "ESCALATE"
+            },
+            {
+              "operation_id": "19b5f4d6-dcb8-40ac-a408-6d5773225449",
+              "action": "otp_number_change",
+              "status": "NEW",
+              "pdv_code": "32500003",
+              "phone": "0770000004",
+              "additional_payload": {},
+              "missing_fields": [],
+              "evidence": [],
+              "field_provenance": {},
+              "contradiction_data": {},
+              "current_revision": 1,
+              "final_decision": null
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "5cc70904-853e-47d5-8f91-c6d1df410378",
+      "reason_code": "escalate",
+      "status": "open",
+      "summary": "Automatic execution was refused by the hybrid safety policy.",
+      "evidence": {
+        "operation_id": "19b5f4d6-dcb8-40ac-a408-6d5773225449",
+        "analysis": {
+          "message_kind": "new_request",
+          "referenced_existing_operation_ids": [],
+          "operations": [
+            {
+              "local_operation_id": "1",
+              "action": "account_unblock",
+              "pdv_code": "32500001",
+              "phone": null,
+              "additional_fields": {},
+              "missing_fields": [],
+              "evidence": [],
+              "ambiguity_reasons": [],
+              "raw_action_confidence": null,
+              "raw_field_confidence": {}
+            },
+            {
+              "local_operation_id": "2",
+              "action": "password_reset",
+              "pdv_code": "32500002",
+              "phone": null,
+              "additional_fields": {},
+              "missing_fields": [],
+              "evidence": [],
+              "ambiguity_reasons": [],
+              "raw_action_confidence": null,
+              "raw_field_confidence": {}
+            },
+            {
+              "local_operation_id": "3",
+              "action": "otp_number_change",
+              "pdv_code": "32500003",
+              "phone": "0770000004",
+              "additional_fields": {},
+              "missing_fields": [],
+              "evidence": [],
+              "ambiguity_reasons": [],
+              "raw_action_confidence": null,
+              "raw_field_confidence": {}
+            }
+          ],
+          "new_request_present": true,
+          "contradiction_with_stored_state": false,
+          "contradiction_details": [],
+          "unresolved_ambiguities": []
+        },
+        "proposal": {
+          "local_operation_id": "3",
+          "action": "otp_number_change",
+          "pdv_code": "32500003",
+          "phone": "0770000004",
+          "additional_fields": {},
+          "missing_fields": [],
+          "evidence": [],
+          "ambiguity_reasons": [],
+          "raw_action_confidence": null,
+          "raw_field_confidence": {}
+        },
+        "verification": {
+          "action_supported": "yes",
+          "pdv_supported": "yes",
+          "phone_supported": "yes",
+          "stored_state_compatible": "yes",
+          "contradiction_present": false,
+          "contradiction_type": "none",
+          "missing_fields": [],
+          "additional_fields_supported": {},
+          "correction_detected": false,
+          "new_request_detected": true,
+          "evidence_summary": [],
+          "raw_confidence": null
+        },
+        "reasons": [
+          "analyzer_verifier_disagreement",
+          "required_field_evidence_incomplete",
+          "required_field_evidence_not_in_allowed_context"
+        ],
+        "hard_invariants": {
+          "authorized_sender": true,
+          "structured_output_valid": true,
+          "known_action": true,
+          "field_formats_and_completeness": true,
+          "no_correlation_conflict": true,
+          "no_previous_execution": true,
+          "operation_open": true,
+          "no_closed_history_field_source": true,
+          "required_evidence_from_allowed_context": false,
+          "configured_confidence_thresholds": true,
+          "additional_fields_allowlisted": true,
+          "additional_fields_evidence_supported": true,
+          "proposal_matches_stored_action": true,
+          "execution_mode_configured": true,
+          "input_context_complete": true
+        },
+        "email_context": {
+          "internal_email_id": "a3c1f49c-277f-40cf-8850-533a0286be19",
+          "sender": "Superviseur Zone Mu <superviseur.mu@example.invalid>",
+          "subject": "Plusieurs operations completes a traiter",
+          "message_id": "<multi-complete-005@fixtures.snoc.invalid>",
+          "in_reply_to": null,
+          "references": [],
+          "latest_user_message": "Bonjour,\n\nMerci de traiter les opérations indépendantes suivantes :\n\n- débloquer le compte du PDV 32500001 ;\n- réinitialiser le mot de passe du PDV 32500002 ;\n- changer le numéro OTP du PDV 32500003 vers 0770000004.\n\nToutes les informations sont confirmées.",
+          "latest_user_message_truncated": false,
+          "raw_eml_path": "var/raw_eml/a3c1f49c-277f-40cf-8850-533a0286be19.eml"
+        },
+        "stored_request_state": {
+          "request_id": "15468cfe-07ac-494e-a63a-e1b4367f5bd4",
+          "public_reference": "SNOC-REQ-1D8C0CBCF5E4",
+          "request_status": "ANALYZING",
+          "operations": [
+            {
+              "operation_id": "a6297362-4a14-404a-b0bb-0b473abe5169",
+              "action": "account_unblock",
+              "status": "ESCALATED",
+              "pdv_code": "32500001",
+              "phone": null,
+              "additional_payload": {},
+              "missing_fields": [],
+              "evidence": [],
+              "field_provenance": {},
+              "contradiction_data": {},
+              "current_revision": 1,
+              "final_decision": "ESCALATE"
+            },
+            {
+              "operation_id": "32e2d2b8-b8db-484e-a08f-b03500fdc60e",
+              "action": "password_reset",
+              "status": "ESCALATED",
+              "pdv_code": "32500002",
+              "phone": null,
+              "additional_payload": {},
+              "missing_fields": [],
+              "evidence": [],
+              "field_provenance": {},
+              "contradiction_data": {},
+              "current_revision": 1,
+              "final_decision": "ESCALATE"
+            },
+            {
+              "operation_id": "19b5f4d6-dcb8-40ac-a408-6d5773225449",
+              "action": "otp_number_change",
+              "status": "ESCALATED",
+              "pdv_code": "32500003",
+              "phone": "0770000004",
+              "additional_payload": {},
+              "missing_fields": [],
+              "evidence": [],
+              "field_provenance": {},
+              "contradiction_data": {},
+              "current_revision": 1,
+              "final_decision": "ESCALATE"
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "outbox": [
+    {
+      "id": "dab77874-15c3-4bdf-a79b-53dd5a7b157b",
+      "recipient": "superviseur.mu@example.invalid",
+      "subject": "[SNOC-REQ-1D8C0CBCF5E4] Résultat de traitement",
+      "status": "sent",
+      "retry_count": 0,
+      "last_error": null
+    }
+  ]
+}

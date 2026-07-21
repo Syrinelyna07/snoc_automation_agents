@@ -1,0 +1,19 @@
+{
+  "evaluation_only": true,
+  "scenario_directories": [
+    "tests/fixtures/emails/scenario_a_complete_unblock",
+    "tests/fixtures/emails/scenario_b_otp_clarification",
+    "tests/fixtures/emails/scenario_c_multi_operation",
+    "tests/fixtures/emails/scenario_d_reused_chain",
+    "tests/fixtures/emails/scenario_e_uncorrelated_reply",
+    "tests/fixtures/emails/scenario_f_idempotency",
+    "tests/fixtures/emails/scenario_g_mixed_reply",
+    "tests/fixtures/emails/scenario_h_corrections",
+    "tests/fixtures/emails/scenario_i_correlation_markers"
+  ],
+  "scenario_manifest_hashes": {
+    "tests/fixtures/emails/scenario_g_mixed_reply/scenario.json": "a53516e92b9dd084752d38990d61aef173ded9a5f37d73ed2c4c8173bee64344",
+    "tests/fixtures/emails/scenario_h_corrections/scenario.json": "a5a67806d053aa9647a671bae5b2a6d72d2813f1e862e06a56381a4ad41e9f4d",
+    "tests/fixtures/emails/scenario_i_correlation_markers/scenario.json": "834c8fad89002ab8a583fd7b1c45c4a92c37899ba925c3c45e51a8bf4dec6833"
+  }
+}
