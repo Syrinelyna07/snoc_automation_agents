@@ -1,0 +1,82 @@
+name: "${SNOC_COMPOSE_PROJECT_NAME:-snoc-langgraph}"
+
+x-runtime: &runtime
+  image: snoc-langgraph-agent:local
+  build:
+    context: .
+    dockerfile: Dockerfile
+  env_file:
+    - "${SNOC_ENV_FILE:-.env}"
+  environment: &runtime-environment
+    DATABASE_URL: postgresql+psycopg://snoc_langgraph:local-development-only@postgres:5432/snoc_langgraph
+    WORKFLOW_ENGINE: langgraph
+    DRY_RUN: "true"
+    DRY_RUN_SEND_EMAILS: "true"
+    VLLM_ANALYZER_DEPLOYMENT: qwen
+    VLLM_VERIFIER_DEPLOYMENT: gemma
+    SNOC_TEST_RUN_ID: "${SNOC_TEST_RUN_ID:-docker-e2e}"
+    IMAP_SEARCH_CRITERION: 'HEADER X-SNOC-Test-Run-ID "${SNOC_TEST_RUN_ID:-docker-e2e}"'
+    RAW_EML_DIRECTORY: "/app/var/raw_eml/${SNOC_TEST_RUN_ID:-docker-e2e}"
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: snoc_langgraph
+      POSTGRES_USER: snoc_langgraph
+      POSTGRES_PASSWORD: local-development-only
+    volumes:
+      - snoc_langgraph_postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U snoc_langgraph -d snoc_langgraph"]
+      interval: 3s
+      timeout: 3s
+      retries: 20
+
+  migrate:
+    <<: *runtime
+    command: ["alembic", "upgrade", "head"]
+    depends_on:
+      postgres:
+        condition: service_healthy
+    restart: "no"
+
+  worker:
+    <<: *runtime
+    command: ["snoc-agent", "worker", "run"]
+    volumes:
+      - ./var:/app/var
+    depends_on:
+      migrate:
+        condition: service_completed_successfully
+
+  dashboard:
+    <<: *runtime
+    command:
+      - streamlit
+      - run
+      - dashboard.py
+      - --server.address=0.0.0.0
+      - --server.port=8502
+      - --server.headless=true
+    ports:
+      - "${SNOC_DASHBOARD_PORT:-8502}:8502"
+    volumes:
+      - ./outputs:/app/outputs:ro
+    depends_on:
+      migrate:
+        condition: service_completed_successfully
+
+  journey:
+    <<: *runtime
+    profiles: ["test"]
+    command: ["python", "scripts/docker_mail_journey.py", "--confirm-send"]
+    volumes:
+      - ./outputs:/app/outputs
+    depends_on:
+      worker:
+        condition: service_started
+
+volumes:
+  snoc_langgraph_postgres_data:
+    name: "${SNOC_POSTGRES_VOLUME:-snoc_langgraph_postgres_data}"
