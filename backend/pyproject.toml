@@ -1,0 +1,76 @@
+[build-system]
+requires = ["setuptools>=75", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "snoc-email-agent"
+version = "0.1.0"
+description = "Stateful, safety-first telecom support email processing service"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+  "alembic>=1.14,<2",
+  "anyio>=4.4,<4.10",
+  "fastapi>=0.115,<0.116",
+  "httpx>=0.27,<1",
+  "PyJWT[crypto]>=2.10,<3",
+  "pydantic>=2.10,<3",
+  "pydantic-settings>=2.6,<3",
+  "psycopg[binary]>=3.2,<4",
+  "SQLAlchemy>=2.0,<3",
+  "uvicorn[standard]>=0.32,<0.35",
+]
+
+[project.optional-dependencies]
+dev = [
+  "mypy>=1.13,<2",
+  "pytest>=8.3,<9",
+  "pytest-cov>=6,<7",
+  "ruff>=0.8,<1",
+]
+
+[project.scripts]
+snoc-agent = "snoc_agent.cli.main:main"
+snoc-agent-api = "snoc_agent.api.main:run"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+snoc_agent = ["prompts/*.md"]
+
+[tool.pytest.ini_options]
+addopts = "-q"
+testpaths = ["tests"]
+markers = [
+  "local_model: requires a configured local OpenAI-compatible model server",
+  "hf_live: requires HF_TOKEN and RUN_HF_LIVE_TESTS=true; performs tiny fake-data-only router calls",
+]
+
+[tool.ruff]
+target-version = "py312"
+line-length = 100
+exclude = [
+  ".review",
+  "data",
+  "deliverables",
+  "labeled data",
+  "labeled_data",
+  "notebooks",
+  "reports",
+  "scripts",
+]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "SIM", "RUF"]
+ignore = ["E501"]
+
+[tool.ruff.format]
+quote-style = "double"
+
+[tool.mypy]
+python_version = "3.12"
+packages = ["snoc_agent"]
+strict = false
+warn_unused_ignores = true
+warn_redundant_casts = true

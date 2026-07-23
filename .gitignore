@@ -1,3 +1,40 @@
 node_modules
 dist
 .DS_Store
+backend/.env
+backend/.venv/
+backend/.pytest_cache/
+backend/.mypy_cache/
+backend/.ruff_cache/
+backend/.coverage
+backend/htmlcov/
+backend/snoc_agent.db
+backend/var/
+backend/src/*.egg-info/
+**/__pycache__/
+*.py[cod]
+
+# Secrets
+.env
+.env.*
+!.env.example
+backend/.env
+frontend/.env.local
+
+# Python
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Next.js
+node_modules/
+.next/
+out/
+
+# Local databases
+*.db
+*.sqlite
+*.sqlite3
