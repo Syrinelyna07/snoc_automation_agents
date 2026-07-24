@@ -59,13 +59,30 @@ export default function App() {
           onRefresh={refresh}
         />
 
-        <section className="date-filter-bar" aria-label="Dashboard time range">
-          <span className="date-trigger">Date ▾</span>
-          {RANGE_BUTTONS.map(([id, label]) => (
-            <button type="button" key={id} className={range === id ? "active" : ""} onClick={() => setRange(id)}>
-              {label}
-            </button>
-          ))}
+        <section
+          className="mb-2 flex w-full flex-wrap items-center gap-2 border px-4 py-2 sm:px-14 sm:py-4"
+          aria-label="Dashboard time range"
+        >
+          <button
+            type="button"
+            className="rounded-md border-none bg-gray-200 px-3 py-1.5 text-xs font-medium text-gray-700 sm:px-4 sm:py-2 sm:text-sm"
+          >
+            Date ▾
+          </button>
+          <div className="flex flex-wrap gap-2">
+            {RANGE_BUTTONS.map(([id, label]) => (
+              <button
+                type="button"
+                key={id}
+                onClick={() => setRange(id)}
+                className={`rounded-md px-3 py-1.5 text-xs font-medium sm:px-4 sm:py-2 sm:text-sm ${
+                  range === id ? "bg-black text-white" : "bg-gray-50 text-gray-800"
+                }`}
+              >
+                {label}
+              </button>
+            ))}
+          </div>
         </section>
 
         {error ? <div className="dashboard-notice warning"><strong>Demo mode.</strong> {error}</div> : null}
