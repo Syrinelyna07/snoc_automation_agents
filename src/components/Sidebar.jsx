@@ -1,51 +1,145 @@
-import { useState } from 'react';
+import { AnimatePresence, motion } from "framer-motion";
+import {
+  Bell,
+  Bot,
+  ChartNoAxesCombined,
+  CircleUserRound,
+  DatabaseZap,
+  FileClock,
+  LogOut,
+  PanelLeftClose,
+  PanelLeftOpen,
+  Settings,
+  Workflow,
+} from "lucide-react";
+import { useEffect, useState } from "react";
 
-const NAV_ITEMS = [
-  { id: 'overview', href: '#section-critical', label: 'Dashboard', icon: <rect x="3" y="3" width="7" height="9"/> },
-  { id: 'operations', href: '#section-operations', label: 'Live Operations', icon: <polygon points="12 2 2 7 12 12 22 7 12 2"/> },
-  { id: 'ai', href: '#section-ai-intelligence', label: 'AI Intelligence', icon: <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/> },
-  { id: 'time', href: '#section-time-intelligence', label: 'Time Analytics', icon: <circle cx="12" cy="12" r="10"/> },
-  { id: 'business', href: '#section-business-intel', label: 'Business Intel', icon: <line x1="18" y1="20" x2="18" y2="10"/> },
-  { id: 'impact', href: '#section-business-impact', label: 'Business Impact', icon: <path d="M21.21 15.89A10 10 0 1 1 8 2.83"/> },
-  { id: 'quality', href: '#section-op-quality', label: 'Quality Log', icon: <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/> },
-  { id: 'audit', href: '#section-audit', label: 'Audit Trail', icon: <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/> }
+const ITEMS = [
+  { id: "overview", label: "Overview", icon: ChartNoAxesCombined },
+  { id: "operations", label: "Agent Operations", icon: Bell },
+  { id: "quality", label: "Data Quality", icon: DatabaseZap },
+  { id: "model", label: "Dataset & Model", icon: Bot },
+  { id: "workflow", label: "Workflow & APIs", icon: Workflow },
+  { id: "audit", label: "Audit & Review", icon: FileClock },
 ];
 
-export default function Sidebar() {
-  const [collapsed, setCollapsed] = useState(false);
-  const [active, setActive] = useState('overview');
+export default function Sidebar({ activePage, onChange, email = "SNOC Administrator", role = "ADMIN" }) {
+  const [hovered, setHovered] = useState(false);
+  const [pinned, setPinned] = useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const expanded = hovered || pinned || mobileOpen;
+
+  useEffect(() => {
+    const onHash = () => {
+      const hash = window.location.hash.replace("#", "");
+      if (ITEMS.some((item) => item.id === hash)) onChange(hash);
+    };
+    window.addEventListener("hashchange", onHash);
+    return () => window.removeEventListener("hashchange", onHash);
+  }, [onChange]);
+
+  function navigate(id) {
+    window.location.hash = id;
+    onChange(id);
+    setMobileOpen(false);
+  }
+
+  function logout() {
+    sessionStorage.removeItem("token");
+    sessionStorage.removeItem("user");
+    window.location.assign("/");
+  }
 
   return (
-    <aside className={`sidebar${collapsed ? ' collapsed' : ''}`} id="sidebar">
-      <div className="sidebar-header">
-        <div className="logo">
-          <span className="logo-red-dot"></span>
-          <span className="logo-text">SNOC <span className="logo-subtext">AI AGENT</span></span>
+    <>
+      <button
+        type="button"
+        className="mobile-menu-button"
+        onClick={() => setMobileOpen((value) => !value)}
+        aria-label="Toggle navigation"
+      >
+        {mobileOpen ? <PanelLeftClose size={21} /> : <PanelLeftOpen size={21} />}
+      </button>
+
+      <motion.aside
+        className={`esi-sidebar ${expanded ? "expanded" : ""}`}
+        animate={{ width: expanded ? 252 : 140 }}
+        transition={{ duration: 0.28, ease: "easeOut" }}
+        onMouseEnter={() => setHovered(true)}
+        onMouseLeave={() => setHovered(false)}
+        aria-label="SNOC dashboard navigation"
+      >
+        <div className="esi-brand">
+          <div className="esi-logo" aria-label="ESI Logis">
+            <span className="esi-word">ESI</span>
+            <span className="logis-word">LOGIS</span>
+            <i />
+          </div>
+          <AnimatePresence>
+            {expanded ? (
+              <motion.div className="esi-brand-copy" initial={{ opacity: 0, x: -8 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0 }}>
+                <strong>SNOC UC5</strong>
+                <span>AI Command Center</span>
+              </motion.div>
+            ) : null}
+          </AnimatePresence>
         </div>
-        <button id="sidebar-toggle" className="sidebar-collapse-btn" title="Collapse Sidebar" onClick={() => setCollapsed(c => !c)}>
-          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="11 17 6 12 11 7"/><polyline points="18 17 13 12 18 7"/></svg>
+
+        <div className="sidebar-divider" />
+
+        <nav className="esi-navigation">
+          {ITEMS.map((item) => {
+            const Icon = item.icon;
+            const active = activePage === item.id;
+            return (
+              <button
+                type="button"
+                key={item.id}
+                className={`esi-nav-item ${active ? "active" : ""}`}
+                onClick={() => navigate(item.id)}
+                aria-current={active ? "page" : undefined}
+                title={!expanded ? item.label : undefined}
+              >
+                <Icon size={25} strokeWidth={1.85} />
+                <AnimatePresence>
+                  {expanded ? (
+                    <motion.span initial={{ opacity: 0, x: -10 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -10 }}>
+                      {item.label}
+                    </motion.span>
+                  ) : null}
+                </AnimatePresence>
+              </button>
+            );
+          })}
+        </nav>
+
+        <button type="button" className="sidebar-pin" onClick={() => setPinned((value) => !value)} aria-label={pinned ? "Unpin sidebar" : "Pin sidebar"}>
+          {pinned ? <PanelLeftClose size={18} /> : <PanelLeftOpen size={18} />}
         </button>
-      </div>
 
-      <nav className="sidebar-nav">
-        <ul>
-          {NAV_ITEMS.map(item => (
-            <li key={item.id} className={active === item.id ? 'active' : ''} onClick={() => setActive(item.id)}>
-              <a href={item.href}>
-                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">{item.icon}</svg>
-                <span>{item.label}</span>
-              </a>
-            </li>
-          ))}
-        </ul>
-      </nav>
+        <div className="esi-profile">
+          <CircleUserRound size={47} strokeWidth={1.75} />
+          <AnimatePresence>
+            {expanded ? (
+              <motion.div className="esi-profile-copy" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
+                <strong>{email}</strong>
+                <span>{role}</span>
+              </motion.div>
+            ) : null}
+          </AnimatePresence>
+          {expanded ? (
+            <button type="button" className="esi-logout" onClick={logout} aria-label="Log out">
+              <LogOut size={18} />
+            </button>
+          ) : null}
+        </div>
 
-      <div className="sidebar-system-info">
-        <div className="info-label">DEPLOYMENT</div>
-        <div className="info-value">Djezzy Central SNOC</div>
-        <div className="info-label">VERSION</div>
-        <div className="info-value">v1.4.2</div>
-      </div>
-    </aside>
+        <div className="sidebar-bottom-label">
+          <Settings size={14} />
+          {expanded ? <span>Safety mode enabled</span> : null}
+        </div>
+      </motion.aside>
+      {mobileOpen ? <button className="mobile-backdrop" type="button" aria-label="Close navigation" onClick={() => setMobileOpen(false)} /> : null}
+    </>
   );
 }

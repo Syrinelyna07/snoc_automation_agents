@@ -1,72 +1,90 @@
-import { useState } from 'react';
-import { useDashboard } from './hooks/useDashboard.js';
-import { fmtDate } from './data/mockData.js';
+import { useCallback, useMemo, useState } from "react";
+import AgentOperations from "./components/AgentOperations";
+import AuditReview from "./components/AuditReview";
+import DashboardHeader from "./components/DashboardHeader";
+import DataQuality from "./components/DataQuality";
+import DecisionDrawer from "./components/DecisionDrawer";
+import ModelDataset from "./components/ModelDataset";
+import Overview from "./components/Overview";
+import Sidebar from "./components/Sidebar";
+import WorkflowApis from "./components/WorkflowApis";
+import { useDashboard } from "./hooks/useDashboard";
 
-import Sidebar from './components/Sidebar.jsx';
-import TopNav from './components/TopNav.jsx';
-import CriticalOperations from './components/CriticalOperations.jsx';
-import PlatformHealth from './components/PlatformHealth.jsx';
-import LiveOperations from './components/LiveOperations.jsx';
-import AIIntelligence from './components/AIIntelligence.jsx';
-import TimeIntelligence from './components/TimeIntelligence.jsx';
-import BusinessIntel from './components/BusinessIntel.jsx';
-import BusinessImpact from './components/BusinessImpact.jsx';
-import OperationalQuality from './components/OperationalQuality.jsx';
-import AuditTrail from './components/AuditTrail.jsx';
-import DecisionDrawer from './components/DecisionDrawer.jsx';
+const PAGES = {
+  overview: { title: "Dashboard", component: Overview },
+  operations: { title: "Agent Operations", component: AgentOperations },
+  quality: { title: "Data Quality / CACTUV", component: DataQuality },
+  model: { title: "Dataset & Model", component: ModelDataset },
+  workflow: { title: "Workflow & APIs", component: WorkflowApis },
+  audit: { title: "Audit & Manual Review", component: AuditReview },
+};
+
+const RANGE_BUTTONS = [
+  ["week", "This Week"],
+  ["today", "Today"],
+  ["month", "This Month"],
+  ["year", "This Year"],
+];
 
 export default function App() {
-  const {
-    requestPool, alerts, stats, isAgentActive, consoleLines, now,
-    dismissAlert, toggleAgent
-  } = useDashboard();
+  const initial = window.location.hash.replace("#", "");
+  const [activePage, setActivePage] = useState(PAGES[initial] ? initial : "overview");
+  const [range, setRange] = useState("week");
+  const [selectedDecision, setSelectedDecision] = useState(null);
+  const { data, loading, error, partialErrors, refresh } = useDashboard({ range });
+  const page = PAGES[activePage] || PAGES.overview;
+  const PageComponent = page.component;
 
-  const [selectedRequest, setSelectedRequest] = useState(null);
-  const [searchQuery, setSearchQuery] = useState('');
+  const user = useMemo(() => {
+    try { return JSON.parse(sessionStorage.getItem("user") || "{}"); } catch { return {}; }
+  }, []);
+
+  const changePage = useCallback((id) => setActivePage(id), []);
 
   return (
-    <div className="app-container">
-      <Sidebar />
+    <div className="application-shell">
+      <Sidebar
+        activePage={activePage}
+        onChange={changePage}
+        email={user.email || "SNOC Administrator"}
+        role={user.role || "ADMIN"}
+      />
 
-      <div className="main-wrapper">
-        <TopNav
-          now={now}
-          isAgentActive={isAgentActive}
-          toggleAgent={toggleAgent}
-          alerts={alerts}
-          onSearch={setSearchQuery}
+      <main className="dashboard-main">
+        <DashboardHeader
+          title={page.title}
+          mode={data.mode}
+          generatedAt={data.generatedAt}
+          loading={loading}
+          onRefresh={refresh}
         />
 
-        <main className="dashboard-content">
-          <div className="dashboard-header-row">
-            <div className="header-welcome">
-              <h1>Welcome back to SNOC 👋</h1>
-              <p className="header-subtitle">Digital Technical Support Operations Center</p>
-            </div>
-          </div>
+        <section className="date-filter-bar" aria-label="Dashboard time range">
+          <span className="date-trigger">Date ▾</span>
+          {RANGE_BUTTONS.map(([id, label]) => (
+            <button type="button" key={id} className={range === id ? "active" : ""} onClick={() => setRange(id)}>
+              {label}
+            </button>
+          ))}
+        </section>
 
-          <CriticalOperations alerts={alerts} dismissAlert={dismissAlert} />
-          <PlatformHealth stats={stats} isAgentActive={isAgentActive} now={now} />
-          <LiveOperations requestPool={requestPool} consoleLines={consoleLines} onInspect={setSelectedRequest} />
-          <AIIntelligence requestPool={requestPool} />
-          <TimeIntelligence stats={stats} />
-          <BusinessIntel requestPool={requestPool} />
-          <BusinessImpact />
-          <OperationalQuality stats={stats} />
-          <AuditTrail requestPool={requestPool} searchQuery={searchQuery} onInspect={setSelectedRequest} />
-        </main>
+        {error ? <div className="dashboard-notice warning"><strong>Demo mode.</strong> {error}</div> : null}
+        {partialErrors.length > 0 && partialErrors.length < 9 ? (
+          <div className="dashboard-notice neutral">Some optional API sections are unavailable. Available live data is combined with clearly marked deterministic fixtures.</div>
+        ) : null}
+        {loading ? <div className="dashboard-loading"><span /></div> : null}
 
-        <footer className="app-footer">
-          <div className="footer-left">
-            SNOC AI Agent Operational Control Center &bull; Version 1.4.2 &bull; Digital Technical Support (DTS)
-          </div>
-          <div className="footer-right">
-            Last synchronization: <span>{fmtDate(now)}</span>
-          </div>
+        <div className="dashboard-page-content">
+          <PageComponent data={data} onSelect={setSelectedDecision} />
+        </div>
+
+        <footer className="dashboard-footer">
+          <span>SNOC AI & Data Quality Command Center</span>
+          <span>UC5 • Read-only analytics • ESI Logis visual identity</span>
         </footer>
-      </div>
+      </main>
 
-      <DecisionDrawer request={selectedRequest} onClose={() => setSelectedRequest(null)} />
+      <DecisionDrawer item={selectedDecision} onClose={() => setSelectedDecision(null)} />
     </div>
   );
 }

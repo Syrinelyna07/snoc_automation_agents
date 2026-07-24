@@ -1,138 +1,112 @@
-import { useState, useRef, useCallback, useEffect } from 'react';
-import {
-  seedRequestPool, seedAlerts, generateRequest,
-  initialHourly, initialWeekly, rnd, rndFloat, commas, fmtTime, fmtDate, pick
-} from '../data/mockData.js';
+import { useCallback, useEffect, useMemo, useState } from "react";
+import { DEMO_DASHBOARD } from "../data/mockData";
 
-const initialStats = {
-  emailsProcessed: 4127,
-  successOps: 3608,
-  escalations: 249,
-  rejectedEmails: 176,
-  waitingQueue: 4,
-  processingQueue: 3,
-  failedQueue: 12,
-  lowConfidencePredictions: 63,
-  missingEntities: 41,
-  unauthorizedRequests: 7,
-  hourlyRequests: [...initialHourly],
-  weeklyRequests: [...initialWeekly]
-};
+const API_BASE = import.meta.env.VITE_API_BASE_URL || "";
 
-export function useDashboard() {
-  const [requestPool, setRequestPool] = useState(() => seedRequestPool(58));
-  const [alerts, setAlerts] = useState(() => seedAlerts());
-  const [stats, setStats] = useState(initialStats);
-  const [isAgentActive, setIsAgentActive] = useState(true);
-  const [consoleLines, setConsoleLines] = useState([]);
-  const [now, setNow] = useState(new Date());
+async function getJson(path, signal) {
+  const response = await fetch(`${API_BASE}${path}`, {
+    signal,
+    headers: { Accept: "application/json" },
+  });
+  if (!response.ok) throw new Error(`${response.status} ${response.statusText}`);
+  return response.json();
+}
 
-  const isAgentActiveRef = useRef(isAgentActive);
-  useEffect(() => { isAgentActiveRef.current = isAgentActive; }, [isAgentActive]);
+function camel(obj) {
+  if (Array.isArray(obj)) return obj.map(camel);
+  if (!obj || typeof obj !== "object") return obj;
+  return Object.fromEntries(
+    Object.entries(obj).map(([key, value]) => [
+      key.replace(/_([a-z])/g, (_, letter) => letter.toUpperCase()),
+      camel(value),
+    ]),
+  );
+}
 
-  const appendConsole = useCallback((lines) => {
-    setConsoleLines(prev => {
-      const next = [...prev, ...lines];
-      return next.length > 80 ? next.slice(next.length - 80) : next;
-    });
-  }, []);
-
-  // seed console with the first few requests once, on mount
-  useEffect(() => {
-    setRequestPool(pool => {
-      const recent = pool.slice(0, 8).slice().reverse();
-      const seeded = [];
-      recent.forEach(req => {
-        seeded.push({ text: `[${req.time}] Email received from ${req.sender} (${req.zone})`, cls: 'text-muted' });
-        seeded.push({ text: `[${req.time}] Sender verification ${req.status === 'Escalated' && req.reasons.some(r => r.includes('whitelist')) ? 'FAILED — not in whitelist' : 'OK'}` });
-        seeded.push({ text: `[${req.time}] Intent classified: ${req.intent} (confidence ${req.confidence}%)` });
-        seeded.push({ text: `[${req.time}] Entities extracted: ${req.entity}` });
-        if (req.status === 'Success') seeded.push({ text: `[${req.time}] ✔ Success response received (${req.duration})`, cls: 'text-success' });
-        else if (req.status === 'Escalated') seeded.push({ text: `[${req.time}] ⚠ Escalated to human supervisor`, cls: 'text-warning' });
-        else if (req.status === 'Rejected') seeded.push({ text: `[${req.time}] ✖ Invalid intent — email rejected`, cls: 'text-danger' });
-        else seeded.push({ text: `[${req.time}] ⏳ Awaiting SNOC API response...`, cls: 'text-muted' });
-      });
-      seeded.push({ text: `[${fmtTime(new Date())}] SYSTEM STREAM STABLE — awaiting next batch...`, cls: 'text-muted' });
-      setConsoleLines(seeded);
-      return pool;
-    });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  // simulation tick
-  useEffect(() => {
-    const tick = setInterval(() => {
-      if (!isAgentActiveRef.current) return;
-      const t = new Date();
-      const newReq = generateRequest(t);
-
-      setRequestPool(prev => [newReq, ...prev].slice(0, 200));
-
-      setStats(prev => {
-        const hr = t.getHours();
-        const day = t.getDay() === 0 ? 6 : t.getDay() - 1;
-        const hourlyRequests = [...prev.hourlyRequests];
-        hourlyRequests[hr] = (hourlyRequests[hr] || 0) + 1;
-        const weeklyRequests = [...prev.weeklyRequests];
-        weeklyRequests[day] = (weeklyRequests[day] || 0) + 1;
-
-        return {
-          ...prev,
-          emailsProcessed: prev.emailsProcessed + 1,
-          successOps: prev.successOps + (newReq.status === 'Success' ? 1 : 0),
-          escalations: prev.escalations + (newReq.status === 'Escalated' ? 1 : 0),
-          rejectedEmails: prev.rejectedEmails + (newReq.status === 'Rejected' ? 1 : 0),
-          waitingQueue: Math.max(1, prev.waitingQueue + rnd(-1, 1)),
-          processingQueue: Math.max(1, prev.processingQueue + rnd(-1, 1)),
-          lowConfidencePredictions: prev.lowConfidencePredictions + (newReq.status === 'Escalated' && newReq.confidence < 70 ? 1 : 0),
-          unauthorizedRequests: prev.unauthorizedRequests + (newReq.reasons.some(r => r.includes('not found in the current zone whitelist')) ? 1 : 0),
-          hourlyRequests, weeklyRequests
-        };
-      });
-
-      appendConsole([
-        { text: `[${newReq.time}] Email received from ${newReq.sender} (${newReq.zone})`, cls: 'text-muted' },
-        { text: `[${newReq.time}] Intent classified: ${newReq.intent} (confidence ${newReq.confidence}%)` },
-        {
-          text: `[${newReq.time}] ${newReq.status === 'Success' ? '✔ Success response received (' + newReq.duration + ')' : newReq.status === 'Escalated' ? '⚠ Escalated to human supervisor' : newReq.status === 'Rejected' ? '✖ Invalid intent — rejected' : '⏳ Processing...'}`,
-          cls: newReq.status === 'Success' ? 'text-success' : newReq.status === 'Escalated' ? 'text-warning' : newReq.status === 'Rejected' ? 'text-danger' : 'text-muted'
-        }
-      ]);
-
-      if (Math.random() < 0.12) {
-        const templates = [
-          { severity: 'warning', message: `Low-confidence classification requiring review (${newReq.confidence}%) — ${newReq.zone}`, region: newReq.zone },
-          { severity: 'critical', message: `SNOC API timeout on ${newReq.apiRequest ? newReq.apiRequest.endpoint : '/v1/pos/unlock'}`, region: newReq.zone },
-          { severity: 'warning', message: `High email traffic detected in ${newReq.zone}`, region: newReq.zone }
-        ];
-        const chosen = pick(templates);
-        setAlerts(prev => [{ id: 'A' + Date.now(), severity: chosen.severity, message: chosen.message, time: fmtTime(t), region: chosen.region, status: 'Active' }, ...prev].slice(0, 12));
-      }
-    }, 4000);
-    return () => clearInterval(tick);
-  }, [appendConsole]);
-
-  // clock
-  useEffect(() => {
-    const clock = setInterval(() => setNow(new Date()), 1000);
-    return () => clearInterval(clock);
-  }, []);
-
-  const dismissAlert = useCallback((id) => {
-    setAlerts(prev => prev.map(a => a.id === id ? { ...a, status: 'Resolved' } : a));
-  }, []);
-
-  const toggleAgent = useCallback(() => {
-    setIsAgentActive(prev => {
-      const next = !prev;
-      appendConsole([{ text: `[${fmtTime(new Date())}] ${next ? 'Agent resumed by TechSupport Ops' : 'Agent paused by TechSupport Ops'}`, cls: 'text-warning' }]);
-      return next;
-    });
-  }, [appendConsole]);
+function mergeLive(demo, values) {
+  const [summary, trends, intents, recent, dqExecutive, dqDimensions, dqRules, model, workflow] = values;
+  const liveSummary = summary ? camel(summary) : null;
+  const operational = liveSummary?.operational || liveSummary?.summary?.operational;
+  const quality = liveSummary?.dataQuality || liveSummary?.summary?.dataQuality || (dqExecutive ? camel(dqExecutive) : null);
 
   return {
-    requestPool, alerts, stats, isAgentActive, consoleLines, now,
-    dismissAlert, toggleAgent,
-    fmtTime, fmtDate, commas, rndFloat
+    ...demo,
+    mode: values.some(Boolean) ? "live" : "demo",
+    generatedAt: liveSummary?.generatedAt || new Date().toISOString(),
+    summary: {
+      operational: { ...demo.summary.operational, ...(operational || {}) },
+      dataQuality: { ...demo.summary.dataQuality, ...(quality || {}) },
+    },
+    trends: Array.isArray(trends?.items) ? camel(trends.items) : Array.isArray(trends) ? camel(trends) : demo.trends,
+    intents: Array.isArray(intents?.items) ? camel(intents.items) : Array.isArray(intents) ? camel(intents) : demo.intents,
+    recent: Array.isArray(recent?.items) ? camel(recent.items) : Array.isArray(recent) ? camel(recent) : demo.recent,
+    dq: {
+      dimensions: Array.isArray(dqDimensions?.items) ? camel(dqDimensions.items) : Array.isArray(dqDimensions) ? camel(dqDimensions) : demo.dq.dimensions,
+      rules: Array.isArray(dqRules?.items) ? camel(dqRules.items) : Array.isArray(dqRules) ? camel(dqRules) : demo.dq.rules,
+    },
+    model: model ? { ...demo.model, ...camel(model) } : demo.model,
+    workflow: Array.isArray(workflow?.items) ? camel(workflow.items) : Array.isArray(workflow) ? camel(workflow) : demo.workflow,
   };
+}
+
+export function useDashboard({ range = "week" } = {}) {
+  const [data, setData] = useState(DEMO_DASHBOARD);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
+  const [partialErrors, setPartialErrors] = useState([]);
+  const [refreshKey, setRefreshKey] = useState(0);
+
+  const refresh = useCallback(() => {
+    setRefreshKey((value) => value + 1);
+  }, []);
+
+  useEffect(() => {
+    const controller = new AbortController();
+    let mounted = true;
+
+    async function load() {
+      setLoading(true);
+      setError("");
+      const routes = [
+        `/api/snoc/dashboard/summary?range=${range}`,
+        `/api/snoc/dashboard/trends?range=${range}`,
+        `/api/snoc/dashboard/intents?range=${range}`,
+        `/api/snoc/dashboard/recent?range=${range}`,
+        "/api/snoc/dq/executive",
+        "/api/snoc/dq/dimensions",
+        "/api/snoc/dq/rules",
+        "/api/snoc/model/snapshot",
+        "/api/snoc/workflow/health",
+      ];
+      const settled = await Promise.allSettled(routes.map((route) => getJson(route, controller.signal)));
+      if (!mounted) return;
+      const values = settled.map((result) => (result.status === "fulfilled" ? result.value : null));
+      const failures = settled
+        .map((result, index) => (result.status === "rejected" ? routes[index] : null))
+        .filter(Boolean);
+      setPartialErrors(failures);
+      setData(mergeLive(DEMO_DASHBOARD, values));
+      if (failures.length === routes.length) {
+        setError("Backend endpoints are unavailable. Deterministic demo data is displayed.");
+      }
+      setLoading(false);
+    }
+
+    load().catch((reason) => {
+      if (!mounted || reason?.name === "AbortError") return;
+      setError("Backend unavailable. Deterministic demo data is displayed.");
+      setData(DEMO_DASHBOARD);
+      setLoading(false);
+    });
+
+    return () => {
+      mounted = false;
+      controller.abort();
+    };
+  }, [range, refreshKey]);
+
+  return useMemo(
+    () => ({ data, loading, error, partialErrors, refresh }),
+    [data, loading, error, partialErrors, refresh],
+  );
 }
